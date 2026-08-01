@@ -182,7 +182,7 @@ const RegisterForm = ({ redirectPath }: IRegisterFormProps) => {
                           name={field.name}
                           type="tel"
                           value={field.state.value ?? ""}
-                          placeholder="+1 (555) 000-0000"
+                          placeholder="01727812893"
                           onBlur={field.handleBlur}
                           onChange={(e) => field.handleChange(e.target.value)}
                           aria-invalid={hasError}
