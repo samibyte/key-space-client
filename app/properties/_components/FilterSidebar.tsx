@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { useCategories } from "@/app/properties/_hooks/useProperties";
 import type { PropertySortBy, SortOrder } from "@/types/property.type";
-import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
@@ -67,6 +66,22 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
       } else {
         params.delete(key);
       }
+      params.set("page", "1");
+      router.push(`/properties?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams],
+  );
+
+  const updateParams = useCallback(
+    (updates: Record<string, string>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      Object.entries(updates).forEach(([key, value]) => {
+        if (value) {
+          params.set(key, value);
+        } else {
+          params.delete(key);
+        }
+      });
       params.set("page", "1");
       router.push(`/properties?${params.toString()}`, { scroll: false });
     },
@@ -145,9 +160,13 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
               <SlidersHorizontal className="size-3.5 text-primary" />
             </div>
             <div>
-              <h2 className="font-semibold text-sm text-foreground leading-none">Filters</h2>
+              <h2 className="font-semibold text-sm text-foreground leading-none">
+                Filters
+              </h2>
               {hasFilters && (
-                <p className="text-[10px] text-muted-foreground mt-0.5">Active</p>
+                <p className="text-[10px] text-muted-foreground mt-0.5">
+                  Active
+                </p>
               )}
             </div>
           </div>
@@ -173,9 +192,11 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
 
         {/* Scrollable content */}
         <div className="flex flex-col divide-y divide-border/50">
-
           {/* City */}
-          <FilterSection icon={<MapPin className="size-3.5" />} label="Location">
+          <FilterSection
+            icon={<MapPin className="size-3.5" />}
+            label="Location"
+          >
             <Input
               type="text"
               placeholder="e.g. Dhaka, Chittagong…"
@@ -189,7 +210,10 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
             />
           </FilterSection>
           {/* Sort */}
-          <FilterSection icon={<ArrowUpDown className="size-3.5" />} label="Sort By">
+          <FilterSection
+            icon={<ArrowUpDown className="size-3.5" />}
+            label="Sort By"
+          >
             <div className="grid grid-cols-2 gap-1">
               {SORT_OPTIONS.map((opt) => (
                 <button
@@ -216,7 +240,10 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
           </FilterSection>
 
           {/* Price range slider */}
-          <FilterSection icon={<Tag className="size-3.5" />} label="Monthly Rent (৳)">
+          <FilterSection
+            icon={<Tag className="size-3.5" />}
+            label="Monthly Rent (৳)"
+          >
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold text-foreground tabular-nums">
                 ৳{priceRange[0].toLocaleString()}
@@ -234,12 +261,17 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
               max={MAX_PRICE}
               step={500}
               onValueChange={(val) => setPriceRange(val as [number, number])}
-              onValueCommitted={(val: number | readonly number[]) => applyPriceRange(val as number[])}
+              onValueCommitted={(val: number | readonly number[]) =>
+                applyPriceRange(val as number[])
+              }
             />
           </FilterSection>
 
           {/* Bedrooms */}
-          <FilterSection icon={<BedDouble className="size-3.5" />} label="Bedrooms">
+          <FilterSection
+            icon={<BedDouble className="size-3.5" />}
+            label="Bedrooms"
+          >
             <div className="flex flex-wrap gap-1.5">
               {BEDROOM_OPTIONS.map((opt) => {
                 const val = opt === "Any" ? "" : opt === "5+" ? "5" : opt;
@@ -247,21 +279,21 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                 const active = isAny
                   ? !getParam("minBedrooms") && !getParam("bedrooms")
                   : opt === "5+"
-                  ? getParam("minBedrooms") === "5"
-                  : getParam("bedrooms") === val;
+                    ? getParam("minBedrooms") === "5"
+                    : getParam("bedrooms") === val;
                 return (
                   <button
                     key={opt}
                     onClick={() => {
                       if (isAny) {
-                        updateParam("bedrooms", "");
-                        updateParam("minBedrooms", "");
+                        updateParams({ bedrooms: "", minBedrooms: "" });
                       } else if (opt === "5+") {
-                        updateParam("minBedrooms", "5");
-                        updateParam("bedrooms", "");
+                        updateParams({ minBedrooms: "5", bedrooms: "" });
                       } else {
-                        updateParam("bedrooms", active ? "" : val);
-                        updateParam("minBedrooms", "");
+                        updateParams({
+                          bedrooms: active ? "" : val,
+                          minBedrooms: "",
+                        });
                       }
                     }}
                     className={cn(
@@ -284,11 +316,15 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
               {BATHROOM_OPTIONS.map((opt) => {
                 const val = opt === "Any" ? "" : opt === "4+" ? "4" : opt;
                 const isAny = opt === "Any";
-                const isActive = isAny ? !getParam("bathrooms") : getParam("bathrooms") === val;
+                const isActive = isAny
+                  ? !getParam("bathrooms")
+                  : getParam("bathrooms") === val;
                 return (
                   <button
                     key={opt}
-                    onClick={() => updateParam("bathrooms", isAny ? "" : isActive ? "" : val)}
+                    onClick={() =>
+                      updateParam("bathrooms", isAny ? "" : isActive ? "" : val)
+                    }
                     className={cn(
                       "px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200",
                       isActive
@@ -305,7 +341,10 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
 
           {/* Property Type */}
           {categories.length > 0 && (
-            <FilterSection icon={<Tag className="size-3.5" />} label="Property Type">
+            <FilterSection
+              icon={<Tag className="size-3.5" />}
+              label="Property Type"
+            >
               <div className="grid grid-cols-2 gap-x-3 gap-y-2">
                 {[{ id: "", name: "All Types" }, ...categories].map((cat) => (
                   <label
@@ -330,10 +369,16 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
           )}
 
           {/* Amenities */}
-          <FilterSection icon={<Sparkles className="size-3.5" />} label="Amenities">
+          <FilterSection
+            icon={<Sparkles className="size-3.5" />}
+            label="Amenities"
+          >
             <div className="grid grid-cols-2 gap-x-3 gap-y-2">
               {AMENITY_OPTIONS.map(({ id, label, icon }) => (
-                <label key={id} className="flex items-center gap-2 cursor-pointer group">
+                <label
+                  key={id}
+                  className="flex items-center gap-2 cursor-pointer group"
+                >
                   <Checkbox
                     checked={selectedAmenities.includes(id)}
                     onCheckedChange={() => toggleAmenity(id)}
