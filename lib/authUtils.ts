@@ -12,17 +12,17 @@ export type RouteConfig = {
 };
 
 export const tenantProtectedRoutes: RouteConfig = {
-  pattern: [/^\/tenant\/dashboard/], // Matches any path that starts with /tenant/dashboard
+  pattern: [/^\/dashboard\/tenant/],
   exact: [],
 };
 
 export const landlordProtectedRoutes: RouteConfig = {
-  pattern: [/^\/landlord\/dashboard/], // Matches any path that starts with /landlord/dashboard
+  pattern: [/^\/dashboard\/landlord/],
   exact: [],
 };
 
 export const adminProtectedRoutes: RouteConfig = {
-  pattern: [/^\/admin\/dashboard/], // Matches any path that starts with /admin/dashboard
+  pattern: [/^\/dashboard\/admin/],
   exact: [],
 };
 
@@ -53,13 +53,13 @@ export const getRouteOwner = (
 
 export const getDefaultDashboardRoute = (role: UserRole) => {
   if (role === "ADMIN") {
-    return "/admin/dashboard";
+    return "/dashboard/admin";
   }
   if (role === "LANDLORD") {
-    return "/doctor/dashboard";
+    return "/dashboard/landlord";
   }
   if (role === "TENANT") {
-    return "/tenant/dashboard";
+    return "/dashboard/tenant";
   }
 
   return "/";
