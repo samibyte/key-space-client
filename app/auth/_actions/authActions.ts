@@ -108,3 +108,16 @@ export const registerAction = async (
     };
   }
 };
+
+// Logout
+export const logoutAction = async (): Promise<{ success: boolean; message: string }> => {
+  try {
+    const { deleteCookie } = await import("@/lib/cookieUtils");
+    await deleteCookie("accessToken");
+    await deleteCookie("refreshToken");
+    return { success: true, message: "Logged out successfully" };
+  } catch (error) {
+    console.error("Logout error:", error);
+    return { success: false, message: "Logout failed" };
+  }
+};

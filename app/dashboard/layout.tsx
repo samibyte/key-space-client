@@ -1,6 +1,6 @@
-
 import { getUserInfo } from "@/services/auth.service";
 import DashboardSidebar from "./_components/DashboardSidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
 export default async function DashboardLayout({
   children,
@@ -16,15 +16,17 @@ export default async function DashboardLayout({
   const role = userInfo.role;
 
   return (
-    <div className="flex bg-background h-screen overflow-hidden">
-      <DashboardSidebar 
-        role={role} 
-        userName={userInfo.name} 
-        avatar={userInfo.avatar} 
-      />
-      <div className="flex-1 flex flex-col min-w-0 lg:ml-64">
-        {children}
+    <SidebarProvider>
+      <div className="flex bg-background h-screen w-screen overflow-hidden">
+        <DashboardSidebar 
+          role={role} 
+          userName={userInfo.name} 
+          avatar={userInfo.avatar} 
+        />
+        <SidebarInset className="flex-1 flex flex-col min-w-0 overflow-hidden">
+          {children}
+        </SidebarInset>
       </div>
-    </div>
+    </SidebarProvider>
   );
 }
