@@ -35,7 +35,7 @@ const Navbar = async () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/60 backdrop-blur-md supports-backdrop-filter:bg-background/60 transition-all duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-4 sm:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-2 sm:px-6">
         {/* Left/Center Split Nav for Desktop */}
         <div className="text-muted-foreground flex flex-1 items-center gap-8 font-medium md:justify-center lg:gap-12">
           <NavLink href="/" className="max-md:hidden">
