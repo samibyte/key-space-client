@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import type { PaginationMeta } from "@/types/api.type";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface Column<T> {
   key: string;
@@ -28,6 +29,7 @@ interface DataTableProps<T> {
   meta?: PaginationMeta;
   isLoading?: boolean;
   emptyMessage?: string;
+  className?: string;
 }
 
 export default function DataTable<T extends { id: string | number }>({
@@ -36,6 +38,7 @@ export default function DataTable<T extends { id: string | number }>({
   meta,
   isLoading,
   emptyMessage = "No data available",
+  className,
 }: DataTableProps<T>) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -50,13 +53,13 @@ export default function DataTable<T extends { id: string | number }>({
   }
 
   return (
-    <Card className="flex flex-col flex-1 overflow-hidden min-h-0 rounded-2xl shadow-sm border border-border/60">
-      <div className="overflow-auto min-h-0 relative">
+    <Card className={cn("flex flex-col flex-1 overflow-hidden min-h-0 rounded-2xl shadow-sm border border-border/50", className)}>
+      <div className="overflow-auto min-h-0 relative flex-1">
         <Table>
-          <TableHeader className="bg-muted/30 sticky top-0 z-10 isolate">
-            <TableRow className="border-b-border/60 hover:bg-transparent">
+          <TableHeader className="bg-muted/40 sticky top-0 z-10">
+            <TableRow className="border-b border-border/50 hover:bg-transparent">
               {columns.map((col) => (
-                <TableHead key={col.key} className="h-12 px-5 whitespace-nowrap">
+                <TableHead key={col.key} className="h-11 px-5 whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                   {col.header}
                 </TableHead>
               ))}
@@ -65,31 +68,34 @@ export default function DataTable<T extends { id: string | number }>({
           <TableBody>
             {isLoading ? (
               Array.from({ length: 5 }).map((_, i) => (
-                <TableRow key={i} className="border-b-border/40 hover:bg-transparent">
+                <TableRow key={i} className="border-b border-border/30 hover:bg-transparent">
                   {columns.map((col) => (
-                    <TableCell key={col.key} className="p-4">
-                      <Skeleton className="h-4 w-3/4 max-w-[200px]" />
+                    <TableCell key={col.key} className="px-5 py-4">
+                      <Skeleton className="h-4 w-3/4 max-w-50" />
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : data.length === 0 ? (
               <TableRow className="hover:bg-transparent">
-                <TableCell colSpan={columns.length} className="h-48 text-center align-middle">
+                <TableCell colSpan={columns.length} className="h-52 text-center align-middle">
                   <div className="flex flex-col items-center justify-center text-muted-foreground gap-3">
-                    <div className="size-12 rounded-full bg-muted/60 flex items-center justify-center">
+                    <div className="size-14 rounded-full bg-muted/50 flex items-center justify-center ring-1 ring-border/40">
                       <FileX className="size-6 text-muted-foreground/50" />
                     </div>
-                    <p className="text-sm">{emptyMessage}</p>
+                    <div>
+                      <p className="text-sm font-medium text-foreground/70">{emptyMessage}</p>
+                      <p className="text-xs text-muted-foreground/60 mt-0.5">No records match the current filter</p>
+                    </div>
                   </div>
                 </TableCell>
               </TableRow>
             ) : (
               data.map((item) => (
-                <TableRow key={item.id} className="border-b-border/40 transition-colors">
+                <TableRow key={item.id} className="border-b border-border/30 transition-colors">
                   {columns.map((col) => (
-                    <TableCell key={col.key} className="px-5 py-3.5">
-                      {col.render ? col.render(item) : (item as any)[col.key]}
+                    <TableCell key={col.key} className="px-5 py-3.5 text-sm">
+                      {col.render ? col.render(item) : (item as Record<string, unknown>)[col.key] as ReactNode}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -101,14 +107,16 @@ export default function DataTable<T extends { id: string | number }>({
 
       {/* Pagination Footer */}
       {meta && totalPages > 1 && (
-        <div className="flex items-center justify-between px-5 py-3 border-t border-border/60 bg-muted/10 shrink-0">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-border/50 bg-muted/10 shrink-0">
           <p className="text-xs text-muted-foreground">
-            Showing <span className="font-medium text-foreground">{(currentPage - 1) * meta.limit + 1}</span> to{" "}
-            <span className="font-medium text-foreground">{Math.min(currentPage * meta.limit, meta.total)}</span> of{" "}
-            <span className="font-medium text-foreground">{meta.total}</span>
+            <span className="font-medium text-foreground">{(currentPage - 1) * meta.limit + 1}</span>
+            –
+            <span className="font-medium text-foreground">{Math.min(currentPage * meta.limit, meta.total)}</span>
+            {" "}of{" "}
+            <span className="font-medium text-foreground">{meta.total}</span> results
           </p>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <Button
               variant="outline"
               size="icon-sm"
@@ -118,6 +126,7 @@ export default function DataTable<T extends { id: string | number }>({
             >
               <ChevronLeft className="size-4" />
             </Button>
+            <span className="w-8 text-center text-xs font-medium text-foreground">{currentPage}</span>
             <Button
               variant="outline"
               size="icon-sm"
