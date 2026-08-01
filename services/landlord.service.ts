@@ -23,17 +23,22 @@ export async function getMyProperties(
   return httpClient.get("/landlord/properties", { params });
 }
 
-export async function createProperty(data: any): Promise<ApiResponse<Property>> {
+export async function createProperty(data: Record<string, unknown>): Promise<ApiResponse<Property>> {
   return httpClient.post("/landlord/properties", data);
 }
 
-export async function updateProperty(id: string, data: any): Promise<ApiResponse<Property>> {
+export async function updateProperty(id: string, data: Record<string, unknown>): Promise<ApiResponse<Property>> {
   return httpClient.put(`/landlord/properties/${id}`, data);
 }
 
 export async function deleteProperty(id: string): Promise<ApiResponse<void>> {
   return httpClient.delete(`/landlord/properties/${id}`);
 }
+
+export async function getPropertyById(id: string): Promise<ApiResponse<Property>> {
+  return httpClient.get(`/properties/${id}`);
+}
+
 
 export async function getLandlordRequests(
   filters: RentalFilters = {}

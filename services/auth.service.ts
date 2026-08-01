@@ -27,7 +27,7 @@ export async function getNewTokensWithRefreshToken(
 
     const { data } = await res.json();
 
-    const { accessToken, refreshToken: newRefreshToken, token } = data;
+    const { accessToken, refreshToken: newRefreshToken } = data;
 
     if (accessToken) {
       await setTokenInCookies("accessToken", accessToken);
@@ -35,10 +35,6 @@ export async function getNewTokensWithRefreshToken(
 
     if (newRefreshToken) {
       await setTokenInCookies("refreshToken", newRefreshToken);
-    }
-
-    if (token) {
-      await setTokenInCookies("better-auth.session_token", token, 24 * 60 * 60); // 1 day in seconds
     }
 
     return true;

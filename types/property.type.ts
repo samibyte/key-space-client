@@ -56,6 +56,7 @@ export interface PropertyFilters {
   bathrooms?: string;
   sortBy?: PropertySortBy;
   sortOrder?: SortOrder;
-  page?: string;
-  limit?: string;
+  page?: string | number;
+  limit?: string | number;
+  status?: PropertyStatus | string;
 }

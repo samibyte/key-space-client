@@ -1,6 +1,6 @@
 export type UserRole = "ADMIN" | "LANDLORD" | "TENANT";
 
-export const authRoutes = ["/login", "/register"];
+export const authRoutes = ["/auth/login", "/auth/register"];
 
 export const isAuthRoute = (pathname: string) => {
   return authRoutes.some((router: string) => router === pathname);
