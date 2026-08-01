@@ -3,5 +3,5 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return <div className="h-[calc(100vh-90px)] overflow-hidden">{children}</div>;
 }

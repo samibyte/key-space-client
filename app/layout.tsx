@@ -24,7 +24,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <QueryProviders>{children}</QueryProviders>
+        <QueryProviders>
+
+            {children}
+        </QueryProviders>
       </body>
     </html>
   );
