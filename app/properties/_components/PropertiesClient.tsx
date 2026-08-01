@@ -28,9 +28,9 @@ export default function PropertiesClient({ initialFilters }: PropertiesClientPro
       </div>
 
       {/* Main layout */}
-      <div className="flex gap-6 px-4 sm:px-6 pb-12 items-start">
+      <div className="flex gap-8 px-4 sm:px-6 pb-12 items-start">
         {/* Sidebar */}
-        <div className="w-60 flex-shrink-0 hidden lg:block">
+        <div className="w-96 shrink-0 hidden lg:block">
           <FilterSidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
         </div>
 

@@ -42,7 +42,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
   };
 
   return (
-    <main className="flex flex-col flex-1">
+    <main className="-mt-18 flex flex-col flex-1">
       {/* Hero with quick search */}
       <Suspense>
         <ListingHero />

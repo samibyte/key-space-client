@@ -23,7 +23,7 @@ export default function ListingHero() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#002b20] via-[#005040] to-[#007a60] py-14 px-4">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#002b20] via-[#005040] to-[#007a60] py-8 px-4 pt-24">
       {/* Background mesh */}
       <div className="absolute inset-0 opacity-20 [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)]">
         <div className="absolute -top-24 -left-24 size-96 rounded-full bg-white/10 blur-3xl" />
@@ -31,9 +31,6 @@ export default function ListingHero() {
       </div>
 
       <div className="relative mx-auto max-w-3xl text-center">
-        <p className="text-emerald-300/80 text-xs font-semibold uppercase tracking-widest mb-3">
-          Premium Rental Platform
-        </p>
         <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
           Find Your{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-200">
