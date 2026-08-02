@@ -55,6 +55,9 @@ const TENANT_LINKS: NavLink[] = [
   { href: "/dashboard/tenant", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/tenant/rentals", label: "My Rentals", icon: Home },
   { href: "/dashboard/tenant/payments", label: "Payments", icon: CreditCard },
+  {
+    href: "/properties", label: "Browse Properties", icon: Building2
+  }
 ];
 
 const ADMIN_LINKS: NavLink[] = [

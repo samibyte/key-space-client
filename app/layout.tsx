@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import QueryProviders from "@/providers/QueryClient";
 import Navbar from "@/components/shared/Navbar";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <QueryProviders>
 
             {children}
+            <Toaster position="top-right"/>
         </QueryProviders>
       </body>
     </html>

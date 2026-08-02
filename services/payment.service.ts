@@ -9,7 +9,7 @@ export async function createPayment(rentalRequestId: string): Promise<ApiRespons
 }
 
 export async function confirmPayment(sessionId: string): Promise<ApiResponse<Payment>> {
-  return httpClient.post("/payments/confirm", { sessionId });
+  return httpClient.post("/payments/confirm", { transactionId: sessionId });
 }
 
 export async function getMyPayments(page = 1, limit = 10): Promise<ApiResponse<Payment[]>> {

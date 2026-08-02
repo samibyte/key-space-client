@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import {
   BedDouble,
   Bath,
@@ -46,6 +47,7 @@ function formatPrice(price: number): string {
 }
 
 export default function PropertyCard({ property }: PropertyCardProps) {
+  const router = useRouter();
   const {
     id,
     title,
@@ -68,9 +70,17 @@ export default function PropertyCard({ property }: PropertyCardProps) {
   const displayAmenities = amenities?.slice(0, 3) ?? [];
   const extraAmenities = (amenities?.length ?? 0) - displayAmenities.length;
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("button") || target.closest("a")) {
+      return;
+    }
+    router.push(`/properties/${id}`);
+  };
+
   return (
-    <Link
-      href={`/properties/${id}`}
+    <div
+      onClick={handleCardClick}
       className="group relative flex flex-col rounded-2xl overflow-hidden bg-card border border-border/60 shadow-sm hover:shadow-xl hover:shadow-primary/8 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
     >
       {/* Image area */}
@@ -177,30 +187,71 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         )}
 
         {/* Landlord footer */}
-        <div className="flex items-center gap-2 mt-auto border-t border-border/50 pt-2.5">
-          <div className="size-7 rounded-full overflow-hidden bg-primary/10 flex-shrink-0 flex items-center justify-center ring-1 ring-primary/20">
-            {landlord?.avatar ? (
-              <Image
-                src={landlord.avatar}
-                alt={landlord.name}
-                width={28}
-                height={28}
-                className="object-cover"
-              />
-            ) : (
-              <span className="text-primary text-[10px] font-bold uppercase">
-                {landlord?.name?.charAt(0) ?? "?"}
-              </span>
-            )}
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] text-muted-foreground">Listed by</p>
-            <p className="text-[11px] font-medium text-foreground truncate">
-              {landlord?.name ?? "Landlord"}
-            </p>
+        <div className="flex items-center justify-between gap-2 mt-auto border-t border-border/50 pt-2.5">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="size-7 rounded-full overflow-hidden bg-primary/10 flex-shrink-0 flex items-center justify-center ring-1 ring-primary/20">
+              {landlord?.avatar ? (
+                <Image
+                  src={landlord.avatar}
+                  alt={landlord.name}
+                  width={28}
+                  height={28}
+                  className="object-cover"
+                />
+              ) : (
+                <span className="text-primary text-[10px] font-bold uppercase">
+                  {landlord?.name?.charAt(0) ?? "?"}
+                </span>
+              )}
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] text-muted-foreground">Listed by</p>
+              <p className="text-[11px] font-medium text-foreground truncate">
+                {landlord?.name ?? "Landlord"}
+              </p>
+            </div>
           </div>
         </div>
+
+        {/* Action Buttons */}
+        <div className="grid grid-cols-2 gap-2 pt-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full text-xs h-8 rounded-lg cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/properties/${id}`);
+            }}
+          >
+            View Details
+          </Button>
+
+          {status === "AVAILABLE" ? (
+            <Button
+              variant="default"
+              size="sm"
+              className="w-full text-xs h-8 rounded-lg font-medium cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/dashboard/tenant/rentals/new?propertyId=${id}`);
+              }}
+            >
+              Request Rental
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              disabled
+              className="w-full text-xs h-8 rounded-lg opacity-50 cursor-not-allowed bg-muted/30 text-muted-foreground border-border/40"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {status === "RENTED" ? "Rented" : "Unavailable"}
+            </Button>
+          )}
+        </div>
       </div>
-    </Link>
+    </div>
   );
 }
