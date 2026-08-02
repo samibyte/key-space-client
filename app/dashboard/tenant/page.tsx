@@ -68,7 +68,7 @@ export default function TenantOverviewPage() {
       ) : (
         <div className="flex flex-col gap-6">
 
-          {/* ── Current Home Hero ─────────────────────────────── */}
+          {/* ── Current Home Hero*/}
           {activeRental ? (
             <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-linear-to-br from-primary/10 via-primary/5 to-background p-6">
               <div className="absolute inset-x-0 top-0 h-0.5 bg-linear-to-r from-primary/40 via-primary to-primary/40" />
@@ -128,7 +128,7 @@ export default function TenantOverviewPage() {
             </div>
           )}
 
-          {/* ── Action Items ───────────────────────────────────── */}
+          {/* ── Action Items */}
           {(pendingRentals.length > 0 || approvedRentals.length > 0) && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
@@ -183,7 +183,7 @@ export default function TenantOverviewPage() {
             </div>
           )}
 
-          {/* ── Recent Activity ────────────────────────────────── */}
+          {/* ── Recent Activity  */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <h2 className="text-base font-bold tracking-tight text-foreground">Recent Activity</h2>
@@ -231,7 +231,7 @@ export default function TenantOverviewPage() {
             )}
           </div>
 
-          {/* ── Subtle Summary Stats ───────────────────────────── */}
+          {/* ── Subtle Summary Stats  */}
           {rentals.length > 0 && (
             <div className="grid grid-cols-3 divide-x divide-border/40 rounded-2xl border border-border/40 bg-muted/20">
               {[
