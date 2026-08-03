@@ -34,7 +34,12 @@ export const loginAction = async (
       parsedPayload.data,
     );
 
-    const { accessToken, refreshToken, userData } = response.data;
+    const responseData = response.data;
+    if (!responseData) {
+      return { success: false, message: "Login failed: No response data" };
+    }
+
+    const { accessToken, refreshToken, userData } = responseData;
     const { role } = userData;
     await setTokenInCookies("accessToken", accessToken);
     await setTokenInCookies("refreshToken", refreshToken);
@@ -79,7 +84,13 @@ export const registerAction = async (
       "/auth/register",
       parsedPayload.data,
     );
-    const { accessToken, refreshToken, userData } = response.data;
+
+    const responseData = response.data;
+    if (!responseData) {
+      return { success: false, message: "Registration failed: No response data" };
+    }
+
+    const { accessToken, refreshToken, userData } = responseData;
     const { role } = userData;
     await setTokenInCookies("accessToken", accessToken);
     await setTokenInCookies("refreshToken", refreshToken);

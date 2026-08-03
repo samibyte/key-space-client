@@ -13,13 +13,16 @@ interface PropertyDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateMetadata({ params }: PropertyDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PropertyDetailPageProps): Promise<Metadata> {
   const { id } = await params;
 
   try {
     const res = await getPropertyById(id);
     const property = res.data;
-    const description = property.description.slice(0, 160);
+    if (!property) return { title: "Property Details | Rent Nest" };
+    const description = property.description?.slice(0, 160) ?? "";
     const image = property.images?.[0];
 
     return {
@@ -48,6 +51,10 @@ async function PropertyDetailContent({ id }: { id: string }) {
     notFound();
   }
 
+  if (!property) {
+    notFound();
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8">
       {/* Hero Gallery with Back Navigation */}
@@ -59,7 +66,8 @@ async function PropertyDetailContent({ id }: { id: string }) {
           {property.title}
         </h1>
         <p className="text-muted-foreground mt-1.5 text-sm">
-          {[property.area, property.city].filter(Boolean).join(", ") || property.address}
+          {[property.area, property.city].filter(Boolean).join(", ") ||
+            property.address}
         </p>
       </div>
 
@@ -79,7 +87,9 @@ async function PropertyDetailContent({ id }: { id: string }) {
   );
 }
 
-export default async function PropertyDetailPage({ params }: PropertyDetailPageProps) {
+export default async function PropertyDetailPage({
+  params,
+}: PropertyDetailPageProps) {
   const { id } = await params;
 
   return (
