@@ -15,6 +15,7 @@ export default async function DashboardLayout({
 
   const role = userInfo.role;
 
+  console.log(userInfo, "userinfooo")
   return (
     <SidebarProvider>
       <div className="flex bg-background h-screen w-screen overflow-hidden">

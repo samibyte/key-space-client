@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import PropertyImageUploader from "@/components/shared/PropertyImageUploader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -596,50 +597,10 @@ export default function PropertyForm({
                   <ImageIcon className="size-5 text-primary" />
                   Property Images
                 </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={addImageInput}
-                  className="gap-2"
-                >
-                  <Plus className="size-4" /> Add Image
-                </Button>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {images.map((val, idx) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <Input
-                    placeholder="https://example.com/image.jpg"
-                    value={val}
-                    type="url"
-                    onChange={(e) => {
-                      const newImgs = [...images];
-                      newImgs[idx] = e.target.value;
-                      setImages(newImgs);
-                    }}
-                    required={idx === 0}
-                  />
-                  {images.length > 1 && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="shrink-0 text-rose-500 hover:text-rose-600 hover:bg-rose-500/10"
-                      onClick={() =>
-                        setImages(images.filter((_, i) => i !== idx))
-                      }
-                    >
-                      <Trash2 className="size-4" />
-                    </Button>
-                  )}
-                </div>
-              ))}
-              <p className="text-xs text-muted-foreground mt-2">
-                Provide direct URLs to high-quality images of the property. The
-                first image will be used as the primary thumbnail.
-              </p>
+              <PropertyImageUploader value={images} onChange={setImages} />
             </CardContent>
           </Card>
         </div>

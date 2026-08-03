@@ -26,20 +26,6 @@ const RegisterPage = async ({ searchParams }: RegisterParams) => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/[0.02] blur-[100px]" />
         </div>
 
-        {/* Mobile header */}
-        <div className="lg:hidden flex items-center justify-between gap-3 p-6 relative z-10">
-          <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105 active:scale-95">
-            <Logo className="w-10" />
-            <span className="text-lg font-semibold text-foreground tracking-tight">
-              Rent <span className="text-primary">Nest</span>
-            </span>
-          </Link>
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground/60">
-            <Sparkles className="size-3" />
-            <span>Join free</span>
-          </div>
-        </div>
-
         {/* Form container */}
         <div className="relative z-10 flex flex-1 items-start justify-center px-6 py-8 sm:px-10 lg:py-14">
           <div className="w-full max-w-md space-y-6">
