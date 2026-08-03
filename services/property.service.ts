@@ -32,3 +32,15 @@ export async function getPropertyById(id: string): Promise<ApiResponse<PropertyD
 export async function getCategories(): Promise<ApiResponse<Category[]>> {
   return httpClient.get<Category[]>("/categories");
 }
+
+export interface PublicStats {
+  totalProperties: number;
+  activeLeases: number;
+  totalTenants: number;
+  totalLandlords: number;
+}
+
+export async function getPublicStats(): Promise<ApiResponse<PublicStats>> {
+  return httpClient.get<PublicStats>("/properties/public/stats");
+}
+
