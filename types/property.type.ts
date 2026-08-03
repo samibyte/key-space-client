@@ -41,6 +41,25 @@ export interface Property {
   updatedAt: string;
 }
 
+export interface ReviewTenant {
+  id: string;
+  name: string;
+  avatar?: string | null;
+}
+
+export interface Review {
+  id: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+  tenant: ReviewTenant;
+}
+
+/** Full property detail — returned by GET /properties/:id (public) */
+export interface PropertyDetail extends Property {
+  reviews: Review[];
+}
+
 export interface PropertyFilters {
   searchTerm?: string;
   city?: string;
