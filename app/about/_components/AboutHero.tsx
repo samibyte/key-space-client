@@ -5,17 +5,12 @@ import { cn } from "@/lib/utils";
 
 export default function AboutHero() {
   return (
-    <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8 text-center bg-radial from-primary/10 via-background to-background">
+    <section className="relative pt-28 overflow-hidden py-20 px-4 sm:px-6 lg:px-8 text-center bg-radial from-primary/10 via-background to-background">
       {/* Decorative blurred background shapes */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl -z-10" />
       <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-emerald-500/5 rounded-full blur-3xl -z-10" />
 
       <div className="mx-auto max-w-4xl flex flex-col items-center gap-6">
-        {/* Accent Tagline */}
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary border border-primary/20 animate-fade-in">
-          <Sparkles className="size-3.5 fill-primary/10" />
-          Welcome to Rent Nest
-        </span>
 
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-none">
