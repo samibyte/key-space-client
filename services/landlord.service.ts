@@ -5,7 +5,14 @@ import type { ApiResponse } from "@/types/api.type";
 import type { Property, PropertyFilters } from "@/types/property.type";
 import type { RentalRequest, RentalFilters } from "@/types/rental.type";
 
-export async function getLandlordDashboardStats(): Promise<ApiResponse<any>> {
+export interface LandlordStats {
+  totalProperties: number;
+  availableUnits: number;
+  activeRentals: number;
+  monthlyRevenue: number;
+}
+
+export async function getLandlordDashboardStats(): Promise<ApiResponse<LandlordStats>> {
   return httpClient.get("/landlord/stats");
 }
 

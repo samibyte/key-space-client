@@ -6,7 +6,12 @@ import type { RentalRequest, RentalFilters, Payment, Review } from "@/types/rent
 
 //RENTALS
 
-export async function createRentalRequest(data: any): Promise<ApiResponse<RentalRequest>> {
+export async function createRentalRequest(data: {
+  propertyId: string;
+  moveInDate: string;
+  durationMonths: number;
+  message?: string;
+}): Promise<ApiResponse<RentalRequest>> {
   return httpClient.post("/rentals", data);
 }
 
@@ -30,7 +35,11 @@ export async function getTenantRentalById(id: string): Promise<ApiResponse<Renta
 
 // REVIEWS
 
-export async function createReview(data: any): Promise<ApiResponse<Review>> {
+export async function createReview(data: {
+  propertyId: string;
+  rating: number;
+  comment: string;
+}): Promise<ApiResponse<Review>> {
   return httpClient.post("/reviews", data);
 }
 
