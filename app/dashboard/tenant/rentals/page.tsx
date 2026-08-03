@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import Link from "next/link";
 import { Eye, CreditCard, Star, Plus } from "lucide-react";
 
-const STATUS_TABS = ["ALL", "PENDING", "APPROVED", "ACTIVE", "COMPLETED", "REJECTED", "CANCELLED"];
+const STATUS_TABS = ["ALL", "PENDING", "APPROVED", "ACTIVE", "COMPLETED", "REJECTED"];
 
 export default function TenantRentalsPage() {
   const searchParams = useSearchParams();

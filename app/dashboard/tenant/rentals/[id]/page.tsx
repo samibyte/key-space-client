@@ -209,7 +209,7 @@ export default function RentalDetailPage({ params }: { params: Promise<{ id: str
             {/* Status Timeline */}
             <div className="rounded-2xl border border-border/50 bg-card p-5">
               <h3 className="text-sm font-bold text-foreground mb-5">Rental Status</h3>
-              {rental.status === "REJECTED" || rental.status === "CANCELLED" ? (
+              {rental.status === "REJECTED" ? (
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-rose-500/8 border border-rose-500/20">
                   <StatusBadge status={rental.status} />
                   <p className="text-sm text-muted-foreground">

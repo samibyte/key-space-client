@@ -20,7 +20,13 @@ import type { RentalFilters } from "@/types/rental.type";
 export function useTenantRentals(filters: RentalFilters = {}) {
   return useQuery({
     queryKey: ["tenant", "rentals", filters],
-    queryFn: () => getTenantRentals(filters),
+    queryFn: async () => {
+      const res = await getTenantRentals(filters);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
     staleTime: 30 * 1000,
   });
 }
@@ -28,7 +34,13 @@ export function useTenantRentals(filters: RentalFilters = {}) {
 export function useTenantRentalById(id: string) {
   return useQuery({
     queryKey: ["tenant", "rental", id],
-    queryFn: () => getTenantRentalById(id),
+    queryFn: async () => {
+      const res = await getTenantRentalById(id);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
     enabled: !!id,
     staleTime: 30 * 1000,
   });
@@ -37,7 +49,13 @@ export function useTenantRentalById(id: string) {
 export function useMyPayments(page = 1) {
   return useQuery({
     queryKey: ["tenant", "payments", page],
-    queryFn: () => getMyPayments(page),
+    queryFn: async () => {
+      const res = await getMyPayments(page);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
     staleTime: 30 * 1000,
   });
 }
@@ -45,7 +63,13 @@ export function useMyPayments(page = 1) {
 export function usePaymentById(id: string) {
   return useQuery({
     queryKey: ["tenant", "payment", id],
-    queryFn: () => getPaymentById(id),
+    queryFn: async () => {
+      const res = await getPaymentById(id);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
     enabled: !!id,
     staleTime: 30 * 1000,
   });
@@ -56,12 +80,18 @@ export function usePaymentById(id: string) {
 export function useCreateRentalRequest() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: {
+    mutationFn: async (data: {
       propertyId: string;
       moveInDate: string;
       durationMonths: number;
       message?: string;
-    }) => createRentalRequest(data),
+    }) => {
+      const res = await createRentalRequest(data);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tenant", "rentals"] });
     },
@@ -70,14 +100,26 @@ export function useCreateRentalRequest() {
 
 export function useCreatePayment() {
   return useMutation({
-    mutationFn: (rentalRequestId: string) => createPayment(rentalRequestId),
+    mutationFn: async (rentalRequestId: string) => {
+      const res = await createPayment(rentalRequestId);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
   });
 }
 
 export function useConfirmPayment() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (sessionId: string) => confirmPayment(sessionId),
+    mutationFn: async (sessionId: string) => {
+      const res = await confirmPayment(sessionId);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tenant", "rentals"] });
       queryClient.invalidateQueries({ queryKey: ["tenant", "payments"] });
@@ -88,8 +130,13 @@ export function useConfirmPayment() {
 export function useSubmitReview() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: { propertyId: string; rating: number; comment: string }) =>
-      createReview(data),
+    mutationFn: async (data: { propertyId: string; rating: number; comment: string }) => {
+      const res = await createReview(data);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+      return res;
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tenant", "rentals"] });
     },
