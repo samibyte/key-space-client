@@ -1,4 +1,4 @@
-import { Building2, Sparkles } from "lucide-react";
+import { Building2 } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -11,18 +11,21 @@ export default function AboutHero() {
       <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-emerald-500/5 rounded-full blur-3xl -z-10" />
 
       <div className="mx-auto max-w-4xl flex flex-col items-center gap-6">
-
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-none">
           Redefining Rental <br className="hidden sm:inline" />
-          Living in <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">Bangladesh</span>
+          Living in{" "}
+          <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
+            Bangladesh
+          </span>
         </h1>
 
         {/* Hero Description */}
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          Rent Nest is a state-of-the-art property management and rental matching platform. 
-          We bridge the gap between verified landlords and prospective tenants, turning complex lease 
-          journeys into secure, intuitive, and delightful modern experiences.
+          Rent Nest is a state-of-the-art property management and rental
+          matching platform. We bridge the gap between verified landlords and
+          prospective tenants, turning complex lease journeys into secure,
+          intuitive, and delightful modern experiences.
         </p>
 
         {/* CTA Buttons */}
@@ -31,7 +34,7 @@ export default function AboutHero() {
             href="/properties"
             className={cn(
               buttonVariants({ variant: "default" }),
-              "h-11 px-6 rounded-xl font-semibold text-sm shadow-md shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              "h-11 px-6 rounded-xl font-semibold text-sm shadow-md shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200",
             )}
           >
             Browse Properties
@@ -40,14 +43,13 @@ export default function AboutHero() {
             href="/auth/register"
             className={cn(
               buttonVariants({ variant: "outline" }),
-              "h-11 px-6 rounded-xl font-semibold text-sm bg-background/50 backdrop-blur-sm border-border/80 hover:bg-muted/80 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              "h-11 px-6 rounded-xl font-semibold text-sm bg-background/50 backdrop-blur-sm border-border/80 hover:bg-muted/80 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200",
             )}
           >
             Join as Member
           </Link>
         </div>
       </div>
-
 
       {/* Decorative Building Silhouette/Floating Glass Card */}
       <div className="mx-auto max-w-3xl mt-16 p-4 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl relative">
@@ -59,9 +61,12 @@ export default function AboutHero() {
                 <Building2 className="size-8 text-primary" />
               </div>
             </div>
-            <p className="text-xl font-semibold text-foreground">Find Your Next Nesting Spot</p>
+            <p className="text-xl font-semibold text-foreground">
+              Find Your Next Nesting Spot
+            </p>
             <p className="text-sm text-muted-foreground max-w-sm">
-              Discover beautiful flats, studio apartments, and commercial spaces suited perfectly to your life.
+              Discover beautiful flats, studio apartments, and commercial spaces
+              suited perfectly to your life.
             </p>
           </div>
         </div>

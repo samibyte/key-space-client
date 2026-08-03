@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef, Suspense } from "react";
-import { useConfirmPayment } from "@/app/(commonLayout)/dashboard/tenant/_hooks/useTenant";
+import { useConfirmPayment } from "@/app/dashboard/tenant/_hooks/useTenant";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {

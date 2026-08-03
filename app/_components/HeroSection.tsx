@@ -6,7 +6,6 @@ import {
   Search,
   MapPin,
   Building,
-  Sparkles,
   Building2,
   Key,
   Users,
@@ -162,22 +161,6 @@ export default function HeroSection({ stats }: HeroSectionProps) {
           {/* Category Selection */}
           <div className="flex-1 flex items-center gap-2 px-3 py-2">
             <Building className="size-5 text-muted-foreground shrink-0" />
-            {/* <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full bg-transparent text-sm text-foreground outline-none border-none placeholder:text-muted-foreground cursor-pointer"
-            >
-              <option value="">Any Type</option>
-              {categories.map((cat) => (
-                <option
-                  key={cat}
-                  value={cat}
-                  className="text-foreground bg-card"
-                >
-                  {cat}
-                </option>
-              ))}
-            </select> */}
             <Select
               value={categoryId}
               onValueChange={(val) => val && setCategoryId(val)}
