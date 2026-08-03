@@ -220,12 +220,12 @@ export default function PropertyForm({
 
   return (
     <form
-      className="space-y-8"
+      className="space-y-4"
       onSubmit={handleSubmit}
       onKeyDown={handleKeyDown}
     >
       {/* Stepper Header */}
-      <div className="relative mb-6">
+      <div className="relative mb-4">
         <div className="absolute left-0 top-5 h-0.5 w-full -translate-y-1/2 bg-muted/40" />
         <div
           className="absolute left-0 top-5 h-0.5 -translate-y-1/2 bg-primary transition-all duration-350"
@@ -293,17 +293,17 @@ export default function PropertyForm({
       )}
 
       {/* Step Components */}
-      <div className="min-h-80">
+      <div className="">
         {/* 1. Basic Details */}
         <div className={cn("step-section-1", currentStep !== 1 && "hidden")}>
           <Card className="animate-in fade-in-50 duration-200">
-            <CardHeader className="border-b border-border/40 pb-4 mb-4">
+            <CardHeader className="border-b border-border/40 pb-3 mb-3">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Building2 className="size-5 text-primary" />
                 Basic Details
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-6 sm:grid-cols-2">
+            <CardContent className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="title">
                   Property Title <span className="text-destructive">*</span>
@@ -326,7 +326,7 @@ export default function PropertyForm({
                   id="description"
                   name="description"
                   placeholder="Detailed description of the property (minimum 10 characters)..."
-                  className="resize-none min-h-30"
+                  className="resize-none min-h-20"
                   defaultValue={initialData?.description}
                   minLength={10}
                   required
@@ -369,13 +369,13 @@ export default function PropertyForm({
         {/* 2. Location */}
         <div className={cn("step-section-2", currentStep !== 2 && "hidden")}>
           <Card className="animate-in fade-in-50 duration-200">
-            <CardHeader className="border-b border-border/40 pb-4 mb-4">
+            <CardHeader className="border-b border-border/40 pb-3 mb-3">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <MapPin className="size-5 text-primary" />
                 Location Details
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-6 sm:grid-cols-2">
+            <CardContent className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="address">
                   Street Address <span className="text-destructive">*</span>
@@ -452,13 +452,13 @@ export default function PropertyForm({
         {/* 3. Pricing & Specs */}
         <div className={cn("step-section-3", currentStep !== 3 && "hidden")}>
           <Card className="animate-in fade-in-50 duration-200">
-            <CardHeader className="border-b border-border/40 pb-4 mb-4">
+            <CardHeader className="border-b border-border/40 pb-3 mb-3">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <DollarSign className="size-5 text-primary" />
                 Pricing & Structure
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-6 sm:grid-cols-2">
+            <CardContent className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2 relative">
                 <Label htmlFor="monthlyRent">
                   Monthly Rent ($) <span className="text-destructive">*</span>
@@ -548,23 +548,23 @@ export default function PropertyForm({
         {/* 4. Amenities & Media */}
         <div
           className={cn(
-            "step-section-4 space-y-8",
+            "step-section-4 space-y-4",
             currentStep !== 4 && "hidden",
           )}
         >
           {/* Amenities */}
           <Card>
-            <CardHeader className="border-b border-border/40 pb-4 mb-4">
+            <CardHeader className="border-b border-border/40 pb-2 mb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Building2 className="size-5 text-primary" />
                 Amenities
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-1.5">
               <Textarea
                 id="amenitiesInput"
                 placeholder="e.g. WiFi, Parking, Air Conditioning, Gym, Pool"
-                className="resize-none min-h-24"
+                className="resize-none min-h-18"
                 value={amenitiesInput}
                 onChange={(e) => setAmenitiesInput(e.target.value)}
               />
@@ -591,7 +591,7 @@ export default function PropertyForm({
 
           {/* Images */}
           <Card>
-            <CardHeader className="border-b border-border/40 pb-4 mb-4">
+            <CardHeader className="border-b border-border/40 pb-2 mb-2">
               <CardTitle className="flex flex-row justify-between items-center text-lg">
                 <div className="flex items-center gap-2">
                   <ImageIcon className="size-5 text-primary" />
@@ -599,7 +599,7 @@ export default function PropertyForm({
                 </div>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <PropertyImageUploader value={images} onChange={setImages} />
             </CardContent>
           </Card>
@@ -617,7 +617,7 @@ export default function PropertyForm({
       )}
 
       {/* Action Buttons */}
-      <div className="flex justify-between items-center pb-8 border-t border-border/40 pt-6">
+      <div className="flex justify-between items-center pb-4 border-t border-border/40 pt-4">
         <div>
           {currentStep > 1 && (
             <Button

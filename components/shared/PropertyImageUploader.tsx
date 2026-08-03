@@ -4,7 +4,15 @@ import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { uploadImageFile, uploadImageUrl } from "@/services/upload.service";
-import { Image as ImageIcon, Plus, Trash2, Loader2, Link as LinkIcon, UploadCloud, Check } from "lucide-react";
+import {
+  Image as ImageIcon,
+  Plus,
+  Trash2,
+  Loader2,
+  Link as LinkIcon,
+  UploadCloud,
+  Check,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface PropertyImageUploaderProps {
@@ -51,7 +59,7 @@ export default function PropertyImageUploader({
   const handleDrop = async (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-    
+
     const files = Array.from(e.dataTransfer.files);
     if (files.length > 0) {
       await handleFilesUpload(files);
@@ -85,10 +93,12 @@ export default function PropertyImageUploader({
       });
 
       const uploadedUrls = await Promise.all(uploadPromises);
-      
+
       const cleanUrls = value.filter(Boolean);
-      const uniqueNewUrls = uploadedUrls.filter((url) => !cleanUrls.includes(url));
-      
+      const uniqueNewUrls = uploadedUrls.filter(
+        (url) => !cleanUrls.includes(url),
+      );
+
       onChange([...cleanUrls, ...uniqueNewUrls]);
     } catch (err: any) {
       console.error(err);
@@ -121,143 +131,160 @@ export default function PropertyImageUploader({
   const cleanImages = value.filter(Boolean);
 
   return (
-    <div className="space-y-4">
-      {/* Tab Selectors */}
-      <div className="flex border-b border-border">
-        <button
-          type="button"
-          onClick={() => {
-            setActiveTab("upload");
-            setErrorStatus(null);
-          }}
-          className={cn(
-            "flex items-center gap-2 px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-all",
-            activeTab === "upload"
-              ? "border-primary text-primary"
-              : "border-transparent text-muted-foreground hover:text-foreground"
-          )}
-        >
-          <UploadCloud className="size-4" />
-          Upload Files
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setActiveTab("url");
-            setErrorStatus(null);
-          }}
-          className={cn(
-            "flex items-center gap-2 px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-all",
-            activeTab === "url"
-              ? "border-primary text-primary"
-              : "border-transparent text-muted-foreground hover:text-foreground"
-          )}
-        >
-          <LinkIcon className="size-4" />
-          Paste URL
-        </button>
-      </div>
-
-      {/* Upload Content Area */}
-      <div className="min-h-36">
-        {activeTab === "upload" ? (
-          <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            onClick={() => fileInputRef.current?.click()}
+    <div className="grid gap-4 lg:grid-cols-[1fr_360px]">
+      <div className="space-y-4">
+        {/* Tab Selectors */}
+        <div className="flex border-b border-border">
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab("upload");
+              setErrorStatus(null);
+            }}
             className={cn(
-              "flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-lg cursor-pointer transition-all duration-200 min-h-36 group",
-              isDragging
-                ? "border-primary bg-primary/5"
-                : "border-border hover:border-primary/50 hover:bg-muted/30"
+              "flex items-center gap-2 px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-all",
+              activeTab === "upload"
+                ? "border-primary text-primary"
+                : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              multiple
-              accept="image/*"
-              className="hidden"
-            />
-            {isUploading ? (
-              <div className="flex flex-col items-center gap-2 text-center text-sm text-muted-foreground">
-                <Loader2 className="size-8 animate-spin text-primary" />
-                <span>Uploading local images to Cloudinary...</span>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center gap-2 text-center">
-                <UploadCloud className="size-8 text-muted-foreground group-hover:text-primary transition-colors" />
-                <div className="text-sm font-medium">
-                  {isDragging ? "Drop images here" : "Drag & drop images here, or click to browse"}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  Supports JPEG, PNG, WEBP, and GIF up to 5MB
-                </div>
-              </div>
+            <UploadCloud className="size-4" />
+            Upload Files
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab("url");
+              setErrorStatus(null);
+            }}
+            className={cn(
+              "flex items-center gap-2 px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-all",
+              activeTab === "url"
+                ? "border-primary text-primary"
+                : "border-transparent text-muted-foreground hover:text-foreground",
             )}
-          </div>
-        ) : (
-          <div className="flex gap-2 items-start">
-            <div className="flex-1 space-y-1">
-              <Input
-                placeholder="https://example.com/property-image.jpg"
-                value={urlInput}
-                type="url"
-                disabled={isUploading}
-                onChange={(e) => setUrlInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    handleAddUrl();
-                  }
-                }}
-                className="w-full"
-              />
-              <span className="text-[10px] text-muted-foreground block pl-1">
-                Must start with http:// or https:// and link to an image file.
-              </span>
-            </div>
-            <Button
-              type="button"
-              onClick={handleAddUrl}
-              disabled={isUploading || !urlInput.trim()}
-              className="gap-2 shrink-0"
-            >
-              {isUploading ? (
-                <Loader2 className="size-4 animate-spin" />
-              ) : (
-                <Plus className="size-4" />
+          >
+            <LinkIcon className="size-4" />
+            Paste URL
+          </button>
+        </div>
+
+        {/* Upload Content Area */}
+        <div className="min-h-36">
+          {activeTab === "upload" ? (
+            <div
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
+              className={cn(
+                "flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-lg cursor-pointer transition-all duration-200 min-h-36 group",
+                isDragging
+                  ? "border-primary bg-primary/5"
+                  : "border-border hover:border-primary/50 hover:bg-muted/30",
               )}
-              Add URL
-            </Button>
+            >
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                multiple
+                accept="image/*"
+                className="hidden"
+              />
+              {isUploading ? (
+                <div className="flex flex-col items-center gap-2 text-center text-sm text-muted-foreground">
+                  <Loader2 className="size-8 animate-spin text-primary" />
+                  <span>Uploading local images to Cloudinary...</span>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center gap-2 text-center">
+                  <UploadCloud className="size-8 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <div className="text-sm font-medium">
+                    {isDragging
+                      ? "Drop images here"
+                      : "Drag & drop images here, or click to browse"}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Supports JPEG, PNG, WEBP, and GIF up to 5MB
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex gap-2 items-start">
+              <div className="flex-1 space-y-1">
+                <Input
+                  placeholder="https://example.com/property-image.jpg"
+                  value={urlInput}
+                  type="url"
+                  disabled={isUploading}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleAddUrl();
+                    }
+                  }}
+                  className="w-full"
+                />
+                <span className="text-[10px] text-muted-foreground block pl-1">
+                  Must start with http:// or https:// and link to an image file.
+                </span>
+              </div>
+              <Button
+                type="button"
+                onClick={handleAddUrl}
+                disabled={isUploading || !urlInput.trim()}
+                className="gap-2 shrink-0"
+              >
+                {isUploading ? (
+                  <Loader2 className="size-4 animate-spin" />
+                ) : (
+                  <Plus className="size-4" />
+                )}
+                Add URL
+              </Button>
+            </div>
+          )}
+        </div>
+
+        {/* Error Msg */}
+        {errorStatus && (
+          <div className="p-3 text-xs bg-rose-500/10 border border-rose-500/20 text-rose-500 rounded-lg">
+            {errorStatus}
           </div>
         )}
       </div>
 
-      {/* Error Msg */}
-      {errorStatus && (
-        <div className="p-3 text-xs bg-rose-500/10 border border-rose-500/20 text-rose-500 rounded-lg">
-          {errorStatus}
-        </div>
-      )}
-
-      {/* Thumbnails Display */}
-      {cleanImages.length > 0 && (
-        <div className="space-y-2">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between gap-2">
           <span className="text-xs font-semibold text-muted-foreground block">
             Selected Images ({cleanImages.length})
           </span>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {cleanImages.map((url, idx) => {
+          {cleanImages.length === 0 && (
+            <span className="text-xs text-muted-foreground">
+              No images added yet.
+            </span>
+          )}
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 overflow-y-auto max-h-[40rem]">
+          {cleanImages.length === 0 ? (
+            <div className="col-span-2 rounded-lg border border-border/50 bg-muted/30 p-6 text-sm text-muted-foreground text-center">
+              Added images will appear here.
+            </div>
+          ) : (
+            cleanImages.map((url, idx) => {
               const isThumbnail = idx === 0;
               return (
                 <div
                   key={url + idx}
                   className={cn(
                     "group relative aspect-video border rounded-lg overflow-hidden bg-muted transition-all select-none hover:shadow-md",
-                    isThumbnail ? "border-primary/60 ring-2 ring-primary/10" : "border-border"
+                    isThumbnail
+                      ? "border-primary/60 ring-2 ring-primary/10"
+                      : "border-border",
                   )}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -287,10 +314,10 @@ export default function PropertyImageUploader({
                   </div>
                 </div>
               );
-            })}
-          </div>
+            })
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
