@@ -36,6 +36,78 @@ interface DataTableProps<T> {
   className?: string;
 }
 
+
+function EmptyState({ message }: { message: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 text-center gap-3">
+      <div className="size-14 rounded-full bg-muted/50 flex items-center justify-center ring-1 ring-border/40">
+        <FileX className="size-6 text-muted-foreground/50" />
+      </div>
+      <div>
+        <p className="text-sm font-medium text-foreground/70">{message}</p>
+        <p className="text-xs text-muted-foreground/60 mt-0.5">
+          No records match the current filter
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Pagination({
+  meta,
+  totalPages,
+  currentPage,
+  isLoading,
+  goToPage,
+}: {
+  meta: PaginationMeta | undefined;
+  totalPages: number;
+  currentPage: number;
+  isLoading: boolean | undefined;
+  goToPage: (page: number) => void;
+}) {
+  if (!meta || totalPages <= 1) return null;
+  return (
+    <div className="flex items-center justify-between px-5 py-3 border-t border-border/50 bg-muted/10 shrink-0">
+      <p className="text-xs text-muted-foreground">
+        <span className="font-medium text-foreground">
+          {(currentPage - 1) * meta.limit + 1}
+        </span>
+        –
+        <span className="font-medium text-foreground">
+          {Math.min(currentPage * meta.limit, meta.total)}
+        </span>{" "}
+        of{" "}
+        <span className="font-medium text-foreground">{meta.total}</span> results
+      </p>
+      <div className="flex items-center gap-1">
+        <Button
+          variant="outline"
+          size="icon-sm"
+          onClick={() => goToPage(currentPage - 1)}
+          disabled={currentPage <= 1 || isLoading}
+          className="size-8"
+        >
+          <ChevronLeft className="size-4" />
+        </Button>
+        <span className="w-8 text-center text-xs font-medium text-foreground">
+          {currentPage}
+        </span>
+        <Button
+          variant="outline"
+          size="icon-sm"
+          onClick={() => goToPage(currentPage + 1)}
+          disabled={currentPage >= totalPages || isLoading}
+          className="size-8"
+        >
+          <ChevronRight className="size-4" />
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+
 export default function DataTable<T extends { id: string | number }>({
   data,
   columns,
@@ -59,60 +131,6 @@ export default function DataTable<T extends { id: string | number }>({
   const primaryCol = columns.find((c) => c.primary) ?? columns[0];
   const secondaryCols = columns.filter((c) => c !== primaryCol && c.key !== "actions");
   const actionsCol = columns.find((c) => c.key === "actions");
-
-  const Pagination = () =>
-    meta && totalPages > 1 ? (
-      <div className="flex items-center justify-between px-5 py-3 border-t border-border/50 bg-muted/10 shrink-0">
-        <p className="text-xs text-muted-foreground">
-          <span className="font-medium text-foreground">
-            {(currentPage - 1) * meta.limit + 1}
-          </span>
-          –
-          <span className="font-medium text-foreground">
-            {Math.min(currentPage * meta.limit, meta.total)}
-          </span>{" "}
-          of{" "}
-          <span className="font-medium text-foreground">{meta.total}</span> results
-        </p>
-        <div className="flex items-center gap-1">
-          <Button
-            variant="outline"
-            size="icon-sm"
-            onClick={() => goToPage(currentPage - 1)}
-            disabled={currentPage <= 1 || isLoading}
-            className="size-8"
-          >
-            <ChevronLeft className="size-4" />
-          </Button>
-          <span className="w-8 text-center text-xs font-medium text-foreground">
-            {currentPage}
-          </span>
-          <Button
-            variant="outline"
-            size="icon-sm"
-            onClick={() => goToPage(currentPage + 1)}
-            disabled={currentPage >= totalPages || isLoading}
-            className="size-8"
-          >
-            <ChevronRight className="size-4" />
-          </Button>
-        </div>
-      </div>
-    ) : null;
-
-  const EmptyState = () => (
-    <div className="flex flex-col items-center justify-center py-16 text-center gap-3">
-      <div className="size-14 rounded-full bg-muted/50 flex items-center justify-center ring-1 ring-border/40">
-        <FileX className="size-6 text-muted-foreground/50" />
-      </div>
-      <div>
-        <p className="text-sm font-medium text-foreground/70">{emptyMessage}</p>
-        <p className="text-xs text-muted-foreground/60 mt-0.5">
-          No records match the current filter
-        </p>
-      </div>
-    </div>
-  );
 
   return (
     <Card
@@ -154,7 +172,7 @@ export default function DataTable<T extends { id: string | number }>({
               ) : data.length === 0 ? (
                 <TableRow className="hover:bg-transparent">
                   <TableCell colSpan={columns.length} className="p-0">
-                    <EmptyState />
+                    <EmptyState message={emptyMessage} />
                   </TableCell>
                 </TableRow>
               ) : (
@@ -176,7 +194,13 @@ export default function DataTable<T extends { id: string | number }>({
             </TableBody>
           </Table>
         </div>
-        <Pagination />
+        <Pagination
+          meta={meta}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          isLoading={isLoading}
+          goToPage={goToPage}
+        />
       </div>
 
       {/* ── MOBILE CARD LIST (< md) ──────────────────────────── */}
@@ -190,7 +214,7 @@ export default function DataTable<T extends { id: string | number }>({
             </div>
           ))
         ) : data.length === 0 ? (
-          <EmptyState />
+          <EmptyState message={emptyMessage} />
         ) : (
           data.map((item) => (
             <div
@@ -235,7 +259,13 @@ export default function DataTable<T extends { id: string | number }>({
           ))
         )}
         <div className="mt-auto">
-          <Pagination />
+          <Pagination
+            meta={meta}
+            totalPages={totalPages}
+            currentPage={currentPage}
+            isLoading={isLoading}
+            goToPage={goToPage}
+          />
         </div>
       </div>
     </Card>
