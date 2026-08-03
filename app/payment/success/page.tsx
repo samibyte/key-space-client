@@ -7,27 +7,36 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, XCircle, Loader2, ArrowRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/shared/Navbar";
 
+
+interface PaymentResponse {
+  rentalRequest?: {
+    property?: {
+      title?: string;
+    };
+  };
+  amount?: number;
+  transactionId?: string;
+}
 
 function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const confirmPayment = useConfirmPayment();
   
-  const [status, setStatus] = useState<"verifying" | "success" | "error">("verifying");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [paymentData, setPaymentData] = useState<any>(null);
+  const [status, setStatus] = useState<"verifying" | "success" | "error">(() =>
+    sessionId ? "verifying" : "error"
+  );
+  const [errorMessage, setErrorMessage] = useState(() =>
+    sessionId ? "" : "Missing payment session ID in the URL."
+  );
+  const [paymentData, setPaymentData] = useState<PaymentResponse | null>(null);
   
   // Guard to prevent multiple invocations in dev React StrictMode
   const ranOnce = useRef(false);
 
   useEffect(() => {
-    if (!sessionId) {
-      setStatus("error");
-      setErrorMessage("Missing payment session ID in the URL.");
-      return;
-    }
+    if (!sessionId) return;
 
     if (ranOnce.current) return;
     ranOnce.current = true;
@@ -37,7 +46,7 @@ function SuccessContent() {
         setStatus("success");
         setPaymentData(res.data);
       },
-      onError: (err: any) => {
+      onError: (err: { response?: { data?: { message?: string } }; message?: string }) => {
         setStatus("error");
         setErrorMessage(
           err?.response?.data?.message || err?.message || "Verification failed."
@@ -154,7 +163,6 @@ function SuccessContent() {
 export default function PaymentSuccessPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <Suspense fallback={
         <div className="flex min-h-[calc(100vh-140px)] items-center justify-center">
           <Loader2 className="size-8 text-emerald-600 animate-spin" />

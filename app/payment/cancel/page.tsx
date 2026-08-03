@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AlertCircle, ArrowLeft, RefreshCw } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/shared/Navbar";
 
 function CancelContent() {
   const searchParams = useSearchParams();
@@ -60,7 +59,6 @@ function CancelContent() {
 export default function PaymentCancelPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <Suspense fallback={
         <div className="flex min-h-[calc(100vh-140px)] items-center justify-center">
           <div className="size-8 rounded-full border-2 border-amber-500 border-t-transparent animate-spin" />

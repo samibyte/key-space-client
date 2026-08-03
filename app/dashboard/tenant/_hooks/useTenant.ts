@@ -56,7 +56,12 @@ export function usePaymentById(id: string) {
 export function useCreateRentalRequest() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Record<string, unknown>) => createRentalRequest(data),
+    mutationFn: (data: {
+      propertyId: string;
+      moveInDate: string;
+      durationMonths: number;
+      message?: string;
+    }) => createRentalRequest(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tenant", "rentals"] });
     },

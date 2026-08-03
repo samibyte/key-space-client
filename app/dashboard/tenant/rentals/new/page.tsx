@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardShell from "../../../_components/DashboardShell";
 import { useCreateRentalRequest } from "../../_hooks/useTenant";
 import { Button } from "@/components/ui/button";
@@ -56,6 +56,15 @@ export default function NewRentalRequestPage() {
     );
   };
 
+  const [minDate, setMinDate] = useState("");
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setMinDate(new Date(Date.now() + 86400000).toISOString().split("T")[0]);
+    }, 0);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <DashboardShell
       title="Submit Rental Request"
@@ -88,7 +97,7 @@ export default function NewRentalRequestPage() {
                 type="date"
                 value={moveInDate}
                 onChange={(e) => setMoveInDate(e.target.value)}
-                min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                min={minDate}
                 className="h-10"
               />
               {errors.moveInDate && (
