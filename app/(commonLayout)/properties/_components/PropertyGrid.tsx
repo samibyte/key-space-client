@@ -4,7 +4,7 @@ import { Building2, SearchX, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PropertyCard from "./PropertyCard";
 import PropertyCardSkeleton from "./PropertyCardSkeleton";
-import { useProperties } from "@/app/properties/_hooks/useProperties";
+import { useProperties } from "@/app/(commonLayout)/properties/_hooks/useProperties";
 import type { PropertyFilters } from "@/types/property.type";
 import type { PaginationMeta } from "@/types/api.type";
 
@@ -29,8 +29,12 @@ export default function PropertyGrid({ initialFilters }: PropertyGridProps) {
     bedrooms: searchParams.get("bedrooms") ?? initialFilters.bedrooms,
     minBedrooms: searchParams.get("minBedrooms") ?? initialFilters.minBedrooms,
     bathrooms: searchParams.get("bathrooms") ?? initialFilters.bathrooms,
-    sortBy: (searchParams.get("sortBy") as PropertyFilters["sortBy"]) ?? initialFilters.sortBy,
-    sortOrder: (searchParams.get("sortOrder") as PropertyFilters["sortOrder"]) ?? initialFilters.sortOrder,
+    sortBy:
+      (searchParams.get("sortBy") as PropertyFilters["sortBy"]) ??
+      initialFilters.sortBy,
+    sortOrder:
+      (searchParams.get("sortOrder") as PropertyFilters["sortOrder"]) ??
+      initialFilters.sortOrder,
     page: searchParams.get("page") ?? initialFilters.page ?? "1",
     limit: searchParams.get("limit") ?? initialFilters.limit ?? "12",
   };
@@ -55,8 +59,12 @@ export default function PropertyGrid({ initialFilters }: PropertyGridProps) {
         <div className="size-14 rounded-full bg-destructive/10 flex items-center justify-center">
           <SearchX className="size-7 text-destructive" />
         </div>
-        <p className="font-semibold text-foreground">Failed to load properties</p>
-        <p className="text-sm text-muted-foreground">Please check your connection and try again.</p>
+        <p className="font-semibold text-foreground">
+          Failed to load properties
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Please check your connection and try again.
+        </p>
       </div>
     );
   }
@@ -95,8 +103,7 @@ export default function PropertyGrid({ initialFilters }: PropertyGridProps) {
             {(currentPage - 1) * meta.limit + 1}–
             {Math.min(currentPage * meta.limit, meta.total)}
           </span>{" "}
-          of{" "}
-          <span className="font-semibold text-foreground">{meta.total}</span>{" "}
+          of <span className="font-semibold text-foreground">{meta.total}</span>{" "}
           properties
         </p>
       )}

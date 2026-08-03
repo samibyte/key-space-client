@@ -13,7 +13,7 @@ import {
   ArrowUpDown,
   Tag,
 } from "lucide-react";
-import { useCategories } from "@/app/properties/_hooks/useProperties";
+import { useCategories } from "@/app/(commonLayout)/properties/_hooks/useProperties";
 import type { PropertySortBy, SortOrder } from "@/types/property.type";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";

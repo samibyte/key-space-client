@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
-import { getProperties, getPublicStats, type PublicStats } from "@/services/property.service";
+import {
+  getCategories,
+  getProperties,
+  getPublicStats,
+  getRegions,
+  type PublicStats,
+} from "@/services/property.service";
 import type { Property } from "@/types/property.type";
-import HeroSection from "./_components/HeroSection";
-import CollectionsSection from "./_components/CollectionsSection";
-import FeaturedProperties from "./_components/FeaturedProperties";
-import LocationsSection from "./_components/LocationsSection";
-import HowItWorks from "./_components/HowItWorks";
-import TestimonialsSection from "./_components/TestimonialsSection";
-import LandlordCTA from "./_components/LandlordCTA";
+import HeroSection from "../_components/HeroSection";
+import CollectionsSection from "../_components/CollectionsSection";
+import FeaturedProperties from "../_components/FeaturedProperties";
+import LocationsSection from "../_components/LocationsSection";
+import HowItWorks from "../_components/HowItWorks";
+import TestimonialsSection from "../_components/TestimonialsSection";
+import LandlordCTA from "../_components/LandlordCTA";
+import {
+  QueryClient,
+  HydrationBoundary,
+  dehydrate,
+} from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: "Rent Nest | Premium Property Rentals & Placement Platform",
@@ -26,6 +37,19 @@ export default async function HomePage() {
 
   // Graceful fallback for properties
   let featuredProperties: Property[] = [];
+  const queryClient = new QueryClient();
+
+  // Prefetch categories and regions on the server so the client gets them instantly
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ["categories"],
+      queryFn: getCategories,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["regions"],
+      queryFn: getRegions,
+    }),
+  ]);
 
   try {
     const [statsRes, propertiesRes] = await Promise.all([
@@ -46,7 +70,9 @@ export default async function HomePage() {
   return (
     <main className="-mt-18 flex flex-col flex-1 bg-background select-none">
       {/* 1. Hero Hero Header */}
-      <HeroSection stats={stats} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <HeroSection stats={stats} />
+      </HydrationBoundary>
 
       {/* 2. Curated collections */}
       <CollectionsSection />

@@ -2,12 +2,17 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef, Suspense } from "react";
-import { useConfirmPayment } from "@/app/dashboard/tenant/_hooks/useTenant";
+import { useConfirmPayment } from "@/app/(commonLayout)/dashboard/tenant/_hooks/useTenant";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle2, XCircle, Loader2, ArrowRight, ShieldCheck } from "lucide-react";
+import {
+  CheckCircle2,
+  XCircle,
+  Loader2,
+  ArrowRight,
+  ShieldCheck,
+} from "lucide-react";
 import Link from "next/link";
-
 
 interface PaymentResponse {
   rentalRequest?: {
@@ -23,15 +28,15 @@ function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const confirmPayment = useConfirmPayment();
-  
+
   const [status, setStatus] = useState<"verifying" | "success" | "error">(() =>
-    sessionId ? "verifying" : "error"
+    sessionId ? "verifying" : "error",
   );
   const [errorMessage, setErrorMessage] = useState(() =>
-    sessionId ? "" : "Missing payment session ID in the URL."
+    sessionId ? "" : "Missing payment session ID in the URL.",
   );
   const [paymentData, setPaymentData] = useState<PaymentResponse | null>(null);
-  
+
   // Guard to prevent multiple invocations in dev React StrictMode
   const ranOnce = useRef(false);
 
@@ -46,20 +51,24 @@ function SuccessContent() {
         setStatus("success");
         setPaymentData(res.data);
       },
-      onError: (err: { response?: { data?: { message?: string } }; message?: string }) => {
+      onError: (err: {
+        response?: { data?: { message?: string } };
+        message?: string;
+      }) => {
         setStatus("error");
         setErrorMessage(
-          err?.response?.data?.message || err?.message || "Verification failed."
+          err?.response?.data?.message ||
+            err?.message ||
+            "Verification failed.",
         );
       },
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId]);
 
   return (
     <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-140px)]">
       <Card className="w-full max-w-md p-8 border border-border/50 bg-card rounded-2xl shadow-xl flex flex-col items-center text-center relative overflow-hidden">
-        
         {/* Sleek top accent line */}
         <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 to-teal-600" />
 
@@ -70,9 +79,12 @@ function SuccessContent() {
               <ShieldCheck className="size-6 text-emerald-600/80 absolute" />
             </div>
             <div className="space-y-1.5">
-              <h2 className="text-xl font-bold tracking-tight text-foreground">Confirming Payment</h2>
+              <h2 className="text-xl font-bold tracking-tight text-foreground">
+                Confirming Payment
+              </h2>
               <p className="text-sm text-muted-foreground max-w-xs">
-                We are securely verifying your transaction with Stripe. Please don&apos;t close this page.
+                We are securely verifying your transaction with Stripe. Please
+                don&apos;t close this page.
               </p>
             </div>
           </div>
@@ -84,9 +96,12 @@ function SuccessContent() {
               <CheckCircle2 className="size-10" />
             </div>
             <div className="space-y-1.5">
-              <h2 className="text-2xl font-bold tracking-tight text-foreground">Payment Successful!</h2>
+              <h2 className="text-2xl font-bold tracking-tight text-foreground">
+                Payment Successful!
+              </h2>
               <p className="text-sm text-muted-foreground">
-                Your rental request status is now <span className="font-semibold text-emerald-600">ACTIVE</span>.
+                Your rental request status is now{" "}
+                <span className="font-semibold text-emerald-600">ACTIVE</span>.
               </p>
             </div>
 
@@ -96,7 +111,8 @@ function SuccessContent() {
                 <div className="flex justify-between py-2.5">
                   <span className="text-muted-foreground">Property</span>
                   <span className="font-semibold text-foreground max-w-44 truncate">
-                    {paymentData.rentalRequest?.property?.title || "Rental Property"}
+                    {paymentData.rentalRequest?.property?.title ||
+                      "Rental Property"}
                   </span>
                 </div>
                 <div className="flex justify-between py-2.5">
@@ -135,9 +151,12 @@ function SuccessContent() {
               <XCircle className="size-10" />
             </div>
             <div className="space-y-1.5">
-              <h2 className="text-2xl font-bold tracking-tight text-foreground">Verification Failed</h2>
+              <h2 className="text-2xl font-bold tracking-tight text-foreground">
+                Verification Failed
+              </h2>
               <p className="text-sm text-rose-500/90 max-w-xs leading-relaxed">
-                {errorMessage || "We couldn't confirm your session status. If your card was charged, contact customer support."}
+                {errorMessage ||
+                  "We couldn't confirm your session status. If your card was charged, contact customer support."}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
@@ -154,7 +173,6 @@ function SuccessContent() {
             </div>
           </div>
         )}
-
       </Card>
     </div>
   );
@@ -163,11 +181,13 @@ function SuccessContent() {
 export default function PaymentSuccessPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Suspense fallback={
-        <div className="flex min-h-[calc(100vh-140px)] items-center justify-center">
-          <Loader2 className="size-8 text-emerald-600 animate-spin" />
-        </div>
-      }>
+      <Suspense
+        fallback={
+          <div className="flex min-h-[calc(100vh-140px)] items-center justify-center">
+            <Loader2 className="size-8 text-emerald-600 animate-spin" />
+          </div>
+        }
+      >
         <SuccessContent />
       </Suspense>
     </div>

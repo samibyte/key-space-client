@@ -26,9 +26,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Navbar />
         <QueryProviders>
-
-            {children}
-            <Toaster position="top-right"/>
+          {children}
+          <Toaster position="top-right" />
         </QueryProviders>
       </body>
     </html>
