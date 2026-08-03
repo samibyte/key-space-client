@@ -90,7 +90,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
       <div className="absolute inset-0 hidden md:block bg-cover bg-right  dark:opacity-40 z-0 bg-[url('/rent-nest-hero-bg-pc.png')]" />
 
       {/* Dynamic overlays for text legibility */}
-      <div className="absolute inset-0 bg-black/30 z-10 hidden md:block" />
+      <div className="absolute inset-0 dark:bg-black/10 bg-black/20 z-10 hidden md:block" />
       <div className="absolute inset-0 bg-linear-to-t from-background/20 via-background/50 to-transparent z-10 block md:hidden" />
 
       {/* Decorative radial blur elements */}
@@ -98,7 +98,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
 
       <div className="mx-auto max-w-7xl w-full flex flex-col items-center md:items-start text-center md:text-left gap-6 relative z-20">
         {/* Big Title */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-secondary/80 max-w-2xl">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] dark:text-foreground/90 text-secondary/80 max-w-2xl">
           Find Your Perfect <br className="hidden sm:inline" />
           <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
             Nesting Spot
@@ -107,7 +107,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base text-secondary/70 max-w-2xl leading-relaxed">
+        <p className="text-sm sm:text-base text-secondary/70 dark:text-foreground/80 max-w-2xl leading-relaxed">
           Search thousands of verified listings across Dhaka, Chittagong, and
           beyond. Request leases, manage documents, and handle monthly payments
           securely all in one place.

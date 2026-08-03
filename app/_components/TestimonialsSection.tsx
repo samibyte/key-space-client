@@ -63,7 +63,7 @@ export default function TestimonialsSection({ stats }: TestimonialsSectionProps)
             {/* Stars row */}
             <div className="flex items-center gap-0.5">
               {[...Array(t.rating)].map((_, i) => (
-                <Star key={i} className="size-4 fill-amber-450 text-amber-450" />
+                <Star key={i} className="size-4 fill-amber-400 text-amber-400" />
               ))}
             </div>
 
