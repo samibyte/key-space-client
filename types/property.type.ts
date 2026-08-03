@@ -10,6 +10,11 @@ export interface Category {
   description?: string | null;
 }
 
+export interface Region {
+  id: string;
+  name: string;
+}
+
 export interface Landlord {
   id: string;
   name: string;
@@ -35,6 +40,8 @@ export interface Property {
   status: PropertyStatus;
   categoryId: string;
   category: Category;
+  regionId?: string | null;
+  region?: Region | null;
   landlordId: string;
   landlord: Landlord;
   createdAt: string;
@@ -78,4 +85,5 @@ export interface PropertyFilters {
   page?: string | number;
   limit?: string | number;
   status?: PropertyStatus | string;
+  regionId?: string;
 }

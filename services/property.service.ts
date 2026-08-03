@@ -2,7 +2,7 @@
 
 import { httpClient } from "@/lib/axios/httpClient";
 import type { ApiResponse, PaginationMeta } from "@/types/api.type";
-import type { Category, Property, PropertyDetail, PropertyFilters } from "@/types/property.type";
+import type { Category, Property, PropertyDetail, PropertyFilters, Region } from "@/types/property.type";
 
 export interface PropertiesResult {
   properties: Property[];
@@ -31,6 +31,10 @@ export async function getPropertyById(id: string): Promise<ApiResponse<PropertyD
 
 export async function getCategories(): Promise<ApiResponse<Category[]>> {
   return httpClient.get<Category[]>("/categories");
+}
+
+export async function getRegions(): Promise<ApiResponse<Region[]>> {
+  return httpClient.get<Region[]>("/regions");
 }
 
 export interface PublicStats {

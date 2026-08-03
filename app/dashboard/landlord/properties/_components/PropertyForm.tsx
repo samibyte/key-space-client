@@ -35,7 +35,7 @@ import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createProperty, updateProperty } from "@/services/landlord.service";
 import { clientGet } from "@/lib/axios/apiClient";
-import type { Category, Property } from "@/types/property.type";
+import type { Category, Property, Region } from "@/types/property.type";
 import { cn } from "@/lib/utils";
 
 interface PropertyFormProps {
@@ -110,13 +110,23 @@ export default function PropertyForm({
   const [categoryId, setCategoryId] = useState<string>(
     initialData?.categoryId || "",
   );
+  const [regionId, setRegionId] = useState<string>(
+    initialData?.regionId || "",
+  );
 
   const { data: categoriesData } = useQuery({
     queryKey: ["categories"],
     queryFn: () => clientGet<Category[]>("/categories"),
-    staleTime: 5 * 60 * 1000, // 5 min — allow cache from HydrationBoundary but also re-fetch if stale
+    staleTime: Infinity,
   });
   const categories: Category[] = categoriesData?.data ?? [];
+
+  const { data: regionsData } = useQuery({
+    queryKey: ["regions"],
+    queryFn: () => clientGet<Region[]>("/regions"),
+    staleTime: Infinity, 
+  });
+  const regions: Region[] = regionsData?.data ?? [];
 
   const STEPS = [
     { id: 1, label: "Details" },
@@ -197,6 +207,7 @@ export default function PropertyForm({
       bathrooms: Number(formData.get("bathrooms")),
       size: Number(formData.get("size")),
       categoryId,
+      regionId: regionId || undefined,
       amenities: selectedAmenities,
       images: images.filter((img) => img.trim() !== ""),
     };
@@ -391,11 +402,37 @@ export default function PropertyForm({
                 <Input
                   id="city"
                   name="city"
-                  placeholder="Mumbai"
+                  placeholder="Dhaka"
                   defaultValue={initialData?.city}
                   minLength={2}
                   required
                 />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="regionSelector">Division / Region</Label>
+                <Select
+                  value={regionId}
+                  onValueChange={(val) => val && setRegionId(val)}
+                >
+                  <SelectTrigger id="regionSelector">
+                    <SelectValue placeholder="Select division">
+                      {regions.find((r) => r.id === regionId)?.name}
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {regions.length === 0 ? (
+                      <SelectItem value="__loading" disabled>
+                        Loading regions...
+                      </SelectItem>
+                    ) : (
+                      regions.map((region) => (
+                        <SelectItem key={region.id} value={region.id}>
+                          {region.name}
+                        </SelectItem>
+                      ))
+                    )}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="area">
