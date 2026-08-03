@@ -9,7 +9,7 @@ import StatusTabFilter from "@/components/shared/StatusTabFilter";
 import { useAdminRentals } from "../_hooks/useAdmin";
 import type { RentalRequest } from "@/types/rental.type";
 
-const TABS = ["ALL", "PENDING", "APPROVED", "REJECTED", "ACTIVE", "COMPLETED", "CANCELLED"];
+const TABS = ["ALL", "PENDING", "APPROVED", "REJECTED", "ACTIVE", "COMPLETED"];
 
 export default function AdminRentalsPage() {
   const searchParams = useSearchParams();

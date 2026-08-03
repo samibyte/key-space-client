@@ -63,6 +63,17 @@ export interface ApiRequestOptions {
   headers?: Record<string, string>;
 }
 
+const handleRequestError = (endpoint: string, method: string, error: any): any => {
+  console.error(`${method} request to ${endpoint} failed:`, error);
+  if (error.response?.data) {
+    return error.response.data;
+  }
+  return {
+    success: false,
+    message: error.message || "An unexpected error occurred",
+  };
+};
+
 const httpGet = async <TData>(
   endpoint: string,
   options?: ApiRequestOptions,
@@ -75,8 +86,7 @@ const httpGet = async <TData>(
     });
     return response.data;
   } catch (error) {
-    console.error(`GET request to ${endpoint} failed:`, error);
-    throw error;
+    return handleRequestError(endpoint, "GET", error);
   }
 };
 
@@ -93,8 +103,7 @@ const httpPost = async <TData>(
     });
     return response.data;
   } catch (error) {
-    console.error(`POST request to ${endpoint} failed:`, error);
-    throw error;
+    return handleRequestError(endpoint, "POST", error);
   }
 };
 
@@ -111,8 +120,7 @@ const httpPut = async <TData>(
     });
     return response.data;
   } catch (error) {
-    console.error(`PUT request to ${endpoint} failed:`, error);
-    throw error;
+    return handleRequestError(endpoint, "PUT", error);
   }
 };
 
@@ -129,8 +137,7 @@ const httpPatch = async <TData>(
     });
     return response.data;
   } catch (error) {
-    console.error(`PATCH request to ${endpoint} failed:`, error);
-    throw error;
+    return handleRequestError(endpoint, "PATCH", error);
   }
 };
 
@@ -146,8 +153,7 @@ const httpDelete = async <TData>(
     });
     return response.data;
   } catch (error) {
-    console.error(`DELETE request to ${endpoint} failed:`, error);
-    throw error;
+    return handleRequestError(endpoint, "DELETE", error);
   }
 };
 

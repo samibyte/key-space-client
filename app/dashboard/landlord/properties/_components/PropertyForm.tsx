@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
+
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Building2,
@@ -36,6 +36,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createProperty, updateProperty } from "@/services/landlord.service";
 import { clientGet } from "@/lib/axios/apiClient";
 import type { Category, Property, Region } from "@/types/property.type";
+import { useCallback } from "react";
 import { cn } from "@/lib/utils";
 
 interface PropertyFormProps {
@@ -88,21 +89,16 @@ export default function PropertyForm({
   const isPending = createPending || updatePending;
   const submitError = createError || updateError;
 
-  const { data: amenitiesData, isLoading: amenitiesLoading } = useQuery({
-    queryKey: ["amenities"],
-    queryFn: () => clientGet<string[]>("/properties/amenities"),
-    staleTime: Infinity,
-  });
-  const AMENITIES: string[] = amenitiesData?.data ?? [];
+  const [amenitiesInput, setAmenitiesInput] = useState<string>(
+    initialData?.amenities?.join(", ") ?? "",
+  );
 
   const [images, setImages] = useState<string[]>(
     initialData?.images && initialData.images.length > 0
       ? initialData.images
       : [""],
   );
-  const [selectedAmenities, setSelectedAmenities] = useState<string[]>(
-    initialData?.amenities || [],
-  );
+
   const [categoryId, setCategoryId] = useState<string>(
     initialData?.categoryId || "",
   );
@@ -129,11 +125,14 @@ export default function PropertyForm({
     { id: 4, label: "Media & Extras" },
   ];
 
-  const toggleAmenity = (item: string) => {
-    setSelectedAmenities((prev) =>
-      prev.includes(item) ? prev.filter((a) => a !== item) : [...prev, item],
-    );
-  };
+  const parseAmenities = useCallback(
+    () =>
+      amenitiesInput
+        .split(",")
+        .map((a) => a.trim())
+        .filter(Boolean),
+    [amenitiesInput],
+  );
 
   const addImageInput = () => setImages([...images, ""]);
 
@@ -202,7 +201,7 @@ export default function PropertyForm({
       size: Number(formData.get("size")),
       categoryId,
       regionId: regionId || undefined,
-      amenities: selectedAmenities,
+      amenities: parseAmenities(),
       images: images.filter((img) => img.trim() !== ""),
     };
 
@@ -560,31 +559,29 @@ export default function PropertyForm({
                 Amenities
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              {amenitiesLoading ? (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {Array.from({ length: 8 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-11 rounded-xl bg-muted/40 animate-pulse"
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {AMENITIES.map((amenity) => (
-                    <label
-                      key={amenity}
-                      className="flex items-center gap-3 space-x-2 border border-border/40 p-3 rounded-xl cursor-pointer hover:bg-muted/30 transition-colors"
+            <CardContent className="space-y-3">
+              <Textarea
+                id="amenitiesInput"
+                placeholder="e.g. WiFi, Parking, Air Conditioning, Gym, Pool"
+                className="resize-none min-h-24"
+                value={amenitiesInput}
+                onChange={(e) => setAmenitiesInput(e.target.value)}
+              />
+              <p className="text-xs text-muted-foreground">
+                Enter amenities separated by commas. Example:{" "}
+                <span className="font-medium text-foreground/70">
+                  WiFi, Parking, Air Conditioning
+                </span>
+              </p>
+              {parseAmenities().length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {parseAmenities().map((a) => (
+                    <span
+                      key={a}
+                      className="inline-flex items-center rounded-full border border-border/50 bg-muted/40 px-3 py-1 text-xs font-medium text-foreground/80"
                     >
-                      <Checkbox
-                        checked={selectedAmenities.includes(amenity)}
-                        onCheckedChange={() => toggleAmenity(amenity)}
-                      />
-                      <span className="text-sm font-medium leading-none select-none">
-                        {amenity}
-                      </span>
-                    </label>
+                      {a}
+                    </span>
                   ))}
                 </div>
               )}

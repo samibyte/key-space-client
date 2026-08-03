@@ -1,7 +1,7 @@
 import type { Property } from "./property.type";
 import type { User } from "./user.type";
 
-export type RentalStatus = "PENDING" | "APPROVED" | "REJECTED" | "ACTIVE" | "COMPLETED" | "CANCELLED";
+export type RentalStatus = "PENDING" | "APPROVED" | "REJECTED" | "ACTIVE" | "COMPLETED"  ;
 export type PaymentStatus = "PENDING" | "COMPLETED" | "FAILED" ;
 
 export interface RentalRequest {

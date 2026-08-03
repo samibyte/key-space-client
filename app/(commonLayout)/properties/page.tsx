@@ -29,6 +29,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
     minPrice: getString(resolvedParams.minPrice),
     maxPrice: getString(resolvedParams.maxPrice),
     categoryId: getString(resolvedParams.categoryId),
+    regionId: getString(resolvedParams.regionId),
     amenities: getString(resolvedParams.amenities),
     amenityMatch: getString(resolvedParams.amenityMatch) as PropertyFilters["amenityMatch"],
     bedrooms: getString(resolvedParams.bedrooms),

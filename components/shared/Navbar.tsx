@@ -10,6 +10,7 @@ import {
 
 import Logo from "@/components/ui/logo";
 import { MenuIcon, LayoutDashboard, LogIn, UserPlus } from "lucide-react";
+import ThemeToggle from "@/components/shared/ThemeToggle";
 import Link from "next/link";
 import NavLink from "@/components/shared/NavLink";
 import { getDefaultDashboardRoute } from "@/lib/authUtils";
@@ -34,14 +35,14 @@ const Navbar = async () => {
     : null;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/60 backdrop-blur-md supports-backdrop-filter:bg-background/60 transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/30 backdrop-blur-md supports-backdrop-filter:bg-background/30 transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-2 sm:px-6">
         {/* Left/Center Split Nav for Desktop */}
         <div className="text-muted-foreground flex flex-1 items-center gap-8 font-medium md:justify-center lg:gap-12">
-          <NavLink href="/" className="max-md:hidden">
+          <NavLink href="/" className="max-md:hidden text-orange-500">
             Home
           </NavLink>
-          <NavLink href="/properties" className="max-md:hidden">
+          <NavLink href="/properties" className="max-md:hidden text-orange-500">
             Browse Properties
           </NavLink>
           
@@ -49,16 +50,17 @@ const Navbar = async () => {
             <Logo className="w-12 sm:w-14" />
           </Link>
           
-          <NavLink href="/about" className="max-md:hidden">
+          <NavLink href="/about" className="max-md:hidden text-orange-500">
             About Us
           </NavLink>
-          <NavLink href="/contact" className="max-md:hidden">
+          <NavLink href="/contact" className="max-md:hidden text-orange-500">
             Contact Us
           </NavLink>
         </div>
 
         {/* Right Nav for Desktop */}
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           {userInfo ? (
             <Button 
               className="h-10 text-xs font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm shadow-primary/10 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2 px-4"
@@ -90,7 +92,8 @@ const Navbar = async () => {
         </div>
 
         {/* Mobile Nav Menu */}
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger
               className="md:hidden"
