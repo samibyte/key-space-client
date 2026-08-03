@@ -88,16 +88,12 @@ export default function PropertyForm({
   const isPending = createPending || updatePending;
   const submitError = createError || updateError;
 
-  const AMENITIES = [
-    "Wifi",
-    "Parking",
-    "Pool",
-    "Gym",
-    "Air Conditioning",
-    "Balcony",
-    "Security",
-    "Furnished",
-  ];
+  const { data: amenitiesData, isLoading: amenitiesLoading } = useQuery({
+    queryKey: ["amenities"],
+    queryFn: () => clientGet<string[]>("/properties/amenities"),
+    staleTime: Infinity,
+  });
+  const AMENITIES: string[] = amenitiesData?.data ?? [];
 
   const [images, setImages] = useState<string[]>(
     initialData?.images && initialData.images.length > 0
@@ -110,9 +106,7 @@ export default function PropertyForm({
   const [categoryId, setCategoryId] = useState<string>(
     initialData?.categoryId || "",
   );
-  const [regionId, setRegionId] = useState<string>(
-    initialData?.regionId || "",
-  );
+  const [regionId, setRegionId] = useState<string>(initialData?.regionId || "");
 
   const { data: categoriesData } = useQuery({
     queryKey: ["categories"],
@@ -124,7 +118,7 @@ export default function PropertyForm({
   const { data: regionsData } = useQuery({
     queryKey: ["regions"],
     queryFn: () => clientGet<Region[]>("/regions"),
-    staleTime: Infinity, 
+    staleTime: Infinity,
   });
   const regions: Region[] = regionsData?.data ?? [];
 
@@ -332,7 +326,7 @@ export default function PropertyForm({
                   id="description"
                   name="description"
                   placeholder="Detailed description of the property (minimum 10 characters)..."
-                  className="resize-none min-h-[120px]"
+                  className="resize-none min-h-30"
                   defaultValue={initialData?.description}
                   minLength={10}
                   required
@@ -409,10 +403,13 @@ export default function PropertyForm({
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="regionSelector">Division / Region</Label>
+                <Label htmlFor="regionSelector">
+                  Division / Region <span className="text-destructive">*</span>
+                </Label>
                 <Select
                   value={regionId}
                   onValueChange={(val) => val && setRegionId(val)}
+                  required
                 >
                   <SelectTrigger id="regionSelector">
                     <SelectValue placeholder="Select division">
@@ -564,22 +561,33 @@ export default function PropertyForm({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {AMENITIES.map((amenity) => (
-                  <label
-                    key={amenity}
-                    className="flex items-center gap-3 space-x-2 border border-border/40 p-3 rounded-xl cursor-pointer hover:bg-muted/30 transition-colors"
-                  >
-                    <Checkbox
-                      checked={selectedAmenities.includes(amenity)}
-                      onCheckedChange={() => toggleAmenity(amenity)}
+              {amenitiesLoading ? (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-11 rounded-xl bg-muted/40 animate-pulse"
                     />
-                    <span className="text-sm font-medium leading-none select-none">
-                      {amenity}
-                    </span>
-                  </label>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {AMENITIES.map((amenity) => (
+                    <label
+                      key={amenity}
+                      className="flex items-center gap-3 space-x-2 border border-border/40 p-3 rounded-xl cursor-pointer hover:bg-muted/30 transition-colors"
+                    >
+                      <Checkbox
+                        checked={selectedAmenities.includes(amenity)}
+                        onCheckedChange={() => toggleAmenity(amenity)}
+                      />
+                      <span className="text-sm font-medium leading-none select-none">
+                        {amenity}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
 

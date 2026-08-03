@@ -16,36 +16,50 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { PublicStats } from "@/services/property.service";
+import { useQuery } from "@tanstack/react-query";
+import { clientGet } from "@/lib/axios/apiClient";
+import { Category, Region } from "@/types/property.type";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface HeroSectionProps {
   stats: PublicStats;
 }
 
-const CITIES = [
-  "Dhaka",
-  "Chittagong",
-  "Sylhet",
-  "Rajshahi",
-  "Khulna",
-  "Barishal",
-];
-const CATEGORIES = ["Apartment", "Studio", "Duplex", "Commercial", "Sublet"];
-
 export default function HeroSection({ stats }: HeroSectionProps) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const [city, setCity] = useState("");
-  const [category, setCategory] = useState("");
+  const [categoryId, setCategoryId] = useState<string>("");
+  const [regionId, setRegionId] = useState<string>("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const params = new URLSearchParams();
     if (searchTerm) params.set("searchTerm", searchTerm);
-    if (city) params.set("city", city);
-    if (category) params.set("category", category);
+    if (regionId) params.set("regionId", regionId);
+    if (categoryId) params.set("categoryId", categoryId);
 
     router.push(`/properties?${params.toString()}`);
   };
+
+  const { data: regionsData } = useQuery({
+    queryKey: ["regions"],
+    queryFn: () => clientGet<Region[]>("/regions"),
+    staleTime: Infinity,
+  });
+  const regions: Region[] = regionsData?.data ?? [];
+
+  const { data: categoriesData } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => clientGet<Category[]>("/categories"),
+    staleTime: Infinity,
+  });
+  const categories: Category[] = categoriesData?.data ?? [];
 
   const statItems = [
     {
@@ -117,33 +131,44 @@ export default function HeroSection({ stats }: HeroSectionProps) {
             />
           </div>
 
-          {/* City Selection */}
+          {/* Region Selection */}
           <div className="flex-1 flex items-center gap-2 px-3 py-2 border-b sm:border-b-0 sm:border-r border-border/60">
             <MapPin className="size-5 text-muted-foreground shrink-0" />
-            <select
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              className="w-full bg-transparent text-sm text-foreground outline-none border-none placeholder:text-muted-foreground cursor-pointer"
+            <Select
+              value={regionId}
+              onValueChange={(val) => val && setRegionId(val)}
             >
-              <option value="">Any Location</option>
-              {CITIES.map((c) => (
-                <option key={c} value={c} className="text-foreground bg-card">
-                  {c}
-                </option>
-              ))}
-            </select>
+              <SelectTrigger id="regionSelector">
+                <SelectValue placeholder="Select division">
+                  {regions.find((r) => r.id === regionId)?.name}
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                {regions.length === 0 ? (
+                  <SelectItem value="__loading" disabled>
+                    Loading regions...
+                  </SelectItem>
+                ) : (
+                  regions.map((region) => (
+                    <SelectItem key={region.id} value={region.id}>
+                      {region.name}
+                    </SelectItem>
+                  ))
+                )}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Category Selection */}
           <div className="flex-1 flex items-center gap-2 px-3 py-2">
             <Building className="size-5 text-muted-foreground shrink-0" />
-            <select
+            {/* <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               className="w-full bg-transparent text-sm text-foreground outline-none border-none placeholder:text-muted-foreground cursor-pointer"
             >
               <option value="">Any Type</option>
-              {CATEGORIES.map((cat) => (
+              {categories.map((cat) => (
                 <option
                   key={cat}
                   value={cat}
@@ -152,7 +177,30 @@ export default function HeroSection({ stats }: HeroSectionProps) {
                   {cat}
                 </option>
               ))}
-            </select>
+            </select> */}
+            <Select
+              value={categoryId}
+              onValueChange={(val) => val && setCategoryId(val)}
+            >
+              <SelectTrigger id="categorySelector">
+                <SelectValue placeholder="Select property type">
+                  {categories.find((c) => c.id === categoryId)?.name}
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                {categories.length === 0 ? (
+                  <SelectItem value="__loading" disabled>
+                    Loading categories...
+                  </SelectItem>
+                ) : (
+                  categories.map((cat) => (
+                    <SelectItem key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </SelectItem>
+                  ))
+                )}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Action Button */}

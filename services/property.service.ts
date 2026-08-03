@@ -37,6 +37,11 @@ export async function getRegions(): Promise<ApiResponse<Region[]>> {
   return httpClient.get<Region[]>("/regions");
 }
 
+export async function getAmenities(): Promise<ApiResponse<string[]>> {
+  return httpClient.get<string[]>("/properties/amenities");
+}
+
+
 export interface PublicStats {
   totalProperties: number;
   activeLeases: number;

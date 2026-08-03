@@ -1,12 +1,12 @@
 import DashboardShell from "../../../_components/DashboardShell";
 import PropertyForm from "../_components/PropertyForm";
-import { getCategories, getRegions } from "@/services/property.service";
+import { getCategories, getRegions, getAmenities } from "@/services/property.service";
 import { QueryClient, HydrationBoundary, dehydrate } from "@tanstack/react-query";
 
 export default async function NewPropertyPage() {
   const queryClient = new QueryClient();
 
-  // Prefetch categories and regions on the server so the client gets them instantly
+  // Prefetch categories, regions and amenities on the server so the client gets them instantly
   await Promise.all([
     queryClient.prefetchQuery({
       queryKey: ["categories"],
@@ -15,6 +15,10 @@ export default async function NewPropertyPage() {
     queryClient.prefetchQuery({
       queryKey: ["regions"],
       queryFn: getRegions,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["amenities"],
+      queryFn: getAmenities,
     }),
   ]);
 
