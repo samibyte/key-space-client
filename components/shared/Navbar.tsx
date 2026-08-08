@@ -9,12 +9,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import Logo from "@/components/ui/logo";
-import { MenuIcon, LayoutDashboard, LogIn, UserPlus } from "lucide-react";
+import { MenuIcon, LayoutDashboard, LogIn, UserPlus, UserCircle, LogOut } from "lucide-react";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import Link from "next/link";
 import NavLink from "@/components/shared/NavLink";
 import { getDefaultDashboardRoute } from "@/lib/authUtils";
 import { getUserInfo } from "@/services/auth.service";
+import NavbarProfileDropdown from "@/components/shared/NavbarProfileDropdown";
 
 type NavigationItem = {
   title: string;
@@ -66,14 +67,21 @@ const Navbar = async () => {
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           {userInfo ? (
-            <Button
-              className="h-10 text-xs font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm shadow-primary/10 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2 px-4"
-              render={<Link href={dashboardRoute || "/dashboard"} />}
-              nativeButton={false}
-            >
-              <LayoutDashboard className="size-3.5" />
-              <span>Dashboard</span>
-            </Button>
+            <>
+              <Button
+                className="h-10 text-xs font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm shadow-primary/10 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2 px-4"
+                render={<Link href={dashboardRoute || "/dashboard"} />}
+                nativeButton={false}
+              >
+                <LayoutDashboard className="size-3.5" />
+                <span>Dashboard</span>
+              </Button>
+              <NavbarProfileDropdown
+                name={userInfo.name}
+                email={userInfo.email}
+                avatar={userInfo.avatar}
+              />
+            </>
           ) : (
             <>
               <Button
@@ -133,15 +141,35 @@ const Navbar = async () => {
 
               <DropdownMenuGroup className="space-y-1">
                 {userInfo ? (
-                  <DropdownMenuItem className="rounded-lg">
-                    <Link
-                      href={dashboardRoute || "/dashboard"}
-                      className="w-full flex items-center gap-2 py-1.5 px-2 text-sm font-semibold text-primary"
-                    >
-                      <LayoutDashboard className="size-4" />
-                      <span>Dashboard</span>
-                    </Link>
-                  </DropdownMenuItem>
+                  <>
+                    <DropdownMenuItem className="rounded-lg">
+                      <Link
+                        href={dashboardRoute || "/dashboard"}
+                        className="w-full flex items-center gap-2 py-1.5 px-2 text-sm font-semibold text-primary"
+                      >
+                        <LayoutDashboard className="size-4" />
+                        <span>Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="rounded-lg">
+                      <Link
+                        href="/dashboard/profile"
+                        className="w-full flex items-center gap-2 py-1.5 px-2 text-sm text-foreground"
+                      >
+                        <UserCircle className="size-4" />
+                        <span>My Profile</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="rounded-lg">
+                      <Link
+                        href="/auth/login"
+                        className="w-full flex items-center gap-2 py-1.5 px-2 text-sm text-rose-500"
+                      >
+                        <LogOut className="size-4" />
+                        <span>Log out</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </>
                 ) : (
                   <>
                     <DropdownMenuItem className="rounded-lg">

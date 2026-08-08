@@ -9,14 +9,14 @@ import {
   Building2, 
   LayoutDashboard, 
   CreditCard, 
-  Settings, 
   Users, 
   Home, 
   FileText, 
   LogOut,
   ShieldCheck,
   ChevronRight,
-  Plus
+  Plus,
+  User
 } from "lucide-react";
 import type { UserRole } from "@/lib/authUtils";
 import {
@@ -142,12 +142,12 @@ export default function DashboardSidebar({ role, userName, avatar }: DashboardSi
             <SidebarMenu className="gap-1">
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  render={<Link href="/settings" />}
+                  render={<Link href="/dashboard/profile" />}
                   className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground h-10"
                 >
                   <div className="flex items-center gap-3">
-                    <Settings className="size-4 text-muted-foreground group-hover:text-foreground" />
-                    <span className="font-medium">Settings</span>
+                    <User className="size-4 text-muted-foreground group-hover:text-foreground" />
+                    <span className="font-medium">My Profile</span>
                   </div>
                 </SidebarMenuButton>
               </SidebarMenuItem>
