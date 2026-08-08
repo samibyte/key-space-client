@@ -47,17 +47,17 @@ const Navbar = async () => {
         </div>
         {/* Left/Center Split Nav for Desktop */}
         <div className="text-muted-foreground flex flex-1 items-center gap-8 font-medium md:justify-center lg:gap-12">
-          <NavLink href="/" className="max-md:hidden">
+          <NavLink href="/" className="max-md:hidden text-orange-600">
             Home
           </NavLink>
-          <NavLink href="/properties" className="max-md:hidden">
+          <NavLink href="/properties" className="max-md:hidden text-orange-600">
             Browse Properties
           </NavLink>
 
-          <NavLink href="/about" className="max-md:hidden">
+          <NavLink href="/about" className="max-md:hidden text-orange-600">
             About Us
           </NavLink>
-          <NavLink href="/contact" className="max-md:hidden">
+          <NavLink href="/contact" className="max-md:hidden text-orange-600">
             Contact Us
           </NavLink>
         </div>

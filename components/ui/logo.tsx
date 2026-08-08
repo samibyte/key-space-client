@@ -11,7 +11,7 @@ export default function Logo({ className }: { className: string }) {
         src={"/rent-nest-logo.png"}
       />
       <h1 className="text-3xl font-bold">
-        Rent <span className="text-primary">Nest</span>
+        Rent <span className="text-emerald-600 dark:text-emerald-400">Nest</span>
       </h1>
     </div>
   );

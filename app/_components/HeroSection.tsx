@@ -84,7 +84,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
   ];
 
   return (
-    <section className="relative overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8 bg-background flex items-center min-h-screen">
+    <section className="relative overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8 bg-background flex items-center min-h-[70vh] rounded-bl-4xl rounded-br-4xl">
       {/* Background Images */}
       <div className="absolute inset-0 block md:hidden bg-cover bg-bottom opacity-70 dark:opacity-40 z-0 bg-[url('/rent-nest-hero-bg-mobile.png')]" />
       <div className="absolute inset-0 hidden md:block bg-cover bg-right  dark:opacity-40 z-0 bg-[url('/rent-nest-hero-bg-pc.png')]" />
@@ -98,16 +98,16 @@ export default function HeroSection({ stats }: HeroSectionProps) {
 
       <div className="mx-auto max-w-7xl w-full flex flex-col items-center md:items-start text-center md:text-left gap-6 relative z-20">
         {/* Big Title */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] dark:text-foreground/90 text-foreground max-w-2xl">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] dark:text-foreground/90 text-secondary max-w-2xl">
           Find Your Perfect <br className="hidden sm:inline" />
-          <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-400 to-emerald-500 bg-clip-text text-transparent">
             Nesting Spot
           </span>{" "}
           Today
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base text-muted-foreground dark:text-foreground/80 max-w-2xl leading-relaxed">
+        <p className="text-sm sm:text-base text-secondary dark:text-foreground/80 max-w-2xl leading-relaxed">
           Search thousands of verified listings across Dhaka, Chittagong, and
           beyond. Request leases, manage documents, and handle monthly payments
           securely all in one place.
@@ -126,7 +126,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
               placeholder="Search properties, area, or address..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-transparent text-sm text-black placeholder:text-muted-foreground outline-none border-none"
+              className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none border-none"
             />
           </div>
 
