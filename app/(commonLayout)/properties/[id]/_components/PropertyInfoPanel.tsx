@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import {
   Home,
 } from "lucide-react";
 import type { PropertyDetail } from "@/types/property.type";
+import ShareDialog from "./ShareDialog";
 
 interface PropertyInfoPanelProps {
   property: PropertyDetail;
@@ -22,6 +24,7 @@ function formatPrice(price: number): string {
 
 export default function PropertyInfoPanel({ property }: PropertyInfoPanelProps) {
   const router = useRouter();
+  const [shareOpen, setShareOpen] = useState(false);
   const {
     id,
     monthlyRent,
@@ -41,14 +44,7 @@ export default function PropertyInfoPanel({ property }: PropertyInfoPanelProps) 
       : null;
 
   function handleShare() {
-    if (navigator.share) {
-      navigator.share({
-        title: property.title,
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-    }
+    setShareOpen(true);
   }
 
   return (
@@ -155,13 +151,19 @@ export default function PropertyInfoPanel({ property }: PropertyInfoPanelProps) 
           {/* Share */}
           <button
             onClick={handleShare}
-            className="flex items-center justify-center gap-2 w-full text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+            className="flex items-center justify-center gap-2 w-full text-sm text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
           >
             <Share2 className="size-3.5" />
             Share this property
           </button>
         </div>
       </div>
+
+      <ShareDialog
+        isOpen={shareOpen}
+        onClose={() => setShareOpen(false)}
+        propertyTitle={property.title}
+      />
     </div>
   );
 }
