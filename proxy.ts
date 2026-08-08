@@ -109,6 +109,19 @@ export async function proxy(request: NextRequest) {
       );
     }
 
+    const cleanPath = pathname.replace(/\/$/, "");
+    if (cleanPath === "/dashboard") {
+      if (isValidAccessToken && userRole) {
+        return NextResponse.redirect(
+          new URL(getDefaultDashboardRoute(userRole), request.url)
+        );
+      } else {
+        const loginUrl = new URL("/auth/login", request.url);
+        loginUrl.searchParams.set("redirect", pathWithQuery);
+        return NextResponse.redirect(loginUrl);
+      }
+    }
+
     // Rule - 2: User trying to access Public route -> allow
     if (routeOwner === null) {
       return NextResponse.next();

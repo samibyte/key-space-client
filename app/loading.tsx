@@ -19,7 +19,7 @@ export default function Loading() {
 
           {/* Logo container with gentle scaling animation */}
           <div className="relative z-10 w-24 h-24 bg-card p-4 rounded-full shadow-2xl border border-primary/10 flex items-center justify-center animate-[pulse_2s_ease-in-out_infinite]">
-            <Logo className="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(0,80,64,0.15)]" />
+            <Logo onlyIcon={true} className="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(0,80,64,0.15)]" />
           </div>
         </div>
 

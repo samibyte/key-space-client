@@ -112,10 +112,10 @@ export default function Footer() {
                 { title: "Browse Flats", href: "/properties" },
                 {
                   title: "Commercial Spaces",
-                  href: "/properties?category=commercial",
+                  href: "/properties?categoryId=a90d7c58-c12c-4abc-9254-e7b954443f5b",
                 },
-                { title: "Renters Guide", href: "/blog/renters-guide" },
-                { title: "Tenant Dashboard", href: "/dashboard" },
+                // { title: "Renters Guide", href: "/blog/renters-guide" },
+                { title: "Tenant Dashboard", href: "/dashboard/tenant" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link
@@ -142,7 +142,7 @@ export default function Footer() {
                 },
                 { title: "Landlord Portal", href: "/dashboard" },
                 { title: "Trust & Safety", href: "/trust" },
-                { title: "Pricing & Plans", href: "/pricing" },
+                // { title: "Pricing & Plans", href: "/pricing" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link
