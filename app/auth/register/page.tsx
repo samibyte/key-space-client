@@ -45,8 +45,24 @@ const RegisterPage = async ({ searchParams }: RegisterParams) => {
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-2 rounded-full bg-border/50" />
             </div>
 
+            {/* Demo hint */}
+            <div className="flex items-center gap-2.5 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
+              <Sparkles className="size-4 text-primary shrink-0" />
+              <p className="text-xs text-muted-foreground">
+                Want to explore first?{" "}
+                <Link
+                  href="/auth/login"
+                  className="font-semibold text-primary hover:underline underline-offset-4"
+                >
+                  Log in with a demo account
+                </Link>{" "}
+                — Admin, Landlord, or Tenant.
+              </p>
+            </div>
+
             {/* Form */}
             <RegisterForm redirectPath={redirectPath} />
+
 
             {/* Footer with link */}
             <div className="pt-2">
