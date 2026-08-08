@@ -34,9 +34,9 @@ const AMENITY_ICONS: Record<string, React.ReactNode> = {
 };
 
 const STATUS_STYLES: Record<string, string> = {
-  AVAILABLE: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
-  RENTED: "bg-rose-500/20 text-rose-400 border border-rose-500/30",
-  UNAVAILABLE: "bg-zinc-500/20 text-zinc-400 border border-zinc-500/30",
+  AVAILABLE: "bg-emerald-700 text-white font-semibold border border-emerald-800 shadow-sm",
+  RENTED: "bg-rose-700 text-white font-semibold border border-rose-800 shadow-sm",
+  UNAVAILABLE: "bg-zinc-700 text-white font-semibold border border-zinc-800 shadow-sm",
 };
 
 function formatPrice(price: number): string {

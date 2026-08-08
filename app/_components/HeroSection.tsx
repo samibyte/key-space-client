@@ -98,7 +98,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
 
       <div className="mx-auto max-w-7xl w-full flex flex-col items-center md:items-start text-center md:text-left gap-6 relative z-20">
         {/* Big Title */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] dark:text-foreground/90 text-secondary/80 max-w-2xl">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] dark:text-foreground/90 text-foreground max-w-2xl">
           Find Your Perfect <br className="hidden sm:inline" />
           <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
             Nesting Spot
@@ -107,7 +107,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base text-secondary/70 dark:text-foreground/80 max-w-2xl leading-relaxed">
+        <p className="text-sm sm:text-base text-muted-foreground dark:text-foreground/80 max-w-2xl leading-relaxed">
           Search thousands of verified listings across Dhaka, Chittagong, and
           beyond. Request leases, manage documents, and handle monthly payments
           securely all in one place.

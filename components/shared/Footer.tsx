@@ -7,7 +7,6 @@ import Logo from "@/components/ui/logo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
-
   Mail,
   Phone,
   MapPin,
@@ -17,10 +16,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-import {  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,} from "react-icons/fa"
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -51,16 +47,20 @@ export default function Footer() {
       {/* Main Grid Content */}
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
-          
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/" className="inline-block transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]">
+            <Link
+              href="/"
+              className="inline-block transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
+            >
               <Logo className="w-14 sm:w-16" />
             </Link>
             <p className="text-sm font-normal text-muted-foreground leading-relaxed max-w-xs">
-              Rent Nest is the leading property placement & verification platform in Bangladesh. We connect premium renters with verified landlords, offering seamless digital leases and secure payments.
+              Rent Nest is the leading property placement & verification
+              platform in Bangladesh. We connect premium renters with verified
+              landlords, offering seamless digital leases and secure payments.
             </p>
-            
+
             {/* Social Icons */}
             <div className="flex items-center gap-3">
               <a
@@ -104,11 +104,16 @@ export default function Footer() {
 
           {/* Quick Links Column 1: Renters */}
           <div>
-            <h3 className="text-sm font-semibold tracking-wide text-foreground uppercase">Renters</h3>
+            <h3 className="text-sm font-semibold tracking-wide text-foreground uppercase">
+              Renters
+            </h3>
             <ul className="mt-4 space-y-2.5">
               {[
                 { title: "Browse Flats", href: "/properties" },
-                { title: "Commercial Spaces", href: "/properties?category=commercial" },
+                {
+                  title: "Commercial Spaces",
+                  href: "/properties?category=commercial",
+                },
                 { title: "Renters Guide", href: "/blog/renters-guide" },
                 { title: "Tenant Dashboard", href: "/dashboard" },
               ].map((link, idx) => (
@@ -126,10 +131,15 @@ export default function Footer() {
 
           {/* Quick Links Column 2: Landlords */}
           <div>
-            <h3 className="text-sm font-semibold tracking-wide text-foreground uppercase">Landlords</h3>
+            <h3 className="text-sm font-semibold tracking-wide text-foreground uppercase">
+              Landlords
+            </h3>
             <ul className="mt-4 space-y-2.5">
               {[
-                { title: "List a Property", href: "/dashboard/landlord/properties/new" },
+                {
+                  title: "List a Property",
+                  href: "/dashboard/landlord/properties/new",
+                },
                 { title: "Landlord Portal", href: "/dashboard" },
                 { title: "Trust & Safety", href: "/trust" },
                 { title: "Pricing & Plans", href: "/pricing" },
@@ -149,16 +159,21 @@ export default function Footer() {
           {/* Contact / Newsletter Column */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-semibold tracking-wide text-foreground uppercase">Get Updates</h3>
+              <h3 className="text-sm font-semibold tracking-wide text-foreground uppercase">
+                Get Updates
+              </h3>
               <p className="mt-2.5 text-xs text-muted-foreground">
-                Subscribe to receive notifications when premium locations open up.
+                Subscribe to receive notifications when premium locations open
+                up.
               </p>
             </div>
-            
+
             {subscribed ? (
               <div className="flex items-center gap-2 rounded-xl bg-primary/10 border border-primary/20 px-3 py-2 text-primary">
                 <CheckCircle2 className="size-4 shrink-0" />
-                <span className="text-xs font-medium">Successfully subscribed!</span>
+                <span className="text-xs font-medium">
+                  Successfully subscribed!
+                </span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex gap-2">
@@ -200,7 +215,6 @@ export default function Footer() {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Separator Strip */}
@@ -209,11 +223,24 @@ export default function Footer() {
         {/* Bottom copyright / security strip */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-xs text-muted-foreground order-2 sm:order-1 text-center sm:text-left">
-            <span>&copy; {new Date().getFullYear()} Rent Nest. All rights reserved. </span>
+            <span>
+              &copy; {new Date().getFullYear()} Rent Nest. All rights
+              reserved.{" "}
+            </span>
             <div className="mt-1 flex justify-center sm:justify-start gap-3">
-              <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+              <Link
+                href="/privacy"
+                className="hover:text-primary transition-colors"
+              >
+                Privacy Policy
+              </Link>
               <span>&bull;</span>
-              <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+              <Link
+                href="/terms"
+                className="hover:text-primary transition-colors"
+              >
+                Terms of Service
+              </Link>
             </div>
           </div>
 
@@ -221,19 +248,18 @@ export default function Footer() {
             {/* Trusted Payment Information */}
             <div className="flex items-center gap-1.5 rounded-full border border-border/60 bg-background/50 px-3.5 py-1 text-xs text-muted-foreground shadow-xs">
               <ShieldCheck className="size-3.5 text-primary shrink-0" />
-              <span>Payments Secured by SSLCommerz</span>
+              <span>Payments Secured by Stripe</span>
             </div>
-            
+
             {/* Soft inline payment cards */}
             <div className="flex items-center gap-2 text-muted-foreground/60 text-xs font-semibold px-1">
               <span className="tracking-wide">VISA</span>
               <span className="tracking-wide">MASTERCARD</span>
-              <span className="text-primary/80">bKash</span>
-              <span className="text-primary/80">Nagad</span>
+              {/* <span className="text-primary/80">bKash</span>
+              <span className="text-primary/80">Nagad</span> */}
             </div>
           </div>
         </div>
-
       </div>
     </footer>
   );

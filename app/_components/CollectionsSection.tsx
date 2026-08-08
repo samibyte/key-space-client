@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { Sparkles, Users, Award, ShieldCheck, Layers, Briefcase } from "lucide-react";
+import {
+  Sparkles,
+  Users,
+  Award,
+  ShieldCheck,
+  Layers,
+  Briefcase,
+} from "lucide-react";
 
 export default function CollectionsSection() {
   const collections = [
@@ -42,7 +49,7 @@ export default function CollectionsSection() {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col gap-12">
+    <section className="py-16 px-4 lg:px-0 max-w-7xl mx-auto flex flex-col gap-12">
       {/* Section Header */}
       <div className="text-center flex flex-col gap-2">
         <span className="text-xs uppercase tracking-widest text-primary font-bold">
@@ -52,7 +59,8 @@ export default function CollectionsSection() {
           Explore Curated Rental Collections
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto">
-          Tailored property matching categories selected specifically for your lifestyle and budget.
+          Tailored property matching categories selected specifically for your
+          lifestyle and budget.
         </p>
       </div>
 
