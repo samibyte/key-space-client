@@ -13,6 +13,7 @@ import FeaturedProperties from "../_components/FeaturedProperties";
 import LocationsSection from "../_components/LocationsSection";
 import HowItWorks from "../_components/HowItWorks";
 import TestimonialsSection from "../_components/TestimonialsSection";
+import BenefitsSection from "../_components/BenefitsSection";
 import LandlordCTA from "../_components/LandlordCTA";
 import {
   QueryClient,
@@ -89,7 +90,10 @@ export default async function HomePage() {
       {/* 6. Testimonials trust strip */}
       <TestimonialsSection stats={stats} />
 
-      {/* 7. Become a landlord banner */}
+      {/* 7. Occupant Perks & Benefits */}
+      <BenefitsSection />
+
+      {/* 8. Become a landlord banner */}
       <LandlordCTA />
     </main>
   );
