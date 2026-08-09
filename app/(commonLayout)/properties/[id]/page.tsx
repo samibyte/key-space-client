@@ -7,6 +7,7 @@ import PropertyInfoPanel from "./_components/PropertyInfoPanel";
 import PropertyDetails from "./_components/PropertyDetails";
 import LandlordCard from "./_components/LandlordCard";
 import ReviewsSection from "./_components/ReviewsSection";
+import RelatedProperties from "./_components/RelatedProperties";
 import PropertyDetailSkeleton from "./_components/PropertyDetailSkeleton";
 
 interface PropertyDetailPageProps {
@@ -83,6 +84,13 @@ async function PropertyDetailContent({ id }: { id: string }) {
         {/* Right: sticky info + CTA panel */}
         <PropertyInfoPanel property={property} />
       </div>
+
+      {/* Related properties */}
+      <RelatedProperties
+        categoryId={property.categoryId}
+        categoryName={property.category.name}
+        currentPropertyId={property.id}
+      />
     </div>
   );
 }
