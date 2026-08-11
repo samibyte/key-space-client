@@ -21,7 +21,20 @@ export async function clientGet<TData>(
   });
 
   if (!res.ok) {
-    throw new Error(`GET ${endpoint} failed with status ${res.status}`);
+    let errorMsg = `GET ${endpoint} failed with status ${res.status}`;
+    try {
+      const errorData = await res.json();
+      if (errorData?.message) {
+        if (errorData.errorSources && Array.isArray(errorData.errorSources)) {
+          errorMsg = errorData.errorSources.map((e: any) => e.message).join(", ");
+        } else {
+          errorMsg = errorData.message;
+        }
+      }
+    } catch (e) {
+      // Ignore JSON parse error and use default message
+    }
+    throw new Error(errorMsg);
   }
 
   return res.json() as Promise<ApiResponse<TData>>;
@@ -50,7 +63,20 @@ export async function clientPost<TData>(
   });
 
   if (!res.ok) {
-    throw new Error(`POST ${endpoint} failed with status ${res.status}`);
+    let errorMsg = `POST ${endpoint} failed with status ${res.status}`;
+    try {
+      const errorData = await res.json();
+      if (errorData?.message) {
+        if (errorData.errorSources && Array.isArray(errorData.errorSources)) {
+          errorMsg = errorData.errorSources.map((e: any) => e.message).join(", ");
+        } else {
+          errorMsg = errorData.message;
+        }
+      }
+    } catch (e) {
+      // Ignore JSON parse error and use default message
+    }
+    throw new Error(errorMsg);
   }
 
   return res.json() as Promise<ApiResponse<TData>>;
@@ -79,7 +105,20 @@ export async function clientPatch<TData>(
   });
 
   if (!res.ok) {
-    throw new Error(`PATCH ${endpoint} failed with status ${res.status}`);
+    let errorMsg = `PATCH ${endpoint} failed with status ${res.status}`;
+    try {
+      const errorData = await res.json();
+      if (errorData?.message) {
+        if (errorData.errorSources && Array.isArray(errorData.errorSources)) {
+          errorMsg = errorData.errorSources.map((e: any) => e.message).join(", ");
+        } else {
+          errorMsg = errorData.message;
+        }
+      }
+    } catch (e) {
+      // Ignore JSON parse error and use default message
+    }
+    throw new Error(errorMsg);
   }
 
   return res.json() as Promise<ApiResponse<TData>>;

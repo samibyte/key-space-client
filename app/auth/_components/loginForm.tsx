@@ -11,6 +11,7 @@ import AppField from "@/components/shared/forms/AppField";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import AppSubmitButton from "@/components/shared/forms/AppSubmitButton";
 import { Zap } from "lucide-react";
+import { GoogleAuthButton } from "@/components/shared/GoogleAuthButton";
 
 interface ILoginFormProps {
   redirectPath?: string;
@@ -122,6 +123,19 @@ export const LoginForm = ({ redirectPath }: ILoginFormProps) => {
             ✓ Filled as <strong>{activeDemo}</strong> — click <em>Log In</em> to continue.
           </p>
         )}
+      </div>
+
+      <div className="mb-6">
+        <GoogleAuthButton />
+        
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-border/50" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground/70 font-medium">Or continue with email</span>
+          </div>
+        </div>
       </div>
 
       <FieldGroup className="gap-6">

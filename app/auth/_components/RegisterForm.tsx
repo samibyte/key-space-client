@@ -17,6 +17,7 @@ import { Phone, Building2, Home, Upload, X, User } from "lucide-react";
 import type { AnyFieldApi } from "@tanstack/react-form-nextjs";
 import { RoleSelect } from "./RoleSelect";
 import { AvatarPicker } from "./AvatarPicker";
+import { GoogleAuthButton } from "@/components/shared/GoogleAuthButton";
 
 export const getErrorMessage = (error: unknown): string => {
   if (typeof error === "string") return error;
@@ -86,6 +87,19 @@ const RegisterForm = ({ redirectPath }: IRegisterFormProps) => {
         form.handleSubmit();
       }}
     >
+      <div className="mb-6">
+        <GoogleAuthButton />
+        
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-border/50" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground/70 font-medium">Or create account with email</span>
+          </div>
+        </div>
+      </div>
+
       <FieldGroup className="gap-5">
         <div className="flex flex-col gap-4">
           {/* Avatar */}

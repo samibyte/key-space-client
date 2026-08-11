@@ -39,6 +39,7 @@ import { clientGet } from "@/lib/axios/apiClient";
 import type { Category, Property, Region } from "@/types/property.type";
 import { useCallback } from "react";
 import { cn } from "@/lib/utils";
+import { propertyClientSchema } from "@/zod/property.validation";
 
 interface PropertyFormProps {
   initialData?: Property | null;
@@ -190,11 +191,11 @@ export default function PropertyForm({
     const formData = new FormData(e.currentTarget);
 
     const payload = {
-      title: formData.get("title"),
-      description: formData.get("description"),
-      address: formData.get("address"),
-      city: formData.get("city"),
-      area: formData.get("area"),
+      title: formData.get("title") as string,
+      description: formData.get("description") as string,
+      address: formData.get("address") as string,
+      city: formData.get("city") as string,
+      area: formData.get("area") as string,
       monthlyRent: Number(formData.get("monthlyRent")),
       securityDeposit: Number(formData.get("securityDeposit")),
       bedrooms: Number(formData.get("bedrooms")),
@@ -206,11 +207,18 @@ export default function PropertyForm({
       images: images.filter((img) => img.trim() !== ""),
     };
 
+    const parsed = propertyClientSchema.safeParse(payload);
+    if (!parsed.success) {
+      const errorMsg = parsed.error.issues.map((i) => i.message).join(", ");
+      setStepError(errorMsg);
+      return;
+    }
+
     try {
       if (isEdit && propertyId) {
-        await updateMutate({ id: propertyId, data: payload });
+        await updateMutate({ id: propertyId, data: parsed.data });
       } else {
-        await createMutate(payload);
+        await createMutate(parsed.data);
       }
       router.push("/dashboard/landlord/properties");
     } catch (err) {
