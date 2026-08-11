@@ -12,7 +12,7 @@ export default function LandlordDashboardOverview() {
   const { data: statsRes, isLoading: statsLoading } = useLandlordStats();
   const { data: requestsRes, isLoading: requestsLoading } = useLandlordRequests();
 
-  const stats = statsRes?.data || { totalProperties: 0, availableUnits: 0, activeRentals: 0, monthlyRevenue: 0 };
+  const stats = statsRes?.data;
   const requests = requestsRes?.data || [];
   const recentRequests = requests.slice(0, 5);
 
@@ -31,22 +31,22 @@ export default function LandlordDashboardOverview() {
           <>
             <StatsCard 
               label="Total Properties" 
-              value={stats?.totalProperties || 0} 
+              value={stats?.properties?.total || 0} 
               icon={<Building2 className="size-5" />} 
             />
             <StatsCard 
               label="Available Units" 
-              value={stats?.availableUnits || 0} 
+              value={stats?.properties?.available || 0} 
               icon={<LayoutDashboard className="size-5" />} 
             />
             <StatsCard 
               label="Active Rentals" 
-              value={stats?.activeRentals || 0} 
+              value={stats?.rentals?.active || 0} 
               icon={<FileText className="size-5" />} 
             />
             <StatsCard 
               label="Mo. Revenue (Estimated)" 
-              value={`$${(stats?.monthlyRevenue || 0).toLocaleString('en-US')}`} 
+              value={`$${(stats?.revenue?.totalAmount || 0).toLocaleString('en-US')}`} 
               icon={<DollarSign className="size-5" />} 
             />
           </>

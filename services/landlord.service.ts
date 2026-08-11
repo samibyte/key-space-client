@@ -6,10 +6,22 @@ import type { Property, PropertyFilters } from "@/types/property.type";
 import type { RentalRequest, RentalFilters } from "@/types/rental.type";
 
 export interface LandlordStats {
-  totalProperties: number;
-  availableUnits: number;
-  activeRentals: number;
-  monthlyRevenue: number;
+  properties: {
+    total: number;
+    available: number;
+    rented: number;
+    unavailable: number;
+  };
+  rentals: {
+    active: number;
+    pendingRequests: number;
+  };
+  revenue: {
+    totalAmount: number;
+  };
+  reviews: {
+    total: number;
+  };
 }
 
 export async function getLandlordDashboardStats(): Promise<ApiResponse<LandlordStats>> {
