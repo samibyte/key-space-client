@@ -22,7 +22,7 @@ import {
 } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
-  title: "Rent Nest | Premium Property Rentals & Placement Platform",
+  title: "KeySpace | Premium Property Rentals & Placement Platform",
   description:
     "Explore verified rentals, flats, duplexes, and commercial spaces across Bangladesh. Seamless lease matching, secure payments, and tenant credit management.",
 };
@@ -65,7 +65,7 @@ export default async function HomePage() {
       featuredProperties = propertiesRes.data;
     }
   } catch (error) {
-    console.error("Could not fetch DB records for Rent Nest Home:", error);
+    console.error("Could not fetch DB records for KeySpace Home:", error);
   }
 
   return (

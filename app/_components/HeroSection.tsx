@@ -86,8 +86,8 @@ export default function HeroSection({ stats }: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8 bg-background flex items-center min-h-[70vh] rounded-bl-4xl rounded-br-4xl">
       {/* Background Images */}
-      <div className="absolute inset-0 block md:hidden bg-cover bg-bottom opacity-70 dark:opacity-40 z-0 bg-[url('/rent-nest-hero-bg-mobile.png')]" />
-      <div className="absolute inset-0 hidden md:block bg-cover bg-right  dark:opacity-40 z-0 bg-[url('/rent-nest-hero-bg-pc.png')]" />
+      <div className="absolute inset-0 block md:hidden bg-cover bg-bottom opacity-70 dark:opacity-40 z-0 bg-[url('/key-space-hero-bg-mobile.png')]" />
+      <div className="absolute inset-0 hidden md:block bg-cover bg-right  dark:opacity-40 z-0 bg-[url('/key-space-hero-bg-pc.png')]" />
 
       {/* Dynamic overlays for text legibility */}
       <div className="absolute inset-0 dark:bg-black/10 bg-black/20 z-10 hidden md:block" />
@@ -101,7 +101,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] dark:text-foreground/90 text-secondary max-w-2xl">
           Find Your Perfect <br className="hidden sm:inline" />
           <span className="bg-gradient-to-r from-emerald-400 to-emerald-500 bg-clip-text text-transparent">
-            Nesting Spot
+            Key Space
           </span>{" "}
           Today
         </h1>

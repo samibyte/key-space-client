@@ -6,7 +6,7 @@ export default function FeaturesSection() {
     "Detailed property page with multi-image gallery & lightbox.",
     "Submit instant rental requests directly to landlords.",
     "Secure online payments via integrated Stripe/bKash providers.",
-    "Vetted landord credentials and honest tenant rating histories.",
+    "Vetted landlord credentials and honest tenant rating histories.",
   ];
 
   const landlordFeatures = [
@@ -28,7 +28,7 @@ export default function FeaturesSection() {
           Double-Sided Ecosystem Features
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto">
-          Rent Nest provides custom workflows specifically designed to empower both renter and property owner roles.
+          KeySpace provides custom workflows specifically designed to empower both renter and property owner roles.
         </p>
       </div>
 

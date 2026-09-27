@@ -7,9 +7,9 @@ import FeaturesSection from "./_components/FeaturesSection";
 import AboutCTA from "./_components/AboutCTA";
 
 export const metadata: Metadata = {
-  title: "About Us | Rent Nest",
+  title: "About Us | KeySpace",
   description:
-    "Learn about Rent Nest, our mission, core platform features, and milestones simplifying renting in Bangladesh.",
+    "Learn about KeySpace, our mission, core platform features, and milestones simplifying renting in Bangladesh.",
 };
 
 export default async function AboutPage() {

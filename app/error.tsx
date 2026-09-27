@@ -56,10 +56,10 @@ export default function Error({
             System Error
           </span>
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Encountered a Nesting Hiccup
+            Encountered a Locked Door
           </h1>
           <p className="max-w-md text-base text-muted-foreground">
-            Something went wrong while rendering this page. The Rent Nest team has been notified, and we are working to patch it up.
+            Something went wrong while rendering this page. The KeySpace team has been notified, and we are working to patch it up.
           </p>
         </div>
 

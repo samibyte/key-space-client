@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Eye, ShieldCheck, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Rent Nest",
+  title: "Privacy Policy | KeySpace",
   description:
-    "Review the Privacy Policy of Rent Nest. Learn how we collect, protect, share, and manage user details and payment history in Bangladesh.",
+    "Review the Privacy Policy of KeySpace. Learn how we collect, protect, share, and manage user details and payment history in Bangladesh.",
 };
 
 export default function PrivacyPage() {
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
             <div className="flex gap-3 items-start">
               <ShieldCheck className="size-5.5 text-primary shrink-0 mt-0.5" />
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Rent Nest values user transparency. We encrypt sensitive traffic/records, integrate with gold-standard processors like Stripe, and keep compliance details safe under data protection guidelines.
+                KeySpace values user transparency. We encrypt sensitive traffic/records, integrate with gold-standard processors like Stripe, and keep compliance details safe under data protection guidelines.
               </p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
               3. Information Sharing and Disclosure
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Rent Nest does not sell your personal records to marketing companies. We disclose information strictly under these rules:
+              KeySpace does not sell your personal records to marketing companies. We disclose information strictly under these rules:
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1.5 text-xs sm:text-sm text-muted-foreground">
               <li><strong>With other platform users:</strong> Lease applicants see landlord profile details, and landlords see matching tenant qualifications to approve tenancies.</li>

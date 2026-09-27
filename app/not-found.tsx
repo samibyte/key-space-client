@@ -13,7 +13,7 @@ export default function NotFound() {
       </div>
 
       <div className="relative w-full max-w-2xl flex flex-col items-center space-y-10 z-10 select-none text-center">
-        {/* Floating Nest / 404 Illustration */}
+        {/* Floating Home / 404 Illustration */}
         <div className="relative w-64 h-64 flex items-center justify-center">
           {/* Background circles */}
           <div className="absolute inset-0 rounded-full bg-primary/5 animate-pulse" />
@@ -21,7 +21,7 @@ export default function NotFound() {
 
           {/* Main Visual */}
           <div className="relative animate-[bounce_4s_ease-in-out_infinite] [animation-duration:5s] flex flex-col items-center">
-            {/* Elegant Nest-like House SVG */}
+            {/* Elegant House-with-Keyhole SVG */}
             <svg
               className="w-36 h-36 text-primary filter drop-shadow-[0_8px_16px_rgba(0,80,64,0.15)]"
               fill="none"
@@ -29,31 +29,20 @@ export default function NotFound() {
               stroke="currentColor"
               strokeWidth={1.2}
             >
-              {/* Nest Base (twigs style/half oval) */}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 13.5c0 3.5 4 5.5 9 5.5s9-2 9-5.5"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 15.5c2 1 4 1.5 7 1.5s5-.5 7-1.5"
-              />
-              {/* House/Nest Structure */}
+              {/* House Structure with Keyhole */}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M12 3L4 9v9.5c0 .8.7 1.5 1.5 1.5h13c.8 0 1.5-.7 1.5-1.5V9l-8-6z"
               />
-              {/* Empty Sign/Hole */}
+              {/* Empty Keyhole */}
               <circle
                 cx="12"
                 cy="11"
                 r="2.5"
                 className="stroke-primary/40 fill-background"
               />
-              {/* Little branches/leaves */}
+              {/* Sparkle Accents */}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -71,7 +60,7 @@ export default function NotFound() {
         {/* Messaging */}
         <div className="flex flex-col items-center space-y-4 max-w-md">
           <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            This Nest is Empty
+            This Space is Empty
           </h1>
           <p className="text-base text-muted-foreground/90 leading-relaxed">
             The page you are looking for has taken flight or never existed.
@@ -106,7 +95,7 @@ export default function NotFound() {
               <MapPin className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-foreground">Nest Portal</h3>
+              <h3 className="font-bold text-sm text-foreground">KeySpace Portal</h3>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Access leases, rent & requests
               </p>

@@ -11,14 +11,14 @@ export default function TestimonialsSection({ stats }: TestimonialsSectionProps)
       name: "Adnan Rahman",
       city: "Dhaka",
       initials: "AR",
-      quote: "The lease request and digital payment process on Rent Nest saved me weeks of manual search. It is the most structured rental setup in Bangladesh.",
+      quote: "The lease request and digital payment process on KeySpace saved me weeks of manual search. It is the most structured rental setup in Bangladesh.",
       rating: 5,
     },
     {
       name: "Tasnia Mim",
       city: "Sylhet",
       initials: "TM",
-      quote: "Finding a sublet near my university used to be a nightmare of offline brokers. With Rent Nest, I verified and secured my room in just two days.",
+      quote: "Finding a sublet near my university used to be a nightmare of offline brokers. With KeySpace, I verified and secured my room in just two days.",
       rating: 5,
     },
     {
@@ -47,7 +47,7 @@ export default function TestimonialsSection({ stats }: TestimonialsSectionProps)
           Trusted by Renters
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground max-w-sm mx-auto">
-          Hear from tenants who found their perfect nesting spaces with transparent lease flows.
+          Hear from tenants who found their perfect spaces with transparent lease flows.
         </p>
       </div>
 

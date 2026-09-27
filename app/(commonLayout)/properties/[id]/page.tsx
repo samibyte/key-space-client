@@ -22,12 +22,12 @@ export async function generateMetadata({
   try {
     const res = await getPropertyById(id);
     const property = res.data;
-    if (!property) return { title: "Property Details | Rent Nest" };
+    if (!property) return { title: "Property Details | KeySpace" };
     const description = property.description?.slice(0, 160) ?? "";
     const image = property.images?.[0];
 
     return {
-      title: `${property.title} | Rent Nest`,
+      title: `${property.title} | KeySpace`,
       description,
       openGraph: {
         title: property.title,
@@ -37,7 +37,7 @@ export async function generateMetadata({
     };
   } catch {
     return {
-      title: "Property Details | Rent Nest",
+      title: "Property Details | KeySpace",
     };
   }
 }

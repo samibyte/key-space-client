@@ -10,7 +10,7 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Rent Nest",
+  title: "KeySpace",
   description: "Find & List Rental Properties with Ease",
 };
 

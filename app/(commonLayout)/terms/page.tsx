@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Scale, ShieldCheck, Mail, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Rent Nest",
+  title: "Terms of Service | KeySpace",
   description:
-    "Review the Terms of Service and user agreements governing the use of Rent Nest property search and lease matching services in Bangladesh.",
+    "Review the Terms of Service and user agreements governing the use of KeySpace property search and lease matching services in Bangladesh.",
 };
 
 export default function TermsPage() {
@@ -24,7 +24,7 @@ export default function TermsPage() {
             Terms of <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">Service</span>
           </h1>
           <p className="text-xs sm:text-sm text-muted-foreground max-w-xl leading-relaxed">
-            Please read these terms carefully before accessing or using the Rent Nest portal. Last updated: August 9, 2026.
+            Please read these terms carefully before accessing or using the KeySpace portal. Last updated: August 9, 2026.
           </p>
         </div>
       </section>
@@ -37,7 +37,7 @@ export default function TermsPage() {
             <div className="flex gap-3 items-start">
               <ShieldCheck className="size-5.5 text-primary shrink-0 mt-0.5" />
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                By registering an account, listing properties, or completing transactions on Rent Nest, you agree to comply with these terms, as well as our Privacy Policy and Community Guidelines.
+                By registering an account, listing properties, or completing transactions on KeySpace, you agree to comply with these terms, as well as our Privacy Policy and Community Guidelines.
               </p>
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function TermsPage() {
               1. Acceptance of Terms
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Welcome to Rent Nest (the &quot;Platform&quot;). These Terms of Service state the rules and conditions for accessing and using our website, services, and mobile applications. By accessing or using our platform, you agree to be bound by these terms. If you do not agree to these terms, you may not access or use the platform.
+              Welcome to KeySpace (the &quot;Platform&quot;). These Terms of Service state the rules and conditions for accessing and using our website, services, and mobile applications. By accessing or using our platform, you agree to be bound by these terms. If you do not agree to these terms, you may not access or use the platform.
             </p>
           </div>
 
@@ -56,10 +56,10 @@ export default function TermsPage() {
               2. User Accounts and Verification
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              To list properties or submit lease applications, you must register for a Rent Nest account. You agree to provide accurate, current, and complete information. You are responsible for keeping your login credentials secure.
+              To list properties or submit lease applications, you must register for a KeySpace account. You agree to provide accurate, current, and complete information. You are responsible for keeping your login credentials secure.
             </p>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Rent Nest integrates national identity verification. We reserve the right, but do not assume the obligation, to verify any user information, listings, or documents submitted to our database.
+              KeySpace integrates national identity verification. We reserve the right, but do not assume the obligation, to verify any user information, listings, or documents submitted to our database.
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export default function TermsPage() {
               3. Properties and Listings
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Landlords are solely responsible for compliance with local regulations, including housing standards, rent restrictions, and taxation laws in Bangladesh. Listed property descriptions, rates, photos, and availability must be true and non-deceptive. Rent Nest reserves the right to suspend or remove listings that fail quality checks or generate tenant complaints.
+              Landlords are solely responsible for compliance with local regulations, including housing standards, rent restrictions, and taxation laws in Bangladesh. Listed property descriptions, rates, photos, and availability must be true and non-deceptive. KeySpace reserves the right to suspend or remove listings that fail quality checks or generate tenant complaints.
             </p>
           </div>
 
@@ -77,7 +77,7 @@ export default function TermsPage() {
               4. Payment Processing and Fees
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Our payments are processed in collaboration with Stripe. Rent Nest may charge booking processing fees, service commissions, or recurring listing subscriptions. All payments made through the platform are subject to the Stripe Services Agreement. Direct cash payments outside the Rent Nest escrow systems are strictly prohibited and nullify all platform fraud protections.
+              Our payments are processed in collaboration with Stripe. KeySpace may charge booking processing fees, service commissions, or recurring listing subscriptions. All payments made through the platform are subject to the Stripe Services Agreement. Direct cash payments outside the KeySpace escrow systems are strictly prohibited and nullify all platform fraud protections.
             </p>
           </div>
 
@@ -86,7 +86,7 @@ export default function TermsPage() {
               5. Dispute Resolution and Mediation
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              In the event of a dispute between landlord and tenant regarding deposits, property damages, or tenancy termination, the parties agree to first engage in good-faith mediation facilitated by Rent Nest support agents.
+              In the event of a dispute between landlord and tenant regarding deposits, property damages, or tenancy termination, the parties agree to first engage in good-faith mediation facilitated by KeySpace support agents.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export default function TermsPage() {
               6. Limitation of Liability
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Rent Nest provides a matching portal and property listing database. To the maximum extent permitted by law, Rent Nest shall not be liable for direct, indirect, incidental, or consequential damages resulting from user interactions, physical property inspections, lease breaches, or third-party payment system failures.
+              KeySpace provides a matching portal and property listing database. To the maximum extent permitted by law, KeySpace shall not be liable for direct, indirect, incidental, or consequential damages resulting from user interactions, physical property inspections, lease breaches, or third-party payment system failures.
             </p>
           </div>
 

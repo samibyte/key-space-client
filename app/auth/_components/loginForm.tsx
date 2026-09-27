@@ -21,21 +21,21 @@ const DEMO_ROLES = [
 
   {
     label: "Landlord",
-    email: "landlord1@rentnest.com",
+    email: "landlord1@keyspace.com",
     password: "Landlord123!",
     className:
       "bg-primary/10 text-primary border-primary/30 hover:bg-primary/20",
   },
   {
     label: "Admin",
-    email: "admin@rentnest.com",
+    email: "admin@keyspace.com",
     password: "AdminPassword123!",
     className:
       "bg-rose-500/10 text-rose-600 border-rose-300/50 hover:bg-rose-500/20 dark:text-rose-400 dark:border-rose-700/50",
   },
   {
     label: "Tenant",
-    email: "tenant1@rentnest.com",
+    email: "tenant1@keyspace.com",
     password: "Tenant123!",
     className:
       "bg-emerald-500/10 text-emerald-600 border-emerald-300/50 hover:bg-emerald-500/20 dark:text-emerald-400 dark:border-emerald-700/50",

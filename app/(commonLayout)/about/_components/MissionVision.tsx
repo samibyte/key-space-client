@@ -37,12 +37,12 @@ export default function MissionVision() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Finding a home shouldn&apos;t involve endless phone calls, unverified brokers, and hidden charges. 
-            Rent Nest was founded to bring simplicity, automation, and transparency under one premium roof.
+            KeySpace was founded to bring simplicity, automation, and transparency under one premium roof.
           </p>
           <div className="h-0.5 w-20 bg-primary/30 rounded" />
           <div className="flex flex-col gap-3">
             <p className="text-sm font-semibold text-foreground italic border-l-2 border-primary pl-4 py-1">
-              &ldquo;We model a world where nesting in your perfect rental unit is as easy as requesting a ride on your phone.&rdquo;
+              &ldquo;We model a world where settling into your perfect rental unit is as easy as requesting a ride on your phone.&rdquo;
             </p>
           </div>
         </div>

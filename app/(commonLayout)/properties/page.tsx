@@ -5,7 +5,7 @@ import PropertiesClient from "./_components/PropertiesClient";
 import type { PropertyFilters } from "@/types/property.type";
 
 export const metadata: Metadata = {
-  title: "Browse Properties | Rent Nest",
+  title: "Browse Properties | KeySpace",
   description:
     "Discover premium rental properties across Bangladesh. Filter by city, price, bedrooms, amenities and more.",
 };

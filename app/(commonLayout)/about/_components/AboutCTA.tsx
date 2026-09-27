@@ -11,7 +11,7 @@ export default function AboutCTA() {
 
       <div className="p-8 sm:p-12 rounded-3xl border border-primary/20 bg-background/60 backdrop-blur-md shadow-xl flex flex-col items-center gap-6">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight max-w-xl">
-          Ready to Nest in Your Perfect Space?
+          Ready to Unlock Your Perfect Space?
         </h2>
         <p className="text-sm sm:text-base text-muted-foreground max-w-md leading-relaxed">
           Sign up today to explore thousands of active listings, request leases directly, and pay your rent hassle-free.

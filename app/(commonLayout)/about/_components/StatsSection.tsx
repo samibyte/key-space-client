@@ -25,7 +25,7 @@ export default function StatsSection({ stats }: StatsSectionProps) {
     {
       label: "Active Leases",
       value: formatCount(activeLeases),
-      desc: "Nests currently occupied",
+      desc: "Spaces currently occupied",
       icon: <Key className="size-5 text-primary" />,
     },
     {
@@ -51,7 +51,7 @@ export default function StatsSection({ stats }: StatsSectionProps) {
             Platform Metrics
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-            Rent Nest in Numbers
+            KeySpace in Numbers
           </h2>
           <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto">
             Real-time data aggregated directly from our platform database.

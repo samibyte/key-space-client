@@ -66,7 +66,7 @@ export default function ShareDialog({
     }
   };
 
-  const shareText = `Check out this amazing property I found on Rent Nest: ${propertyTitle}`;
+  const shareText = `Check out this amazing property I found on KeySpace: ${propertyTitle}`;
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedText = encodeURIComponent(shareText);
 

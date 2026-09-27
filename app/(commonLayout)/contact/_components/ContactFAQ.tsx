@@ -19,11 +19,11 @@ export default function ContactFAQ() {
     },
     {
       q: "What is your listing refund policy?",
-      a: "Listing a property on Rent Nest is absolutely free. For payment processing and booking deposits, queries are subject to our standard refund policy which you can access in your dashboard.",
+      a: "Listing a property on KeySpace is absolutely free. For payment processing and booking deposits, queries are subject to our standard refund policy which you can access in your dashboard.",
     },
     {
       q: "How do I contact support in an emergency?",
-      a: "For immediate payment or access assistance, call our hotline +880 1800-NEST-01 during office hours. Otherwise, email support@rentnest.com.bd.",
+      a: "For immediate payment or access assistance, call our hotline +880 1800-KEYSPACE-01 during office hours. Otherwise, email support@keyspace.com.bd.",
     },
   ];
 
@@ -45,7 +45,7 @@ export default function ContactFAQ() {
             Frequently Asked Questions
           </h2>
           <p className="text-xs sm:text-sm text-muted-foreground">
-            Quick answers to the most common queries about Rent Nest lease matching, bookings, and payments.
+            Quick answers to the most common queries about KeySpace lease matching, bookings, and payments.
           </p>
         </div>
 

@@ -59,12 +59,12 @@ export default function TrustContent() {
 
   const faqData = [
     {
-      q: "How does Rent Nest verify listings and properties?",
-      a: "Every listing on Rent Nest undergoes a multi-layer verification process. First, we cross-reference landlord ownership documents and deeds. Second, our field team performs physical verification of selected premium nests or performs video verification calls to confirm property features, exact location, and amenities listed.",
+      q: "How does KeySpace verify listings and properties?",
+      a: "Every listing on KeySpace undergoes a multi-layer verification process. First, we cross-reference landlord ownership documents and deeds. Second, our field team performs physical verification of selected premium spaces or performs video verification calls to confirm property features, exact location, and amenities listed.",
     },
     {
       q: "Is my payment information and lease transaction safe?",
-      a: "Absolutely. Rent Nest does not store your credit card or bank details. All transactions are securely processed by Stripe, a global payment processor compliant with PCI-DSS Level 1 security. Deposits are kept safe and only released on the specified move-in dates.",
+      a: "Absolutely. KeySpace does not store your credit card or bank details. All transactions are securely processed by Stripe, a global payment processor compliant with PCI-DSS Level 1 security. Deposits are kept safe and only released on the specified move-in dates.",
     },
     {
       q: "How do you check landlord and renter identities?",
@@ -72,11 +72,11 @@ export default function TrustContent() {
     },
     {
       q: "What should I do if a user asks to transact outside the platform?",
-      a: "Always transact and communicate through Rent Nest. Paying outside the platform invalidates our safety guarantees, deposit insurance protection, and refund policies. If anyone prompts you to send cash or use external payment links, please report it immediately using the support form below.",
+      a: "Always transact and communicate through KeySpace. Paying outside the platform invalidates our safety guarantees, deposit insurance protection, and refund policies. If anyone prompts you to send cash or use external payment links, please report it immediately using the support form below.",
     },
     {
       q: "How is legal tenancy enforcement managed?",
-      a: "Our digital leases are drafted in cooperation with legal experts following the Rent Control Act and contract laws of Bangladesh. When signed electronically, they stand as legally binding contracts. In the rare event of breaches or disputes, either party can request mediation from Rent Nest's legal support panel.",
+      a: "Our digital leases are drafted in cooperation with legal experts following the Rent Control Act and contract laws of Bangladesh. When signed electronically, they stand as legally binding contracts. In the rare event of breaches or disputes, either party can request mediation from KeySpace's legal support panel.",
     },
   ];
 
@@ -141,9 +141,9 @@ export default function TrustContent() {
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-none">
             Trust & Safety at <br />
-            <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
-              Rent Nest
-            </span>
+<span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
+            KeySpace
+          </span>
           </h1>
 
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
@@ -176,7 +176,7 @@ export default function TrustContent() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <div className="text-center flex flex-col items-center gap-3 mb-12">
           <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            How Rent Nest Keeps You Protected
+            Core Pillars / Interactive Guidelines
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
             Choose your profile below to explore customized safety protocols and dispute guards that apply to your rental journey.
@@ -431,7 +431,7 @@ export default function TrustContent() {
             <div className="mt-8 pt-6 border-t border-border/40 text-center">
               <p className="text-xs text-muted-foreground flex items-center justify-center gap-2">
                 <PhoneCall className="size-3.5 text-primary" />
-                Urgent Assistance? Contact our Trust Hotline: <span className="font-semibold text-foreground">+880 1800-NEST-HELP</span> (Mon-Sun, 9 AM - 9 PM)
+                Urgent Assistance? Contact our Trust Hotline: <span className="font-semibold text-foreground">+880 1800-KEYSPACE-HELP</span> (Mon-Sun, 9 AM - 9 PM)
               </p>
             </div>
           </div>

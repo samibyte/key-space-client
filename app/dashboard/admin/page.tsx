@@ -28,7 +28,7 @@ export default function AdminDashboardOverview() {
   return (
     <DashboardShell
       title="Admin Overview"
-      description="Platform-wide analytics and a real-time health check of Rent Nest."
+      description="Platform-wide analytics and a real-time health check of KeySpace."
     >
       {/* ── KPI Grid  */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

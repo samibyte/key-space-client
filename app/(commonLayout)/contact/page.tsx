@@ -4,9 +4,9 @@ import ContactFAQ from "./_components/ContactFAQ";
 import { Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Rent Nest",
+  title: "Contact Us | KeySpace",
   description:
-    "Have questions about listings, lease approvals, or payments? Contact Rent Nest support team and view FAQs.",
+    "Have questions about listings, lease approvals, or payments? Contact KeySpace support team and view FAQs.",
 };
 
 export default function ContactPage() {

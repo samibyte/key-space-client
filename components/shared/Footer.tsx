@@ -35,7 +35,7 @@ export default function Footer() {
     await new Promise((resolve) => setTimeout(resolve, 800));
     setLoading(false);
     setSubscribed(true);
-    toast.success("Thank you for subscribing to Rent Nest newsletters!");
+    toast.success("Thank you for subscribing to KeySpace newsletters!");
     setEmail("");
   };
 
@@ -56,7 +56,7 @@ export default function Footer() {
               <Logo className="w-14 sm:w-16" />
             </Link>
             <p className="text-sm font-normal text-muted-foreground leading-relaxed max-w-xs">
-              Rent Nest is the leading property placement & verification
+              KeySpace is the leading property placement & verification
               platform in Bangladesh. We connect premium renters with verified
               landlords, offering seamless digital leases and secure payments.
             </p>
@@ -207,7 +207,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="size-3.5 text-primary/70 shrink-0" />
-                <span>support@rentnest.com</span>
+                <span>support@keyspace.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="size-3.5 text-primary/70 shrink-0 pointer-events-none" />
@@ -224,7 +224,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-xs text-muted-foreground order-2 sm:order-1 text-center sm:text-left">
             <span>
-              &copy; {new Date().getFullYear()} Rent Nest. All rights
+              &copy; {new Date().getFullYear()} KeySpace. All rights
               reserved.{" "}
             </span>
             <div className="mt-1 flex justify-center sm:justify-start gap-3">

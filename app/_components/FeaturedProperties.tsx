@@ -19,7 +19,7 @@ export default function FeaturedProperties({
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
           <div className="flex flex-col gap-2">
             <span className="text-xs uppercase tracking-widest text-primary font-bold">
-              Top Pick Nests
+              Top Pick Spaces
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
               Featured Properties

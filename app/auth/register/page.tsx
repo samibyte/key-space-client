@@ -35,7 +35,7 @@ const RegisterPage = async ({ searchParams }: RegisterParams) => {
                 Get started today
               </h1>
               <p className="text-muted-foreground">
-                Join Rent Nest — it&apos;s free and takes under a minute
+                Join KeySpace — it&apos;s free and takes under a minute
               </p>
             </div>
 

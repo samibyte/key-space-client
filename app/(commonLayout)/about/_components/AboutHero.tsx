@@ -22,7 +22,7 @@ export default function AboutHero() {
 
         {/* Hero Description */}
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          Rent Nest is a state-of-the-art property management and rental
+          KeySpace is a state-of-the-art property management and rental
           matching platform. We bridge the gap between verified landlords and
           prospective tenants, turning complex lease journeys into secure,
           intuitive, and delightful modern experiences.
@@ -62,7 +62,7 @@ export default function AboutHero() {
               </div>
             </div>
             <p className="text-xl font-semibold text-foreground">
-              Find Your Next Nesting Spot
+              Find Your Next Key Space
             </p>
             <p className="text-sm text-muted-foreground max-w-sm">
               Discover beautiful flats, studio apartments, and commercial spaces

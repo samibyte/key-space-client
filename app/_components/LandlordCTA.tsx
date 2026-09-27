@@ -26,7 +26,7 @@ export default function LandlordCTA() {
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
               Own Property? <br className="hidden sm:inline" />
-              Start Nesting &amp; Earning.
+              Hand the Keys &amp; Earn.
             </h2>
             <p className="text-sm text-emerald-100/80 leading-relaxed max-w-md">
               List your flats, duplexes, or commercial hubs in minutes. Manage everything from screening to digital rent payout collection.
@@ -58,7 +58,7 @@ export default function LandlordCTA() {
           {/* Benefits Bullet Grid */}
           <div className="bg-emerald-900/40 backdrop-blur-md rounded-2xl border border-emerald-800/40 p-6 sm:p-8 flex flex-col gap-4">
             <h3 className="font-extrabold text-foreground text-sm tracking-tight text-white mb-2 pb-2 border-b border-emerald-800/30">
-              Why Landlords Love Rent Nest
+              Why Landlords Love KeySpace
             </h3>
             <ul className="flex flex-col gap-4">
               {benefits.map((b) => (

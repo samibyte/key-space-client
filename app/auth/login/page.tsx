@@ -29,7 +29,7 @@ const LoginPage = async ({ searchParams }: LoginParams) => {
           <Link href="/" className="transition-transform hover:scale-105 active:scale-95">
             <Logo className="w-10" />
           </Link>
-          <span className="font-semibold text-foreground tracking-tight">Rent Nest</span>
+           <span className="font-semibold text-foreground tracking-tight">KeySpace</span>
         </div>
 
         {/* Centered form */}
@@ -41,7 +41,7 @@ const LoginPage = async ({ searchParams }: LoginParams) => {
                 Welcome back
               </h1>
               <p className="text-muted-foreground">
-                Sign in to your Rent Nest account
+                Sign in to your KeySpace account
               </p>
             </div>
 

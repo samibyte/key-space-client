@@ -10,7 +10,7 @@ export default function HowItWorks() {
     },
     {
       num: "02",
-      title: "Request Nest",
+      title: "Request Access",
       desc: "Click 'Request Rental' on any available page, set your move-in date, and send directly.",
       icon: <Send className="size-5 text-primary" />,
     },
@@ -43,7 +43,7 @@ export default function HowItWorks() {
             Simplicity Built-In
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-            How Rent Nest Works
+            How KeySpace Works
           </h2>
           <p className="text-xs sm:text-sm text-muted-foreground max-w-sm mx-auto">
             A fully transparent, automated process keeping tenants and landlords safe at every step.

@@ -26,7 +26,7 @@ export default function Loading() {
         {/* Dynamic, premium text indicators */}
         <div className="flex flex-col items-center space-y-2 text-center">
           <h2 className="text-xl font-semibold tracking-wide text-foreground">
-            Rent Nest
+            KeySpace
           </h2>
           <div className="flex items-center space-x-1.5 text-sm font-medium text-muted-foreground/85">
             <span>Staging your next home</span>

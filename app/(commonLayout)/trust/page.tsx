@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import TrustContent from "./_components/TrustContent";
 
 export const metadata: Metadata = {
-  title: "Trust & Safety | Rent Nest",
+  title: "Trust & Safety | KeySpace",
   description:
-    "Learn how Rent Nest protects tenants and landlords in Bangladesh. Discover user verification, secure Stripe payments, legally binding digital leases, and direct conflict mediation support.",
+    "Learn how KeySpace protects tenants and landlords in Bangladesh. Discover user verification, secure Stripe payments, legally binding digital leases, and direct conflict mediation support.",
 };
 
 export default function TrustPage() {

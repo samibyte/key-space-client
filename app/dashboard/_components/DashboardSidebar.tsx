@@ -89,7 +89,7 @@ export default function DashboardSidebar({ role, userName, avatar }: DashboardSi
       <SidebarHeader className="flex h-16 shrink-0 flex-row items-center px-4 border-b border-border/40">
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Logo className="w-8 shrink-0" />
-          <span className="font-bold tracking-tight text-foreground text-lg">Rent Nest</span>
+          <span className="font-bold tracking-tight text-foreground text-lg">KeySpace</span>
         </Link>
       </SidebarHeader>
 

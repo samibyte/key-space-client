@@ -4,7 +4,7 @@ export default function BenefitsSection() {
   const benefits = [
     {
       title: "Build Rent Credit",
-      desc: "Every on-time monthly payment made on Rent Nest counts positively towards your rental credit history, helping you secure premium homes easily.",
+      desc: "Every on-time monthly payment made on KeySpace counts positively towards your rental credit history, helping you secure premium homes easily.",
       icon: <TrendingUp className="size-6 text-emerald-500" />,
       badge: "Credit Booster",
       gradient: "from-emerald-500/10 to-transparent",
@@ -40,7 +40,7 @@ export default function BenefitsSection() {
           Occupant Perks
         </span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-          Why Rent with Rent Nest?
+          Why Rent with KeySpace?
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto">
           We leverage modern technology to provide you with financial utility, complete security, and transparency.

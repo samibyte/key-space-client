@@ -53,7 +53,7 @@ export default function CollectionsSection() {
       {/* Section Header */}
       <div className="text-center flex flex-col gap-2">
         <span className="text-xs uppercase tracking-widest text-primary font-bold">
-          Curated Nests
+          Curated Spaces
         </span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
           Explore Curated Rental Collections

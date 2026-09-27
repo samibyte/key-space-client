@@ -45,7 +45,7 @@ const configs: Record<PanelVariant, PanelConfig> = {
     image: "/auth-register-panel.png",
     heading: "List, manage, and grow.",
     subheading:
-      "Whether you're a tenant searching or a landlord listing, Rent Nest makes every step effortless.",
+      "Whether you're a tenant searching or a landlord listing, KeySpace makes every step effortless.",
     stats: [
       { label: "Avg. days to lease", value: "< 7", icon: <Sparkles className="size-3.5" /> },
       { label: "Landlord rating", value: "4.9★", icon: <Star className="size-3.5" /> },
@@ -113,7 +113,7 @@ export default function AuthLeftPanel({ variant }: AuthLeftPanelProps) {
             <Logo className="w-10 relative" />
           </div>
           <span className="text-xl font-semibold tracking-tight text-white/90">
-            Rent <span className="text-[oklch(0.78_0.14_168)]">Nest</span>
+            Key<span className="text-[oklch(0.78_0.14_168)]">Space</span>
           </span>
         </Link>
 

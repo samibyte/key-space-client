@@ -4,8 +4,8 @@ import { getUserInfo } from "@/services/auth.service";
 import ProfileContent from "./_components/ProfileContent";
 
 export const metadata: Metadata = {
-  title: "My Profile | Rent Nest",
-  description: "View and manage your Rent Nest account profile.",
+  title: "My Profile | KeySpace",
+  description: "View and manage your KeySpace account profile.",
 };
 
 export default async function ProfilePage() {

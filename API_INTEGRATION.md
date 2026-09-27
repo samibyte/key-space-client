@@ -1,6 +1,6 @@
-# RentNest — API Integration Mapping
+# KeySpace — API Integration Mapping
 
-This document provides a comprehensive mapping of frontend components and hooks in the `client-rent-nest` application to their corresponding REST API endpoints consumed on the backend.
+This document provides a comprehensive mapping of frontend components and hooks in the `client-key-space` application to their corresponding REST API endpoints consumed on the backend.
 
 ---
 

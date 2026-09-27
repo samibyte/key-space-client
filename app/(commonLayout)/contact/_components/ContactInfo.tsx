@@ -5,14 +5,14 @@ export default function ContactInfo() {
     {
       icon: <Mail className="size-5 text-primary" />,
       label: "Email Support",
-      value: "support@rentnest.com.bd",
+      value: "support@keyspace.com.bd",
       sub: "We reply within 24 hours",
-      href: "mailto:support@rentnest.com.bd",
+      href: "mailto:support@keyspace.com.bd",
     },
     {
       icon: <Phone className="size-5 text-primary" />,
       label: "Phone Hotline",
-      value: "+880 1800-NEST-01",
+      value: "+880 1800-KEYSPACE-01",
       sub: "Sun – Thu, 9 AM – 6 PM",
       href: "tel:+8801800637801",
     },
@@ -107,7 +107,7 @@ export default function ContactInfo() {
         <div className="p-5 rounded-3xl border border-primary/15 bg-primary/5 flex flex-col gap-2">
           <p className="text-xs font-bold text-primary">💡 Fastest response</p>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            For tenant or landlord issues, emailing <span className="font-semibold text-foreground">support@rentnest.com.bd</span> gets you a reply within a few hours on business days.
+            For tenant or landlord issues, emailing <span className="font-semibold text-foreground">support@keyspace.com.bd</span> gets you a reply within a few hours on business days.
           </p>
         </div>
       </div>

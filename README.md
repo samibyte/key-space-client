@@ -1,7 +1,7 @@
-# RentNest 🏠
+# KeySpace 🏠
 **"Find & List Rental Properties with Ease"**
 
-RentNest is a modern, responsive rental property marketplace. It provides roles for **Tenants** (to browse and submit rental requests, and complete payments via Stripe), **Landlords** (to list properties, manage availability, and approve/reject rental requests), and **Admins** (to moderate users and monitor platform statistics).
+KeySpace is a modern, responsive rental property marketplace. It provides roles for **Tenants** (to browse and submit rental requests, and complete payments via Stripe), **Landlords** (to list properties, manage availability, and approve/reject rental requests), and **Admins** (to moderate users and monitor platform statistics).
 
 ---
 
@@ -25,27 +25,27 @@ The database comes pre-seeded with the following administrative, landlord, and t
 ### 👑 Admin Credentials
 | Email | Password | Role | Actions |
 |-------|----------|------|---------|
-| `admin@rentnest.com` | `AdminPassword123!` | **ADMIN** | User Ban/Unban, global statistics overview, layout configuration |
+| `admin@keyspace.com` | `AdminPassword123!` | **ADMIN** | User Ban/Unban, global statistics overview, layout configuration |
 
 ### 🏘️ Landlord Credentials
 All Landlords share the password: `Landlord123!`
 
 | Email | Name | Phone | Role |
 |-------|------|-------|------|
-| `landlord1@rentnest.com` | Rafiq Hossain | +8801711111111 | **LANDLORD** |
-| `landlord2@rentnest.com` | Nusrat Jahan | +8801711222222 | **LANDLORD** |
-| `landlord3@rentnest.com` | Karim Uddin | +8801711333333 | **LANDLORD** |
+| `landlord1@keyspace.com` | Rafiq Hossain | +8801711111111 | **LANDLORD** |
+| `landlord2@keyspace.com` | Nusrat Jahan | +8801711222222 | **LANDLORD** |
+| `landlord3@keyspace.com` | Karim Uddin | +8801711333333 | **LANDLORD** |
 
 ### 👤 Tenant Credentials
 All Tenants share the password: `Tenant123!`
 
 | Email | Name | Phone | Role |
 |-------|------|-------|------|
-| `tenant1@rentnest.com` | Anika Sultana | +8801922111111 | **TENANT** |
-| `tenant2@rentnest.com` | Fahim Islam | +8801922222222 | **TENANT** |
-| `tenant3@rentnest.com` | Mitu Begum | +8801922333333 | **TENANT** |
-| `tenant4@rentnest.com` | Sohel Rana | +8801922444444 | **TENANT** |
-| `tenant5@rentnest.com` | Priya Das | +8801922555555 | **TENANT** |
+| `tenant1@keyspace.com` | Anika Sultana | +8801922111111 | **TENANT** |
+| `tenant2@keyspace.com` | Fahim Islam | +8801922222222 | **TENANT** |
+| `tenant3@keyspace.com` | Mitu Begum | +8801922333333 | **TENANT** |
+| `tenant4@keyspace.com` | Sohel Rana | +8801922444444 | **TENANT** |
+| `tenant5@keyspace.com` | Priya Das | +8801922555555 | **TENANT** |
 
 ---
 
@@ -59,7 +59,7 @@ Confirm you have Node.js (v20+ recommended) and `pnpm` (or `npm`) installed.
 ### 2. Run the Backend Server
 1. Navigate to the server folder:
    ```bash
-   cd server-rent-nest
+   cd server-key-space
    ```
 2. Install dependencies:
    ```bash
@@ -67,7 +67,7 @@ Confirm you have Node.js (v20+ recommended) and `pnpm` (or `npm`) installed.
    ```
 3. Configure the environment variables (`.env`):
    ```env
-   DATABASE_URL="postgresql://username:password@localhost:5432/rent_nest"
+   DATABASE_URL="postgresql://username:password@localhost:5432/keyspace"
    JWT_ACCESS_SECRET="your-access-token-secret-key"
    JWT_REFRESH_SECRET="your-refresh-secret-key"
    STRIPE_SECRET_KEY="sk_test_..."
@@ -87,13 +87,13 @@ Confirm you have Node.js (v20+ recommended) and `pnpm` (or `npm`) installed.
 ### 3. Run the Frontend Client
 1. Navigate to the client folder:
    ```bash
-   cd ../client-rent-nest
+   cd ../client-key-space
    ```
 2. Install dependencies:
    ```bash
    pnpm install
    ```
-3. Configure your local environment variables in `client-rent-nest/.env`:
+3. Configure your local environment variables in `client-key-space/.env`:
    ```env
    NEXT_PUBLIC_API_BASE_URL="http://localhost:5000/api/v1"
    ```
