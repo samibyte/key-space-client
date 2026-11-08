@@ -34,6 +34,8 @@ export default function ConfirmDialog({
   isLoading = false,
   isDestructive = true,
 }: ConfirmDialogProps) {
+  if (!isOpen) return null;
+
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && !isLoading && onCancel()}>
       {/* Shadcn DialogContent includes the backdrop and close button natively */}

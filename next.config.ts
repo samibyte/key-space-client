@@ -6,6 +6,14 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "react-icons",
+      "@base-ui/react",
+      "recharts",
+    ],
+  },
   images: {
     remotePatterns: [
       {

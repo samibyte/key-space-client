@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import dynamic from "next/dynamic";
 import DashboardShell from "../_components/DashboardShell";
 import StatsCard from "@/components/shared/StatsCard";
 import { useAdminStats } from "./_hooks/useAdmin";
@@ -12,7 +13,6 @@ import {
   FileText,
   DollarSign,
 } from "lucide-react";
-import { RoleBar } from "./_components/RoleBar";
 import { useRenderCount } from "@/hooks/useRenderCount";
 
 // Stable icon elements to prevent StatsCard prop identity changes
@@ -22,6 +22,48 @@ const ICONS = {
   file: <FileText className="size-5" />,
   dollar: <DollarSign className="size-5" />,
 };
+
+// Precise Skeleton for RoleBar matching the exact 176px (h-44) chart + legend height to eliminate CLS
+function RoleBarSkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="h-44 w-full flex flex-col justify-around py-3">
+        <div className="space-y-1.5">
+          <Skeleton className="h-3 w-20" />
+          <Skeleton className="h-3 w-full rounded-full" />
+        </div>
+        <div className="space-y-1.5">
+          <Skeleton className="h-3 w-16" />
+          <Skeleton className="h-3 w-3/4 rounded-full" />
+        </div>
+        <div className="space-y-1.5">
+          <Skeleton className="h-3 w-14" />
+          <Skeleton className="h-3 w-1/4 rounded-full" />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-4 border-t border-border/40 pt-5">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Skeleton className="size-8 rounded-lg" />
+              <Skeleton className="h-4 w-20" />
+            </div>
+            <Skeleton className="h-4 w-12" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Lazy-loaded RoleBar with recharts (364 KB parsed) deferred outside the initial critical path
+const RoleBar = dynamic(
+  () => import("./_components/RoleBar").then((mod) => mod.RoleBar),
+  {
+    ssr: false,
+    loading: () => <RoleBarSkeleton />,
+  }
+);
 
 export default function AdminDashboardOverview() {
   useRenderCount("AdminDashboardOverview");
@@ -93,15 +135,7 @@ export default function AdminDashboardOverview() {
         </CardHeader>
         <CardContent className="flex flex-col gap-5 pb-6">
           {isLoading ? (
-            Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <Skeleton className="size-8 rounded-lg" />
-                <div className="flex-1 space-y-1.5">
-                  <Skeleton className="h-3 w-32" />
-                  <Skeleton className="h-1.5 w-full rounded-full" />
-                </div>
-              </div>
-            ))
+            <RoleBarSkeleton />
           ) : (
             <RoleBar
               landlords={landlords}
