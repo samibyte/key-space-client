@@ -21,6 +21,7 @@ import { ShieldBan, ShieldCheck, Search, X, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { useRenderCount } from "@/hooks/useRenderCount";
 import { generateMockUsers } from "@/lib/fixtures/mockDataGenerator";
+import { useDebouncedCallback } from "@/hooks/useDebounce";
 
 // ── Avatar cell helper (memoized)
 const UserAvatar = memo(function UserAvatar({ user }: { user: User }) {
@@ -101,16 +102,10 @@ export default function AdminUsersPage() {
     [router, searchParams]
   );
 
-  // Debounced search handler
-  const handleDebouncedSearch = useMemo(() => {
-    let timeoutId: NodeJS.Timeout;
-    return (val: string) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        pushParam("searchTerm", val.trim());
-      }, 450);
-    };
-  }, [pushParam]);
+  // Debounced search handler (~300ms)
+  const handleDebouncedSearch = useDebouncedCallback((val: string) => {
+    pushParam("searchTerm", val.trim());
+  }, 300);
 
   // ── Data 
   const [useBenchmark, setUseBenchmark] = useState(false);

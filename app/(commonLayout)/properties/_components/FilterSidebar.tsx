@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { useDebouncedCallback } from "@/hooks/useDebounce";
 
 const AMENITY_OPTIONS = [
   { id: "WiFi", label: "WiFi", icon: "📶" },
@@ -131,6 +132,10 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
 
   const currentSort = `${getParam("sortBy") || "createdAt"}:${getParam("sortOrder") || "desc"}`;
 
+  const handleDebouncedCity = useDebouncedCallback((val: string) => {
+    updateParam("city", val.trim());
+  }, 300);
+
   const containerClass = cn(
     // Base styles
     "flex flex-col gap-0 bg-card border border-border/50 rounded-2xl overflow-hidden shadow-sm",
@@ -201,11 +206,7 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
               type="text"
               placeholder="e.g. Dhaka, Chittagong…"
               defaultValue={getParam("city")}
-              onBlur={(e) => updateParam("city", e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter")
-                  updateParam("city", (e.target as HTMLInputElement).value);
-              }}
+              onChange={(e) => handleDebouncedCity(e.target.value)}
               className="h-8 text-sm"
             />
           </FilterSection>
