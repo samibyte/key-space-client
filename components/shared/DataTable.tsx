@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactNode, memo, useCallback } from "react";
+import { ReactNode, memo, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight, FileX } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   Table,
   TableBody,
@@ -34,6 +35,8 @@ interface DataTableProps<T> {
   isLoading?: boolean;
   emptyMessage?: string;
   className?: string;
+  virtualized?: boolean;
+  rowEstimateSize?: number;
 }
 
 const EmptyState = memo(function EmptyState({ message }: { message: string }) {
@@ -118,7 +121,7 @@ const DataTableRow = memo(function DataTableRow<T extends { id: string | number 
   columns,
 }: DataTableRowProps<T>) {
   return (
-    <TableRow className="border-b border-border/30 transition-colors hover:bg-muted/30">
+    <TableRow className="border-b border-border/30 transition-colors hover:bg-muted/30 h-[52px]">
       {columns.map((col) => (
         <TableCell key={col.key} className="px-5 py-3.5 text-sm">
           {col.render
@@ -137,9 +140,12 @@ export default function DataTable<T extends { id: string | number }>({
   isLoading,
   emptyMessage = "No data available",
   className,
+  virtualized = false,
+  rowEstimateSize = 52,
 }: DataTableProps<T>) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const totalPages = meta ? Math.ceil(meta.total / meta.limit) : 1;
   const currentPage = meta?.page || 1;
@@ -153,6 +159,25 @@ export default function DataTable<T extends { id: string | number }>({
     [router, searchParams]
   );
 
+  // Enable virtualization if explicit or if rendering large datasets without pagination
+  const shouldVirtualize = virtualized || (!meta && data.length > 20);
+
+  const rowVirtualizer = useVirtualizer({
+    count: shouldVirtualize ? data.length : 0,
+    getScrollElement: () => scrollContainerRef.current,
+    estimateSize: () => rowEstimateSize,
+    overscan: 8,
+  });
+
+  const virtualItems = shouldVirtualize ? rowVirtualizer.getVirtualItems() : [];
+  const totalVirtualSize = shouldVirtualize ? rowVirtualizer.getTotalSize() : 0;
+
+  const paddingTop = virtualItems.length > 0 ? virtualItems[0].start : 0;
+  const paddingBottom =
+    virtualItems.length > 0
+      ? totalVirtualSize - virtualItems[virtualItems.length - 1].end
+      : 0;
+
   return (
     <Card
       className={cn(
@@ -161,9 +186,9 @@ export default function DataTable<T extends { id: string | number }>({
       )}
     >
       <div className="flex flex-col flex-1 overflow-hidden min-h-0">
-        <div className="overflow-auto min-h-0 flex-1">
+        <div ref={scrollContainerRef} className="overflow-auto min-h-0 flex-1 relative">
           <Table>
-            <TableHeader className="bg-muted/40 sticky top-0 z-10">
+            <TableHeader className="bg-muted/90 backdrop-blur-sm sticky top-0 z-10">
               <TableRow className="border-b border-border/50 hover:bg-transparent">
                 {columns.map((col) => (
                   <TableHead
@@ -195,6 +220,25 @@ export default function DataTable<T extends { id: string | number }>({
                     <EmptyState message={emptyMessage} />
                   </TableCell>
                 </TableRow>
+              ) : shouldVirtualize ? (
+                <>
+                  {paddingTop > 0 && (
+                    <tr>
+                      <td style={{ height: `${paddingTop}px` }} colSpan={columns.length} />
+                    </tr>
+                  )}
+                  {virtualItems.map((virtualRow) => {
+                    const item = data[virtualRow.index];
+                    return (
+                      <DataTableRow key={item.id} item={item} columns={columns} />
+                    );
+                  })}
+                  {paddingBottom > 0 && (
+                    <tr>
+                      <td style={{ height: `${paddingBottom}px` }} colSpan={columns.length} />
+                    </tr>
+                  )}
+                </>
               ) : (
                 data.map((item) => (
                   <DataTableRow key={item.id} item={item} columns={columns} />
@@ -214,4 +258,5 @@ export default function DataTable<T extends { id: string | number }>({
     </Card>
   );
 }
+
 

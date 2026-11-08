@@ -17,9 +17,10 @@ import {
 } from "@/components/ui/select";
 import { useAdminUsers, useUpdateUserStatus } from "../_hooks/useAdmin";
 import type { User, UserRole, UserStatus } from "@/types/user.type";
-import { ShieldBan, ShieldCheck, Search, X } from "lucide-react";
+import { ShieldBan, ShieldCheck, Search, X, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { useRenderCount } from "@/hooks/useRenderCount";
+import { generateMockUsers } from "@/lib/fixtures/mockDataGenerator";
 
 // ── Avatar cell helper (memoized)
 const UserAvatar = memo(function UserAvatar({ user }: { user: User }) {
@@ -112,6 +113,9 @@ export default function AdminUsersPage() {
   }, [pushParam]);
 
   // ── Data 
+  const [useBenchmark, setUseBenchmark] = useState(false);
+  const mockUsers = useMemo(() => (useBenchmark ? generateMockUsers(1000) : []), [useBenchmark]);
+
   const { data: res, isLoading } = useAdminUsers({
     searchTerm: currentSearchTerm,
     role: roleParam || undefined,
@@ -120,8 +124,8 @@ export default function AdminUsersPage() {
     limit: 10,
   });
 
-  const users: User[] = res?.data ?? [];
-  const meta = res?.meta;
+  const users: User[] = useBenchmark ? mockUsers : (res?.data ?? []);
+  const meta = useBenchmark ? undefined : res?.meta;
 
   // ── Mutation 
   const statusMutation = useUpdateUserStatus();
@@ -233,6 +237,19 @@ export default function AdminUsersPage() {
     <DashboardShell
       title="User Management"
       description="Search, filter, and moderate all platform users."
+      headerAction={
+        process.env.NODE_ENV !== "production" ? (
+          <Button
+            variant={useBenchmark ? "default" : "outline"}
+            size="sm"
+            onClick={() => setUseBenchmark((b) => !b)}
+            className="text-xs gap-1.5 rounded-xl h-8"
+          >
+            <Sparkles className="size-3.5" />
+            {useBenchmark ? "1,000 Fixtures Active" : "Load 1,000 Fixtures"}
+          </Button>
+        ) : undefined
+      }
     >
       {/* ── Filters toolbar  */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -296,6 +313,7 @@ export default function AdminUsersPage() {
         meta={meta}
         isLoading={isLoading}
         emptyMessage="No users found."
+        virtualized={useBenchmark}
       />
 
       {/* ── Confirm Status Dialog  */}
