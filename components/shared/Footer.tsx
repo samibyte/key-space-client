@@ -1,43 +1,17 @@
-"use client";
-
-import React, { useState } from "react";
 import Link from "next/link";
-import { toast } from "sonner";
 import Logo from "@/components/ui/logo";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Mail,
   Phone,
   MapPin,
-  ArrowRight,
   ShieldCheck,
   CreditCard,
-  CheckCircle2,
 } from "lucide-react";
+import FooterNewsletter from "./FooterNewsletter";
 
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-
-    setLoading(true);
-    // Simulate API request
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setLoading(false);
-    setSubscribed(true);
-    toast.success("Thank you for subscribing to KeySpace newsletters!");
-    setEmail("");
-  };
 
   return (
     <footer className="relative border-t border-border/40 bg-zinc-50 dark:bg-zinc-950/60 overflow-hidden">
@@ -168,37 +142,7 @@ export default function Footer() {
               </p>
             </div>
 
-            {subscribed ? (
-              <div className="flex items-center gap-2 rounded-xl bg-primary/10 border border-primary/20 px-3 py-2 text-primary">
-                <CheckCircle2 className="size-4 shrink-0" />
-                <span className="text-xs font-medium">
-                  Successfully subscribed!
-                </span>
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="flex gap-2">
-                <Input
-                  type="email"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-10 rounded-xl bg-background/80 border-border/60 text-sm focus-visible:ring-primary/20"
-                  required
-                />
-                <Button
-                  type="submit"
-                  size="sm"
-                  className="h-10 rounded-xl bg-primary text-primary-foreground hover:bg-primary/95 transition-all duration-300 font-semibold flex items-center justify-center px-4"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <span className="size-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
-                  ) : (
-                    <ArrowRight className="size-4" />
-                  )}
-                </Button>
-              </form>
-            )}
+            <FooterNewsletter />
 
             <div className="space-y-2 text-xs text-muted-foreground pt-2">
               <div className="flex items-center gap-2">
