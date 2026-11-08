@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import DashboardShell from "../_components/DashboardShell";
 import StatsCard from "@/components/shared/StatsCard";
 import { useAdminStats } from "./_hooks/useAdmin";
@@ -12,8 +13,18 @@ import {
   DollarSign,
 } from "lucide-react";
 import { RoleBar } from "./_components/RoleBar";
+import { useRenderCount } from "@/hooks/useRenderCount";
+
+// Stable icon elements to prevent StatsCard prop identity changes
+const ICONS = {
+  users: <Users className="size-5" />,
+  building: <Building2 className="size-5" />,
+  file: <FileText className="size-5" />,
+  dollar: <DollarSign className="size-5" />,
+};
 
 export default function AdminDashboardOverview() {
+  useRenderCount("AdminDashboardOverview");
   const { data: statsRes, isLoading } = useAdminStats();
   const stats = statsRes?.data;
   const totalUsers = stats?.users?.total ?? 0;
@@ -24,6 +35,16 @@ export default function AdminDashboardOverview() {
   const landlords = stats?.users?.breakdown?.LANDLORD ?? 0;
   const tenants = stats?.users?.breakdown?.TENANT ?? 0;
   const admins = stats?.users?.breakdown?.ADMIN ?? 0;
+
+  const formattedValues = useMemo(
+    () => ({
+      users: totalUsers.toLocaleString(),
+      properties: totalProperties.toLocaleString(),
+      rentals: totalRentals.toLocaleString(),
+      revenue: `$${(totalRevenue / 100).toLocaleString("en-US", { minimumFractionDigits: 0 })}`,
+    }),
+    [totalUsers, totalProperties, totalRentals, totalRevenue]
+  );
 
   return (
     <DashboardShell
@@ -40,23 +61,23 @@ export default function AdminDashboardOverview() {
           <>
             <StatsCard
               label="Total Users"
-              value={totalUsers.toLocaleString()}
-              icon={<Users className="size-5" />}
+              value={formattedValues.users}
+              icon={ICONS.users}
             />
             <StatsCard
               label="Total Properties"
-              value={totalProperties.toLocaleString()}
-              icon={<Building2 className="size-5" />}
+              value={formattedValues.properties}
+              icon={ICONS.building}
             />
             <StatsCard
               label="Total Rentals"
-              value={totalRentals.toLocaleString()}
-              icon={<FileText className="size-5" />}
+              value={formattedValues.rentals}
+              icon={ICONS.file}
             />
             <StatsCard
               label="Platform Revenue"
-              value={`$${(totalRevenue / 100).toLocaleString("en-US", { minimumFractionDigits: 0 })}`}
-              icon={<DollarSign className="size-5" />}
+              value={formattedValues.revenue}
+              icon={ICONS.dollar}
             />
           </>
         )}

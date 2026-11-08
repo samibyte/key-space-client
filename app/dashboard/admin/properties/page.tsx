@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
 import { useSearchParams } from "next/navigation";
 import DashboardShell from "../../_components/DashboardShell";
 import DataTable, { type Column } from "@/components/shared/DataTable";
@@ -11,11 +11,10 @@ import { useAdminProperties, useDeleteAdminProperty } from "../_hooks/useAdmin";
 import type { Property } from "@/types/property.type";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { useRenderCount } from "@/hooks/useRenderCount";
 
-
-//  Thumbnail helper
-
-function PropertyCell({ property }: { property: Property }) {
+// ── Thumbnail helper (memoized)
+const PropertyCell = memo(function PropertyCell({ property }: { property: Property }) {
   const thumb = property.images?.[0];
   return (
     <div className="flex items-center gap-3">
@@ -35,9 +34,10 @@ function PropertyCell({ property }: { property: Property }) {
       </div>
     </div>
   );
-}
+});
 
 export default function AdminPropertiesPage() {
+  useRenderCount("AdminPropertiesPage");
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
@@ -48,7 +48,15 @@ export default function AdminPropertiesPage() {
   const deleteMutation = useDeleteAdminProperty();
   const [confirmTarget, setConfirmTarget] = useState<Property | null>(null);
 
-  const handleDelete = () => {
+  const handleOpenConfirm = useCallback((p: Property) => {
+    setConfirmTarget(p);
+  }, []);
+
+  const handleCloseConfirm = useCallback(() => {
+    setConfirmTarget(null);
+  }, []);
+
+  const handleDelete = useCallback(() => {
     if (!confirmTarget) return;
     deleteMutation.mutate(confirmTarget.id, {
       onSuccess: () => {
@@ -60,56 +68,59 @@ export default function AdminPropertiesPage() {
         setConfirmTarget(null);
       },
     });
-  };
+  }, [confirmTarget, deleteMutation]);
 
-  const columns: Column<Property>[] = [
-    {
-      key: "title",
-      header: "Property",
-      primary: true,
-      render: (p) => <PropertyCell property={p} />,
-    },
-    {
-      key: "landlord",
-      header: "Landlord",
-      render: (p) => (
-        <div className="flex flex-col min-w-0">
-          <span className="text-sm font-medium text-foreground truncate">{p.landlord?.name ?? "—"}</span>
-          <span className="text-xs text-muted-foreground truncate">{p.landlord?.email ?? ""}</span>
-        </div>
-      ),
-    },
-    {
-      key: "monthlyRent",
-      header: "Rent/mo",
-      desktopOnly: true,
-      render: (p) => (
-        <span className="text-sm font-semibold tabular-nums">
-          ${p.monthlyRent.toLocaleString("en-US")}
-        </span>
-      ),
-    },
-    {
-      key: "status",
-      header: "Status",
-      render: (p) => <StatusBadge status={p.status} />,
-    },
-    {
-      key: "actions",
-      header: "Action",
-      render: (p) => (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setConfirmTarget(p)}
-          className="h-8 rounded-xl gap-1.5 text-rose-600 hover:text-rose-700 hover:bg-rose-500/10 border-rose-500/20 text-xs font-semibold"
-        >
-          <Trash2 className="size-3.5" />
-          Delete
-        </Button>
-      ),
-    },
-  ];
+  const columns: Column<Property>[] = useMemo(
+    () => [
+      {
+        key: "title",
+        header: "Property",
+        primary: true,
+        render: (p) => <PropertyCell property={p} />,
+      },
+      {
+        key: "landlord",
+        header: "Landlord",
+        render: (p) => (
+          <div className="flex flex-col min-w-0">
+            <span className="text-sm font-medium text-foreground truncate">{p.landlord?.name ?? "—"}</span>
+            <span className="text-xs text-muted-foreground truncate">{p.landlord?.email ?? ""}</span>
+          </div>
+        ),
+      },
+      {
+        key: "monthlyRent",
+        header: "Rent/mo",
+        desktopOnly: true,
+        render: (p) => (
+          <span className="text-sm font-semibold tabular-nums">
+            ${p.monthlyRent.toLocaleString("en-US")}
+          </span>
+        ),
+      },
+      {
+        key: "status",
+        header: "Status",
+        render: (p) => <StatusBadge status={p.status} />,
+      },
+      {
+        key: "actions",
+        header: "Action",
+        render: (p) => (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleOpenConfirm(p)}
+            className="h-8 rounded-xl gap-1.5 text-rose-600 hover:text-rose-700 hover:bg-rose-500/10 border-rose-500/20 text-xs font-semibold"
+          >
+            <Trash2 className="size-3.5" />
+            Delete
+          </Button>
+        ),
+      },
+    ],
+    [handleOpenConfirm]
+  );
 
   return (
     <DashboardShell
@@ -131,7 +142,7 @@ export default function AdminPropertiesPage() {
         confirmText="Delete Property"
         isDestructive
         onConfirm={handleDelete}
-        onCancel={() => setConfirmTarget(null)}
+        onCancel={handleCloseConfirm}
         isLoading={deleteMutation.isPending}
       />
     </DashboardShell>

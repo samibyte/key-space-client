@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useMemo, memo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import DashboardShell from "../../_components/DashboardShell";
 import DataTable, { type Column } from "@/components/shared/DataTable";
@@ -19,11 +19,10 @@ import { useAdminUsers, useUpdateUserStatus } from "../_hooks/useAdmin";
 import type { User, UserRole, UserStatus } from "@/types/user.type";
 import { ShieldBan, ShieldCheck, Search, X } from "lucide-react";
 import { toast } from "sonner";
+import { useRenderCount } from "@/hooks/useRenderCount";
 
-
-//  Avatar cell helper
-
-function UserAvatar({ user }: { user: User }) {
+// ── Avatar cell helper (memoized)
+const UserAvatar = memo(function UserAvatar({ user }: { user: User }) {
   const initial = user.name?.charAt(0).toUpperCase() ?? "?";
   return (
     <div className="flex items-center gap-3">
@@ -41,12 +40,45 @@ function UserAvatar({ user }: { user: User }) {
       </div>
     </div>
   );
+});
+
+// ── Colocated Search Input to isolate keystroke re-renders from the table
+interface SearchInputProps {
+  initialValue: string;
+  onSearch: (value: string) => void;
 }
+
+const UserSearchInput = memo(function UserSearchInput({
+  initialValue,
+  onSearch,
+}: SearchInputProps) {
+  const [value, setValue] = useState(initialValue);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setValue(val);
+    onSearch(val);
+  };
+
+  return (
+    <div className="relative w-full sm:max-w-xs">
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
+      <Input
+        id="user-search"
+        placeholder="Search by name or email…"
+        value={value}
+        onChange={handleChange}
+        className="pl-9 h-9 rounded-xl bg-muted/40 border-border/50 text-sm"
+      />
+    </div>
+  );
+});
 
 // 
 //  Page
 // 
 export default function AdminUsersPage() {
+  useRenderCount("AdminUsersPage");
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -54,9 +86,7 @@ export default function AdminUsersPage() {
   const page = Number(searchParams.get("page")) || 1;
   const roleParam = (searchParams.get("role") ?? "") as UserRole | "";
   const statusParam = (searchParams.get("status") ?? "") as UserStatus | "";
-
-  // ── Local search input (debounced → URL) 
-  const [searchInput, setSearchInput] = useState(searchParams.get("searchTerm") ?? "");
+  const currentSearchTerm = searchParams.get("searchTerm") ?? "";
 
   // Push param helper
   const pushParam = useCallback(
@@ -70,15 +100,20 @@ export default function AdminUsersPage() {
     [router, searchParams]
   );
 
-  // Debounce search
-  useEffect(() => {
-    const t = setTimeout(() => pushParam("searchTerm", searchInput.trim()), 450);
-    return () => clearTimeout(t);
-  }, [searchInput, pushParam]);
+  // Debounced search handler
+  const handleDebouncedSearch = useMemo(() => {
+    let timeoutId: NodeJS.Timeout;
+    return (val: string) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        pushParam("searchTerm", val.trim());
+      }, 450);
+    };
+  }, [pushParam]);
 
   // ── Data 
   const { data: res, isLoading } = useAdminUsers({
-    searchTerm: searchParams.get("searchTerm") ?? "",
+    searchTerm: currentSearchTerm,
     role: roleParam || undefined,
     status: statusParam || undefined,
     page,
@@ -92,9 +127,11 @@ export default function AdminUsersPage() {
   const statusMutation = useUpdateUserStatus();
   const [confirmTarget, setConfirmTarget] = useState<User | null>(null);
 
-  const handleToggleStatus = (user: User) => setConfirmTarget(user);
+  const handleToggleStatus = useCallback((user: User) => {
+    setConfirmTarget(user);
+  }, []);
 
-  const handleConfirm = () => {
+  const handleConfirm = useCallback(() => {
     if (!confirmTarget) return;
     const newStatus: UserStatus = confirmTarget.status === "ACTIVE" ? "BANNED" : "ACTIVE";
     statusMutation.mutate(
@@ -110,85 +147,87 @@ export default function AdminUsersPage() {
         },
       }
     );
-  };
+  }, [confirmTarget, statusMutation]);
 
-  const clearFilters = () => {
-    setSearchInput("");
+  const clearFilters = useCallback(() => {
     router.push("?");
-  };
+  }, [router]);
 
-  const hasFilters = searchInput || roleParam || statusParam;
+  const hasFilters = Boolean(currentSearchTerm || roleParam || statusParam);
 
-  // ── Table columns 
-  const columns: Column<User>[] = [
-    {
-      key: "name",
-      header: "User",
-      primary: true,
-      render: (u) => <UserAvatar user={u} />,
-    },
-    {
-      key: "role",
-      header: "Role",
-      desktopOnly: false,
-      render: (u) => (
-        <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase text-muted-foreground">
-          {u.role === "ADMIN" && <ShieldCheck className="size-3.5 text-primary" />}
-          {u.role}
-        </span>
-      ),
-    },
-    {
-      key: "status",
-      header: "Status",
-      render: (u) => <StatusBadge status={u.status} />,
-    },
-    {
-      key: "createdAt",
-      header: "Joined",
-      desktopOnly: true,
-      render: (u) => (
-        <span className="text-xs text-muted-foreground tabular-nums">
-          {new Date(u.createdAt).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })}
-        </span>
-      ),
-    },
-    {
-      key: "actions",
-      header: "Action",
-      render: (u) => {
-        const isBanned = u.status === "BANNED";
-        return (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleToggleStatus(u)}
-            className={
-              isBanned
-                ? "h-8 rounded-xl gap-1.5 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-500/10 border-emerald-500/20 text-xs font-semibold"
-                : "h-8 rounded-xl gap-1.5 text-rose-600 hover:text-rose-700 hover:bg-rose-500/10 border-rose-500/20 text-xs font-semibold"
-            }
-          >
-            {isBanned ? (
-              <>
-                <ShieldCheck className="size-3.5" />
-                Unblock
-              </>
-            ) : (
-              <>
-                <ShieldBan className="size-3.5" />
-                Block
-              </>
-            )}
-          </Button>
-        );
+  // ── Table columns (stable reference)
+  const columns: Column<User>[] = useMemo(
+    () => [
+      {
+        key: "name",
+        header: "User",
+        primary: true,
+        render: (u) => <UserAvatar user={u} />,
       },
-    },
-  ];
+      {
+        key: "role",
+        header: "Role",
+        desktopOnly: false,
+        render: (u) => (
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase text-muted-foreground">
+            {u.role === "ADMIN" && <ShieldCheck className="size-3.5 text-primary" />}
+            {u.role}
+          </span>
+        ),
+      },
+      {
+        key: "status",
+        header: "Status",
+        render: (u) => <StatusBadge status={u.status} />,
+      },
+      {
+        key: "createdAt",
+        header: "Joined",
+        desktopOnly: true,
+        render: (u) => (
+          <span className="text-xs text-muted-foreground tabular-nums">
+            {new Date(u.createdAt).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
+        ),
+      },
+      {
+        key: "actions",
+        header: "Action",
+        render: (u) => {
+          const isBanned = u.status === "BANNED";
+          return (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleToggleStatus(u)}
+              className={
+                isBanned
+                  ? "h-8 rounded-xl gap-1.5 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-500/10 border-emerald-500/20 text-xs font-semibold"
+                  : "h-8 rounded-xl gap-1.5 text-rose-600 hover:text-rose-700 hover:bg-rose-500/10 border-rose-500/20 text-xs font-semibold"
+              }
+            >
+              {isBanned ? (
+                <>
+                  <ShieldCheck className="size-3.5" />
+                  Unblock
+                </>
+              ) : (
+                <>
+                  <ShieldBan className="size-3.5" />
+                  Block
+                </>
+              )}
+            </Button>
+          );
+        },
+      },
+    ],
+    [handleToggleStatus]
+  );
 
   return (
     <DashboardShell
@@ -197,80 +236,76 @@ export default function AdminUsersPage() {
     >
       {/* ── Filters toolbar  */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-        <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
-          <Input
-            id="user-search"
-            placeholder="Search by name or email…"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            className="pl-9 h-9 rounded-xl bg-muted/40 border-border/50 text-sm"
-          />
-        </div>
+        <UserSearchInput
+          key={currentSearchTerm}
+          initialValue={currentSearchTerm}
+          onSearch={handleDebouncedSearch}
+        />
 
-        <Select
-          value={roleParam || "ALL"}
-          onValueChange={(v) => pushParam("role", !v || v === "ALL" ? "" : v)}
-        >
-          <SelectTrigger className="w-full sm:w-36 h-9 rounded-xl bg-muted/40 border-border/50 text-sm">
-            <SelectValue placeholder="All Roles" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="ALL">All Roles</SelectItem>
-            <SelectItem value="ADMIN">Admin</SelectItem>
-            <SelectItem value="LANDLORD">Landlord</SelectItem>
-            <SelectItem value="TENANT">Tenant</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <Select
-          value={statusParam || "ALL"}
-          onValueChange={(v) => pushParam("status", !v || v === "ALL" ? "" : v)}
-        >
-          <SelectTrigger className="w-full sm:w-36 h-9 rounded-xl bg-muted/40 border-border/50 text-sm">
-            <SelectValue placeholder="All Statuses" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="ALL">All Statuses</SelectItem>
-            <SelectItem value="ACTIVE">Active</SelectItem>
-            <SelectItem value="BANNED">Banned</SelectItem>
-          </SelectContent>
-        </Select>
-
-        {hasFilters && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={clearFilters}
-            className="h-9 gap-1.5 rounded-xl text-muted-foreground hover:text-foreground shrink-0"
+        <div className="flex items-center gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
+          {/* Role Filter */}
+          <Select
+            value={roleParam || "ALL"}
+            onValueChange={(val) => pushParam("role", !val || val === "ALL" ? "" : val)}
           >
-            <X className="size-3.5" />
-            Clear
-          </Button>
-        )}
+            <SelectTrigger className="h-9 w-36 rounded-xl bg-muted/40 border-border/50 text-xs font-medium">
+              <SelectValue placeholder="All Roles" />
+            </SelectTrigger>
+            <SelectContent className="rounded-xl">
+              <SelectItem value="ALL">All Roles</SelectItem>
+              <SelectItem value="TENANT">Tenant</SelectItem>
+              <SelectItem value="LANDLORD">Landlord</SelectItem>
+              <SelectItem value="ADMIN">Admin</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {/* Status Filter */}
+          <Select
+            value={statusParam || "ALL"}
+            onValueChange={(val) => pushParam("status", !val || val === "ALL" ? "" : val)}
+          >
+            <SelectTrigger className="h-9 w-36 rounded-xl bg-muted/40 border-border/50 text-xs font-medium">
+              <SelectValue placeholder="All Statuses" />
+            </SelectTrigger>
+            <SelectContent className="rounded-xl">
+              <SelectItem value="ALL">All Statuses</SelectItem>
+              <SelectItem value="ACTIVE">Active</SelectItem>
+              <SelectItem value="BANNED">Banned</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {/* Clear Filters */}
+          {hasFilters && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearFilters}
+              className="h-9 px-2.5 rounded-xl text-xs text-muted-foreground hover:text-foreground gap-1"
+            >
+              <X className="size-3.5" />
+              Reset
+            </Button>
+          )}
+        </div>
       </div>
 
-      {/* ── Table ─────────────────────────────────────────────────────── */}
+      {/* ── Table  */}
       <DataTable
         data={users}
         columns={columns}
         meta={meta}
         isLoading={isLoading}
-        emptyMessage="No users match the current filters."
+        emptyMessage="No users found."
       />
 
-      {/* ── Block/Unblock Confirm Dialog ───────────────────────────────── */}
+      {/* ── Confirm Status Dialog  */}
       <ConfirmDialog
         isOpen={!!confirmTarget}
-        title={
-          confirmTarget?.status === "ACTIVE"
-            ? `Block ${confirmTarget?.name}?`
-            : `Unblock ${confirmTarget?.name}?`
-        }
+        title={confirmTarget?.status === "ACTIVE" ? "Block User Account?" : "Unblock User Account?"}
         description={
           confirmTarget?.status === "ACTIVE"
-            ? "This user will be banned and lose access to the platform immediately."
-            : "This user will be restored to active status and regain full access."
+            ? `Are you sure you want to block ${confirmTarget?.name}? They will be immediately logged out and unable to access KeySpace.`
+            : `Are you sure you want to unblock ${confirmTarget?.name}? Their access to KeySpace will be fully restored.`
         }
         confirmText={confirmTarget?.status === "ACTIVE" ? "Block User" : "Unblock User"}
         isDestructive={confirmTarget?.status === "ACTIVE"}

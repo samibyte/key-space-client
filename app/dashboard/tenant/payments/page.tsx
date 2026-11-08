@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import DashboardShell from "../../_components/DashboardShell";
 import DataTable from "@/components/shared/DataTable";
@@ -10,8 +11,10 @@ import type { PaginationMeta } from "@/types/api.type";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Eye } from "lucide-react";
+import { useRenderCount } from "@/hooks/useRenderCount";
 
 export default function TenantPaymentsPage() {
+  useRenderCount("TenantPaymentsPage");
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page") || "1");
 
@@ -19,65 +22,68 @@ export default function TenantPaymentsPage() {
   const payments = paymentsRes?.data || [];
   const meta: PaginationMeta | undefined = paymentsRes?.meta;
 
-  const columns = [
-    {
-      key: "createdAt",
-      header: "Date",
-      desktopOnly: false,
-      render: (item: Payment) => (
-        <span className="text-sm">
-          {new Date(item.createdAt).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })}
-        </span>
-      ),
-    },
-    {
-      key: "property",
-      header: "Property",
-      primary: true,
-      render: (item: Payment) => (
-        <span className="text-sm font-medium truncate max-w-40 block">
-          {item.rentalRequest?.property?.title || "—"}
-        </span>
-      ),
-    },
-    {
-      key: "amount",
-      header: "Amount",
-      render: (item: Payment) => (
-        <span className="text-sm font-bold">${item.amount?.toLocaleString("en-US")}</span>
-      ),
-    },
-    {
-      key: "status",
-      header: "Status",
-      render: (item: Payment) => <StatusBadge status={item.status} />,
-    },
-    {
-      key: "transactionId",
-      header: "Transaction ID",
-      desktopOnly: true,
-      render: (item: Payment) => (
-        <span className="text-xs font-mono text-muted-foreground truncate max-w-36 block">
-          {item.transactionId || "—"}
-        </span>
-      ),
-    },
-    {
-      key: "actions",
-      header: "",
-      render: (item: Payment) => (
-        <Link href={`/dashboard/tenant/payments/${item.id}`}>
-          <Button size="sm" variant="ghost" className="h-7 px-2">
-            <Eye className="size-3.5" />
-          </Button>
-        </Link>
-      ),
-    },
-  ];
+  const columns = useMemo(
+    () => [
+      {
+        key: "createdAt",
+        header: "Date",
+        desktopOnly: false,
+        render: (item: Payment) => (
+          <span className="text-sm">
+            {new Date(item.createdAt).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </span>
+        ),
+      },
+      {
+        key: "property",
+        header: "Property",
+        primary: true,
+        render: (item: Payment) => (
+          <span className="text-sm font-medium truncate max-w-40 block">
+            {item.rentalRequest?.property?.title || "—"}
+          </span>
+        ),
+      },
+      {
+        key: "amount",
+        header: "Amount",
+        render: (item: Payment) => (
+          <span className="text-sm font-bold">${item.amount?.toLocaleString("en-US")}</span>
+        ),
+      },
+      {
+        key: "status",
+        header: "Status",
+        render: (item: Payment) => <StatusBadge status={item.status} />,
+      },
+      {
+        key: "transactionId",
+        header: "Transaction ID",
+        desktopOnly: true,
+        render: (item: Payment) => (
+          <span className="text-xs font-mono text-muted-foreground truncate max-w-36 block">
+            {item.transactionId || "—"}
+          </span>
+        ),
+      },
+      {
+        key: "actions",
+        header: "",
+        render: (item: Payment) => (
+          <Link href={`/dashboard/tenant/payments/${item.id}`}>
+            <Button size="sm" variant="ghost" className="h-7 px-2">
+              <Eye className="size-3.5" />
+            </Button>
+          </Link>
+        ),
+      },
+    ],
+    []
+  );
 
   return (
     <DashboardShell

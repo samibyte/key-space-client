@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, memo, useCallback } from "react";
 import { ChevronLeft, ChevronRight, FileX } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -36,8 +36,7 @@ interface DataTableProps<T> {
   className?: string;
 }
 
-
-function EmptyState({ message }: { message: string }) {
+const EmptyState = memo(function EmptyState({ message }: { message: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center gap-3">
       <div className="size-14 rounded-full bg-muted/50 flex items-center justify-center ring-1 ring-border/40">
@@ -51,21 +50,23 @@ function EmptyState({ message }: { message: string }) {
       </div>
     </div>
   );
-}
+});
 
-function Pagination({
-  meta,
-  totalPages,
-  currentPage,
-  isLoading,
-  goToPage,
-}: {
+interface PaginationProps {
   meta: PaginationMeta | undefined;
   totalPages: number;
   currentPage: number;
   isLoading: boolean | undefined;
   goToPage: (page: number) => void;
-}) {
+}
+
+const Pagination = memo(function Pagination({
+  meta,
+  totalPages,
+  currentPage,
+  isLoading,
+  goToPage,
+}: PaginationProps) {
   if (!meta || totalPages <= 1) return null;
   return (
     <div className="flex items-center justify-between px-5 py-3 border-t border-border/50 bg-muted/10 shrink-0">
@@ -105,8 +106,29 @@ function Pagination({
       </div>
     </div>
   );
+});
+
+interface DataTableRowProps<T> {
+  item: T;
+  columns: Column<T>[];
 }
 
+const DataTableRow = memo(function DataTableRow<T extends { id: string | number }>({
+  item,
+  columns,
+}: DataTableRowProps<T>) {
+  return (
+    <TableRow className="border-b border-border/30 transition-colors hover:bg-muted/30">
+      {columns.map((col) => (
+        <TableCell key={col.key} className="px-5 py-3.5 text-sm">
+          {col.render
+            ? col.render(item)
+            : ((item as Record<string, unknown>)[col.key] as ReactNode)}
+        </TableCell>
+      ))}
+    </TableRow>
+  );
+}) as <T extends { id: string | number }>(props: DataTableRowProps<T>) => React.JSX.Element;
 
 export default function DataTable<T extends { id: string | number }>({
   data,
@@ -122,11 +144,14 @@ export default function DataTable<T extends { id: string | number }>({
   const totalPages = meta ? Math.ceil(meta.total / meta.limit) : 1;
   const currentPage = meta?.page || 1;
 
-  function goToPage(page: number) {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("page", String(page));
-    router.push(`?${params.toString()}`);
-  }
+  const goToPage = useCallback(
+    (page: number) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("page", String(page));
+      router.push(`?${params.toString()}`);
+    },
+    [router, searchParams]
+  );
 
   return (
     <Card
@@ -172,18 +197,7 @@ export default function DataTable<T extends { id: string | number }>({
                 </TableRow>
               ) : (
                 data.map((item) => (
-                  <TableRow
-                    key={item.id}
-                    className="border-b border-border/30 transition-colors hover:bg-muted/30"
-                  >
-                    {columns.map((col) => (
-                      <TableCell key={col.key} className="px-5 py-3.5 text-sm">
-                        {col.render
-                          ? col.render(item)
-                          : (item as Record<string, unknown>)[col.key] as ReactNode}
-                      </TableCell>
-                    ))}
-                  </TableRow>
+                  <DataTableRow key={item.id} item={item} columns={columns} />
                 ))
               )}
             </TableBody>
@@ -200,3 +214,4 @@ export default function DataTable<T extends { id: string | number }>({
     </Card>
   );
 }
+

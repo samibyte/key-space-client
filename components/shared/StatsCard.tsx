@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
@@ -14,7 +14,7 @@ interface StatsCardProps {
   className?: string;
 }
 
-export default function StatsCard({
+function StatsCard({
   label,
   value,
   icon,
@@ -57,3 +57,6 @@ export default function StatsCard({
     </Card>
   );
 }
+
+export default memo(StatsCard);
+
