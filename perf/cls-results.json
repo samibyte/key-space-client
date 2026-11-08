@@ -1,0 +1,206 @@
+[
+  {
+    "theme": "light",
+    "route": "/",
+    "ready": true,
+    "title": "KeySpace | Premium Property Rentals & Placement Platform",
+    "readyState": "complete",
+    "cls": 0.0004,
+    "shiftCount": 1,
+    "shifts": [
+      {
+        "value": 0.00042,
+        "startTime": 413.5,
+        "sources": [
+          {
+            "node": "DIV",
+            "previousRect": {},
+            "currentRect": {}
+          }
+        ]
+      }
+    ],
+    "lcpMs": 472,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans light",
+    "colorScheme": "light",
+    "bodyBackground": "oklch(0.965 0.004 240)",
+    "bodyColor": "oklch(0.16 0.02 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  },
+  {
+    "theme": "light",
+    "route": "/properties",
+    "ready": true,
+    "title": "Browse Properties | KeySpace",
+    "readyState": "complete",
+    "cls": 0,
+    "shiftCount": 0,
+    "shifts": [],
+    "lcpMs": 120,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans light",
+    "colorScheme": "light",
+    "bodyBackground": "oklch(0.965 0.004 240)",
+    "bodyColor": "oklch(0.16 0.02 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  },
+  {
+    "theme": "light",
+    "route": "/about",
+    "ready": true,
+    "title": "About Us | KeySpace",
+    "readyState": "complete",
+    "cls": 0.0004,
+    "shiftCount": 1,
+    "shifts": [
+      {
+        "value": 0.00042,
+        "startTime": 349.5,
+        "sources": [
+          {
+            "node": "DIV",
+            "previousRect": {},
+            "currentRect": {}
+          }
+        ]
+      }
+    ],
+    "lcpMs": 380,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans light",
+    "colorScheme": "light",
+    "bodyBackground": "oklch(0.965 0.004 240)",
+    "bodyColor": "oklch(0.16 0.02 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  },
+  {
+    "theme": "light",
+    "route": "/auth/login",
+    "ready": true,
+    "title": "KeySpace",
+    "readyState": "complete",
+    "cls": 0,
+    "shiftCount": 0,
+    "shifts": [],
+    "lcpMs": 156,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans light",
+    "colorScheme": "light",
+    "bodyBackground": "oklch(0.965 0.004 240)",
+    "bodyColor": "oklch(0.16 0.02 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  },
+  {
+    "theme": "light",
+    "route": "/trust",
+    "ready": true,
+    "title": "Trust & Safety | KeySpace",
+    "readyState": "complete",
+    "cls": 0,
+    "shiftCount": 0,
+    "shifts": [],
+    "lcpMs": 80,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans light",
+    "colorScheme": "light",
+    "bodyBackground": "oklch(0.965 0.004 240)",
+    "bodyColor": "oklch(0.16 0.02 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  },
+  {
+    "theme": "dark",
+    "route": "/",
+    "ready": true,
+    "title": "KeySpace | Premium Property Rentals & Placement Platform",
+    "readyState": "complete",
+    "cls": 0.0004,
+    "shiftCount": 1,
+    "shifts": [
+      {
+        "value": 0.00042,
+        "startTime": 356.4,
+        "sources": [
+          {
+            "node": "DIV",
+            "previousRect": {},
+            "currentRect": {}
+          }
+        ]
+      }
+    ],
+    "lcpMs": 412,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans dark",
+    "colorScheme": "dark",
+    "bodyBackground": "oklch(0.15 0.01 240)",
+    "bodyColor": "oklch(0.97 0.005 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  },
+  {
+    "theme": "dark",
+    "route": "/properties",
+    "ready": true,
+    "title": "Browse Properties | KeySpace",
+    "readyState": "complete",
+    "cls": 0,
+    "shiftCount": 0,
+    "shifts": [],
+    "lcpMs": 76,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans dark",
+    "colorScheme": "dark",
+    "bodyBackground": "oklch(0.15 0.01 240)",
+    "bodyColor": "oklch(0.97 0.005 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  },
+  {
+    "theme": "dark",
+    "route": "/auth/login",
+    "ready": true,
+    "title": "KeySpace",
+    "readyState": "complete",
+    "cls": 0,
+    "shiftCount": 0,
+    "shifts": [],
+    "lcpMs": 68,
+    "observerError": null,
+    "htmlClass": "h-full antialiased font-sans --font-sans dark",
+    "colorScheme": "dark",
+    "bodyBackground": "oklch(0.15 0.01 240)",
+    "bodyColor": "oklch(0.97 0.005 240)",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "consoleIssues": []
+  }
+]

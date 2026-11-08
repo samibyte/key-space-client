@@ -63,14 +63,19 @@ export interface ApiRequestOptions {
   headers?: Record<string, string>;
 }
 
-const handleRequestError = (endpoint: string, method: string, error: any): any => {
+const handleRequestError = <TData>(
+  endpoint: string,
+  method: string,
+  error: unknown,
+): ApiResponse<TData> => {
   console.error(`${method} request to ${endpoint} failed:`, error);
-  if (error.response?.data) {
-    return error.response.data;
+  if (axios.isAxiosError(error) && error.response?.data) {
+    return error.response.data as ApiResponse<TData>;
   }
   return {
     success: false,
-    message: error.message || "An unexpected error occurred",
+    message:
+      error instanceof Error ? error.message : "An unexpected error occurred",
   };
 };
 

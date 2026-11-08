@@ -30,9 +30,9 @@ export const AvatarPicker = ({ field }: { field: AnyFieldApi }) => {
       
       setPreview(uploadedUrl);
       field.handleChange(uploadedUrl);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setErrorText(err.message || "Failed to upload image.");
+      setErrorText(err instanceof Error ? err.message : "Failed to upload image.");
     } finally {
       setIsUploading(false);
     }

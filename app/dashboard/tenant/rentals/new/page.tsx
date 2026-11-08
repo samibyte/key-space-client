@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import DashboardShell from "../../../_components/DashboardShell";
@@ -82,7 +83,7 @@ export default function NewRentalRequestPage() {
             {!propertyId && (
               <div className="p-3 rounded-xl bg-rose-500/8 border border-rose-500/20 text-xs text-rose-600">
                 No property selected. Please{" "}
-                <a href="/properties" className="underline font-medium">browse properties</a>{" "}
+                <Link href="/properties" className="underline font-medium">browse properties</Link>{" "}
                 and click &quot;Request Rental&quot; from a listing.
               </div>
             )}

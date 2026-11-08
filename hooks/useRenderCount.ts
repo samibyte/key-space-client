@@ -15,5 +15,8 @@ export function useRenderCount(componentName?: string): number {
     }
   });
 
+  // Reading the ref during render is intentional here: this dev-only counter
+  // must report the current render without scheduling an extra one.
+  // eslint-disable-next-line react-hooks/refs
   return count.current;
 }

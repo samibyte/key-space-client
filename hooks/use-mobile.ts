@@ -21,8 +21,8 @@ export function useIsMobile() {
     mql.addEventListener("change", onChange);
     window.addEventListener("resize", onChange, { passive: true });
 
-    // Initial check
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    // Initial check (deferred through the rAF throttle above)
+    onChange();
 
     return () => {
       mql.removeEventListener("change", onChange);

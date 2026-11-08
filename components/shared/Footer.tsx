@@ -1,12 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/ui/logo";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  ShieldCheck,
-  CreditCard,
-} from "lucide-react";
+import { Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 import FooterNewsletter from "./FooterNewsletter";
 
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";

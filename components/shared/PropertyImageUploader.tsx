@@ -100,9 +100,9 @@ export default function PropertyImageUploader({
       );
 
       onChange([...cleanUrls, ...uniqueNewUrls]);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setErrorStatus(err.message || "Failed to upload one or more files.");
+      setErrorStatus(err instanceof Error ? err.message : "Failed to upload one or more files.");
     } finally {
       setIsUploading(false);
     }
@@ -120,9 +120,9 @@ export default function PropertyImageUploader({
       const validatedUrl = await uploadImageUrl(urlInput.trim());
       addImageUrl(validatedUrl);
       setUrlInput("");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setErrorStatus(err.message || "Invalid or unreachable image URL.");
+      setErrorStatus(err instanceof Error ? err.message : "Invalid or unreachable image URL.");
     } finally {
       setIsUploading(false);
     }
