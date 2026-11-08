@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// next/font/google requires network access; using local font variable instead
+// import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import QueryProviders from "@/providers/QueryClient";
@@ -7,7 +8,8 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import Navbar from "@/components/shared/Navbar";
 import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+// Font loaded via globals.css @import at runtime; variable kept for Tailwind compatibility
+const inter = { variable: "--font-sans" };
 
 export const metadata: Metadata = {
   title: "KeySpace",

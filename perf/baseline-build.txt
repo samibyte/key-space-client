@@ -1,0 +1,506 @@
+npm notice run client-key-space@0.1.0 npx
+npm notice run 'next' build --webpack
+▲ Next.js 16.2.12 (webpack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 14.8s
+  Running TypeScript ...
+  Finished TypeScript in 5.2s ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/28) ...
+Error fetching user info: Error: Dynamic server usage: Route /payment/cancel couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /payment/cancel couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /about couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /about couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /properties/public/stats failed: Error: Dynamic server usage: Route /about couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/app/(commonLayout)/page.js:1:558)
+    at Object.get (.next/server/app/(commonLayout)/page.js:1:990)
+    at k (.next/server/app/(commonLayout)/page.js:1:34169)
+    at B (.next/server/app/(commonLayout)/about/page.js:2:25415) {
+  description: "Route /about couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /_not-found couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /_not-found couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /categories failed: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/app/(commonLayout)/page.js:1:558)
+    at Object.get (.next/server/app/(commonLayout)/page.js:1:990)
+    at h (.next/server/app/(commonLayout)/page.js:1:34015)
+    at Object.g [as fn] (.next/server/chunks/9615.js:1:28135)
+    at l (.next/server/chunks/9615.js:1:23739)
+    at Object.start (.next/server/chunks/9615.js:1:24290)
+    at y.fetch (.next/server/chunks/9615.js:1:29997)
+    at F.fetchQuery (.next/server/chunks/9615.js:1:40323) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /regions failed: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/app/(commonLayout)/page.js:1:558)
+    at Object.get (.next/server/app/(commonLayout)/page.js:1:990)
+    at i (.next/server/app/(commonLayout)/page.js:1:34064)
+    at Object.g [as fn] (.next/server/chunks/9615.js:1:28135)
+    at l (.next/server/chunks/9615.js:1:23739)
+    at Object.start (.next/server/chunks/9615.js:1:24290)
+    at y.fetch (.next/server/chunks/9615.js:1:29997)
+    at F.fetchQuery (.next/server/chunks/9615.js:1:40323) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /properties/public/stats failed: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/app/(commonLayout)/page.js:1:558)
+    at Object.get (.next/server/app/(commonLayout)/page.js:1:990)
+    at k (.next/server/app/(commonLayout)/page.js:1:34169)
+    at U (.next/server/app/(commonLayout)/page.js:1:33162) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /properties failed: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/app/(commonLayout)/page.js:1:558)
+    at Object.get (.next/server/app/(commonLayout)/page.js:1:990)
+    at f (.next/server/app/(commonLayout)/page.js:1:33900)
+    at U (.next/server/app/(commonLayout)/page.js:1:33173) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /contact couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /contact couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /payment/success couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /payment/success couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /privacy couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /privacy couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/admin couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/admin couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord/requests couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord/requests couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord/requests couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord/requests couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /categories failed: Error: Dynamic server usage: Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/7519.js:1:474)
+    at Object.get (.next/server/chunks/7519.js:1:906)
+    at h (.next/server/chunks/7519.js:1:9831)
+    at Object.g [as fn] (.next/server/chunks/9615.js:1:28135)
+    at l (.next/server/chunks/9615.js:1:23739)
+    at Object.start (.next/server/chunks/9615.js:1:24290)
+    at y.fetch (.next/server/chunks/9615.js:1:29997)
+    at F.fetchQuery (.next/server/chunks/9615.js:1:40323) {
+  description: "Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /regions failed: Error: Dynamic server usage: Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/7519.js:1:474)
+    at Object.get (.next/server/chunks/7519.js:1:906)
+    at i (.next/server/chunks/7519.js:1:9880)
+    at Object.g [as fn] (.next/server/chunks/9615.js:1:28135)
+    at l (.next/server/chunks/9615.js:1:23739)
+    at Object.start (.next/server/chunks/9615.js:1:24290)
+    at y.fetch (.next/server/chunks/9615.js:1:29997)
+    at F.fetchQuery (.next/server/chunks/9615.js:1:40323) {
+  description: "Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+GET request to /properties/amenities failed: Error: Dynamic server usage: Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/7519.js:1:474)
+    at Object.get (.next/server/chunks/7519.js:1:906)
+    at j (.next/server/chunks/7519.js:1:9926)
+    at Object.g [as fn] (.next/server/chunks/9615.js:1:28135)
+    at l (.next/server/chunks/9615.js:1:23739)
+    at Object.start (.next/server/chunks/9615.js:1:24290)
+    at y.fetch (.next/server/chunks/9615.js:1:29997)
+    at F.fetchQuery (.next/server/chunks/9615.js:1:40323) {
+  description: "Route /dashboard/landlord/properties/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/landlord/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/landlord/properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at q (.next/server/app/dashboard/profile/page.js:1:7579)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant/rentals couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant/payments couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant/payments couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant/payments couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant/payments couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+  Generating static pages using 15 workers (7/28) 
+  Generating static pages using 15 workers (14/28) 
+  Generating static pages using 15 workers (21/28) 
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant/rentals/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant/rentals/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /dashboard/tenant/rentals/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at h (.next/server/chunks/3991.js:1:10964)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard/tenant/rentals/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /terms couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /terms couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /trust couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /trust couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /properties couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /auth/login couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /auth/login couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching user info: Error: Dynamic server usage: Route /auth/register couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/927.js:10:7580)
+    at n (.next/server/chunks/5594.js:2:8144)
+    at j (.next/server/chunks/2052.js:1:1794)
+    at x (.next/server/chunks/2052.js:1:18347)
+    at stringify (<anonymous>) {
+  description: "Route /auth/register couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+✓ Generating static pages using 15 workers (28/28) in 691ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /about
+├ ƒ /auth/google/callback
+├ ƒ /auth/login
+├ ƒ /auth/register
+├ ƒ /contact
+├ ƒ /dashboard/admin
+├ ƒ /dashboard/admin/properties
+├ ƒ /dashboard/admin/rentals
+├ ƒ /dashboard/admin/users
+├ ƒ /dashboard/landlord
+├ ƒ /dashboard/landlord/properties
+├ ƒ /dashboard/landlord/properties/[id]/edit
+├ ƒ /dashboard/landlord/properties/new
+├ ƒ /dashboard/landlord/requests
+├ ƒ /dashboard/profile
+├ ƒ /dashboard/tenant
+├ ƒ /dashboard/tenant/payments
+├ ƒ /dashboard/tenant/payments/[id]
+├ ƒ /dashboard/tenant/rentals
+├ ƒ /dashboard/tenant/rentals/[id]
+├ ƒ /dashboard/tenant/rentals/new
+├ ƒ /payment/cancel
+├ ƒ /payment/success
+├ ƒ /privacy
+├ ƒ /properties
+├ ƒ /properties/[id]
+├ ƒ /terms
+└ ƒ /trust
+
+
+ƒ Proxy (Middleware)
+
+ƒ  (Dynamic)  server-rendered on demand
+
