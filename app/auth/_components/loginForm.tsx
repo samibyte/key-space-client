@@ -75,7 +75,6 @@ export const LoginForm = ({ redirectPath }: ILoginFormProps) => {
       } catch (error) {
         const errorMessage =
           error instanceof Error ? error.message : "Login failed";
-        console.log(`Login failed: ${errorMessage}`);
         setServerError(`Login failed: ${errorMessage}`);
       }
     },

@@ -17,9 +17,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.101.4(react@19.2.4)
-      '@tanstack/react-query-next-experimental':
-        specifier: ^5.101.4
-        version: 5.101.4(@tanstack/react-query@5.101.4(react@19.2.4))(next@16.2.12(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@tanstack/react-virtual':
         specifier: ^3.14.26
         version: 3.14.26(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -790,13 +787,6 @@ packages:
     peerDependenciesMeta:
       '@tanstack/react-start':
         optional: true
-
-  '@tanstack/react-query-next-experimental@5.101.4':
-    resolution: {integrity: sha512-JI9fJjsCSyqS5leRtDkR8iFlQeNEw1qfjkFkCkU5wZog08IzB+mgRnhDlp8O4iwECdgQcR6lP6YxAfkUzXXN0Q==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.101.4
-      next: ^13 || ^14 || ^15 || ^16
-      react: ^18 || ^19
 
   '@tanstack/react-query@5.101.4':
     resolution: {integrity: sha512-yRg2pfOCxIs4ZJW3XYYHU/WgtD04FHSnfHlpRT7h7pR77hwkdRG4wxbKe4aq6P0RvXUTBSQpQeadS1SUYUe+KA==}
@@ -4000,12 +3990,6 @@ snapshots:
       react: 19.2.4
     transitivePeerDependencies:
       - react-dom
-
-  '@tanstack/react-query-next-experimental@5.101.4(@tanstack/react-query@5.101.4(react@19.2.4))(next@16.2.12(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      '@tanstack/react-query': 5.101.4(react@19.2.4)
-      next: 16.2.12(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react: 19.2.4
 
   '@tanstack/react-query@5.101.4(react@19.2.4)':
     dependencies:

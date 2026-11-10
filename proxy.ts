@@ -27,6 +27,14 @@ function isTokenExpiringSoonEdge(token: string, thresholdInSeconds = 300): boole
   return remainingSeconds <= thresholdInSeconds;
 }
 
+const REFRESHED_COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax" as const,
+  path: "/",
+  maxAge: 24 * 60 * 60 * 30, // 30 days
+};
+
 // Helper to refresh tokens via Edge-friendly fetch
 async function refreshTokenMiddleware(refreshToken: string) {
   try {
@@ -92,10 +100,18 @@ export async function proxy(request: NextRequest) {
 
         // Set cookies on the outbound response from middleware
         if (newTokens.accessToken) {
-          nextResponse.cookies.set("accessToken", newTokens.accessToken, { path: "/", maxAge: 24 * 60 * 60 * 30 }); // 30 days
+          nextResponse.cookies.set(
+            "accessToken",
+            newTokens.accessToken,
+            REFRESHED_COOKIE_OPTIONS,
+          );
         }
         if (newTokens.refreshToken) {
-          nextResponse.cookies.set("refreshToken", newTokens.refreshToken, { path: "/", maxAge: 24 * 60 * 60 * 30 });
+          nextResponse.cookies.set(
+            "refreshToken",
+            newTokens.refreshToken,
+            REFRESHED_COOKIE_OPTIONS,
+          );
         }
         
         return nextResponse;

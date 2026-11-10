@@ -51,8 +51,6 @@ export const loginAction = async (
 
     return { success: true, redirectPath: targetPath, message: "Login successful" };
   } catch (error) {
-    console.log(error, "error");
-
     const axiosError = error as {
       response?: { data?: { message?: string } };
       message?: string;
